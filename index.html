@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ampache - Music Streaming Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
+    <link href="css/fontello.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 7]>
+        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+    <![endif]-->
+    <style>
+    body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Load ScrollTo -->
+    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <!-- Load LocalScroll -->
+    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+    <!-- prettyPhoto Initialization -->
+    <script type="text/javascript" charset="utf-8">
+          $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+          });
+    </script>
+  </head>
+  <body>
+    <!--******************** NAVBAR ********************-->
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="#top">Ampache</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+                <li><a title="download" href="https://github.com/Afterster/ampache/releases">Download</a></li>
+                <li><a title="documentation" href="https://github.com/Afterster/ampache/wiki">Documentation</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="top"></div>
+    <!-- ******************** HeaderWrap ********************-->
+    <div id="headerwrap">
+      <header class="clearfix">
+        <h1 style="color: #000000"><span><img src="img/logo/logo-no-text.png" style="height: 210px; width: auto; border: 0;" /><br /> for the love of</span> music</h1>
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <ul class="icon">
+                <li><img src="img/icon/icon-php.png" style="height: 48px; width: auto" title="PHP" /></li>
+                <li><img src="img/icon/icon-mysql.png" style="height: 48px; width: auto" title="MySQL" /></li>
+                <li><img src="img/icon/icon-vlc.png" style="height: 48px; width: auto" title="VLC Localplay" /></li>
+                <li><img src="img/icon/icon-mpd.png" style="height: 48px; width: auto" title="MPD Localplay" /></li>
+                <li><img src="img/icon/icon-winamp.png" style="height: 48px; width: auto" title="Winamp Localplay" /></li>
+                <li><img src="img/icon/icon-xbmc.png" style="height: 48px; width: auto" title="XBMC Localplay" /></li>
+                <li><img src="img/icon/icon-library.png" style="height: 48px; width: auto" title="Manage your music library" /></li>
+                <li><img src="img/icon/icon-github.png" style="height: 48px; width: auto" title="Github hosted project" /></li>
+                <li><img src="img/icon/icon-gplv2.png" style="height: 48px; width: auto" title="GPLv2 license" /></li>
+                <li><img src="img/icon/icon-html5.png" style="height: 48px; width: auto" title="HTML5 Web Player" /></li>
+                <li><img src="img/icon/icon-lastfm.png" style="height: 48px; width: auto" title="Scrobble with LastFM" /></li>
+                <li><img src="img/icon/icon-musicbrainz.png" style="height: 48px; width: auto" title="Metadata from MusicBrainz" /></li><br />
+                <li><img src="img/icon/icon-linux.png" style="height: 48px; width: auto" title="Run on Linux" /></li>
+                <li><img src="img/icon/icon-windows.png" style="height: 48px; width: auto" title="Run on Windows" /></li>
+                <li><img src="img/icon/icon-mac.png" style="height: 48px; width: auto" title="Run on Mac" /></li>
+                <li><img src="img/icon/icon-video.png" style="height: 48px; width: auto" title="Video support" /></li>
+                <li><img src="img/icon/icon-feed.png" style="height: 48px; width: auto" title="RSS Feeds" /></li>
+                <li><img src="img/icon/icon-xml.png" style="height: 48px; width: auto" title="XML API" /></li>
+                <li><img src="img/icon/icon-subsonic.png" style="height: 48px; width: auto" title="Subsonic compatible API" /></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <!--******************** Feature ********************-->
+    <div class="scrollblock">
+      <section id="feature">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <article>
+                <p>A web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <hr>
+    <!--******************** Preview Section ********************-->
+    <section id="preview" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-desktop-circled"></i></div>
+        <h1 id="folio-headline">Preview...</h1>
+        <div class="row">
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-01.jpg" rel="prettyPhoto"><img src="img/preview-01.jpg" alt=""></a> </div>
+          </div>
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-02.jpg" rel="prettyPhoto"><img src="img/preview-02.jpg" alt=""></a> </div>
+          </div>
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-03.jpg" rel="prettyPhoto"><img src="img/preview-03.jpg" alt=""></a> </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-04.jpg" rel="prettyPhoto"><img src="img/preview-04.jpg" alt=""></a> </div>
+          </div>
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-05.jpg" rel="prettyPhoto"><img src="img/preview-05.jpg" alt=""></a> </div>
+          </div>
+          <div class="span4">
+            <div class="mask2"> <a href="img/preview-06.jpg" rel="prettyPhoto"><img src="img/preview-06.jpg" alt=""></a> </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <!--******************** Services Section ********************-->
+    <section id="services" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"><i class="icon-cog-circled"></i></div>
+        <h1>Features</h1>
+        <div class="row">
+          <div class="span3">
+            <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+            <h2>Music collection</h2>
+            <p>Browse and manage your music collection through a simple web interface. Synchronize local and remote catalogs to an unique consistent collection.</p>
+			<a href="https://github.com/Afterster/ampache/wiki/installation/Catalog" class="more-link">read more</a>
+          </div>
+          <div class="span3">
+            <div class="align"> <i class="icon-vector sev_icon"></i> </div>
+            <h2>Music streaming</h2>
+            <p>Stream your music to your prefered player, control it with Localplay or directly listen on the web page with HTML5 player.<br /><br /></p>
+			<a href="https://github.com/Afterster/ampache/wiki#configuration" class="more-link">read more</a>
+          </div>
+          <div class="span3">
+            <div class="align"> <i class="icon-basket sev_icon"></i> </div>
+            <h2>Open source</h2>
+            <p>Completely Free and Open Source since 2001, GPLv2 license.<br /><br />
+            Get involved and take control.<br /><br /></p>
+			<a href="https://github.com/Afterster/ampache" class="more-link">read more</a>
+          </div>
+          <div class="span3">
+            <div class="align"> <i class="icon-mobile-1 sev_icon"></i> </div>
+            <h2>Ampache everywhere</h2>
+            <p>Listen to your music from your phone, tablet or television. At home, at work or in vacation: get Ampache everywhere using a compatible client!<br /><br /></p>
+			<a href="https://github.com/Afterster/ampache/wiki/Clients" class="more-link">read more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <div class="footer-wrapper">
+      <div class="container">
+        <footer>
+          <small>Ampache - Theme by <a href="http://www.dzyngiri.com" alt="Dzyngiri">Dzyngiri</a></small>
+        </footer>
+      </div>
+    </div>
+    <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+  </body>
+</html>
