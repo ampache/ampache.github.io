@@ -251,10 +251,6 @@ ul#menu-main > li > a:hover {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	;
-	min-height: 450px;
-	margin-top: -60px;
-	padding-top:100px;
 	text-align:center;
 }
 #headerwrap h1 {
@@ -273,7 +269,7 @@ ul#menu-main > li > a:hover {
 	text-shadow: 1px 1px 1px #333333;
 }
 #headerwrap h1 span {
-	color:#F8DE17;
+	color:#f0bf00;
 }
 #headerwrap input[type=text] {
 	background: rgba(227, 231, 228, 1);
@@ -317,7 +313,7 @@ ul#menu-main > li > a:hover {
 /*========== Social Icons ==========*/
 ul.icon {
 	font-size:54px;
-	margin:0.5em 0 0.5em 0;
+	margin:1em 0 0.5em 0;
 }
 ul.icon li {
 	display:inline-block;
@@ -340,7 +336,7 @@ section.single-page h1 {
 }
 #feature {
 	background: url("../img/yellow.png") repeat-x 0 0;
-	height: 250px;
+	height: 300px;
 	z-index: 500;
 	box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
@@ -348,7 +344,7 @@ section.single-page h1 {
 }
 #feature article {
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 60px;
 	max-width: 1170px;
 }
 #feature-headline {
@@ -417,6 +413,11 @@ section#preview .align {
 	filter: alpha(opacity=99);
 	opacity: 1;
 }
+
+.row {
+    margin-bottom: 10px;
+}
+
 /* Services */
 
 section#services {
