@@ -22,35 +22,6 @@
     body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
     }
-	#musicbeat {
-		position:absolute;
-		font-weight:bold;
-		display: inline;
-	}
-	#musicbeat {
-		font-size:80px;
-		opacity:1;
-		-moz-transform: scale(1);
-		-webkit-transform: scale(1);
-		-o-transform: scale(1);
-		transform: scale(1);
-		transition: all 1.0s ease-in-out;
-		-webkit-transition: all 1.0s ease-in-out;
-		-moz-transition: all 1.0s ease-in-out;
-		-ms-transition: all 1.0s ease-in-out;
-	}
-	#musicbeat.heartBeat {
-		font-size:120px;
-		opacity:.5;
-		-moz-transform: scale(1.1);
-		-webkit-transform: scale(1.1);
-		-o-transform: scale(1.1);
-		transform: scale(1.1);
-		transition: all 1.0s ease-in-out;
-		-webkit-transition: all 1.0s ease-in-out;
-		-moz-transition: all 1.0s ease-in-out;
-		-ms-transition: all 1.0s ease-in-out;
-	}
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Favicon -->
@@ -65,17 +36,7 @@
     <script type="text/javascript" charset="utf-8">
 		$(document).ready(function(){
 			$("a[rel^='prettyPhoto']").prettyPhoto();
-			var timeoutThrottle,back = true;
-			$('#musicbeat').on('transitionend',function(e){
-				clearTimeout(timeoutThrottle);
-				timeoutThrottle = setTimeout(function(){ back = !back; pulse(back); },0);
-			});
-			var pulse = (function pulse(back) {
-				$('#musicbeat').toggleClass('heartBeat', back);
-				return pulse;
-			})(back);
 		});
-
     </script>
   </head>
   <body>
@@ -102,7 +63,7 @@
     <!-- ******************** HeaderWrap ********************-->
     <div id="headerwrap">
       <header class="clearfix">
-        <h1 style="color: #000000"><span><img src="img/logo/ampache-logo.png" style="height: 210px; width: auto; border: 0;" /><br /> for the love of</span> <div id="musicbeat">music</div></h1>
+        <h1><span><img src="img/logo/ampache-logo.png" style="height: 210px; width: auto; border: 0;" /><br /> ...for the love of music</span></h1>
         <div class="container">
           <div class="row">
             <div class="span12">
