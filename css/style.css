@@ -277,6 +277,18 @@ ul#menu-main > li > a:hover {
 	-moz-border-radius: 3px;
 }
 
+ul#menu-main > li  > a.hllink {
+    background: rgba(78, 100, 240, .5);
+    padding: 9px 15px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+
+ul#menu-main > li  > a.hllink:hover {
+    background: #f0bf00;
+}
+
 .navbar-inverse .brand, .navbar-inverse .nav > li > a {
 	text-shadow: none;
 }
@@ -357,6 +369,22 @@ ul#menu-main > li > a:hover {
 
 #headerwrap input[type=submit]:hover, #headerwrap input[type=submit]:active {
 	background: #43413e !important;
+}
+
+a.playhover {
+    background-image: url('http://localhost/ampache/themes/reborn/images/videoplay.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 64px;
+    height: 64px;
+    position: relative;
+    text-align: center;
+    margin: 100% 0 0 0;
+    opacity:0.5;
+}
+
+a.playhover:hover {
+    opacity:0.9;
 }
 
 /*========== Social Icons ==========*/
