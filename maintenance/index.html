@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ampache - Music Streaming Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link href="../css/fontello.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 7]>
+        <link href="../css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+    <![endif]-->
+    <!-- Google Web fonts -->
+    <link href='//fonts.googleapis.com/css?family=Quattrocento:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript">
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split('&');
+            for (var i=0; i<vars.length; i++) {
+                var pair = vars[i].split('=');
+                if(pair[0] == variable){return pair[1];}
+            }
+            return(false);
+        }
+        
+        window.onload = function() {
+            var fromurl = getQueryVariable('from');
+            if (fromurl) {
+                fromurl = decodeURIComponent(fromurl);
+                var matches = fromurl.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+                var domain = matches && matches[1];
+                if (domain !== null) {
+                    document.getElementById('fromlink').href = fromurl;
+                    document.getElementById('fromlink').innerHTML = domain;
+                }
+            }
+        };
+    </script>
+  </head>
+  <body>
+    <!-- ******************** Content ********************-->
+    <div id="content">
+        <div id="centerbox">
+            <h1><span>Wait... we're getting better.</span></h1><hr />
+            <h1><a id="fromlink" href="#">website.com</a> is currently in maintenance.</h1>
+            <h1>Please come back later...</h1>
+        </div>
+        <div id="sidegallery">
+            <img src="ampache_logo1.gif" /><br />
+            <img src="ampache_logo2.jpg" /><br />
+            <img src="ampache_logo3.png" /><br />
+            <img src="../img/logo/ampache-logo.png" /><br />
+        </div>
+
+        <div id="arrowright" class="arrow-up animated bounceInUp"></div>
+    </div>
+  </body>
+</html>
