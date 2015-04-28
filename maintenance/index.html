@@ -41,7 +41,7 @@
                 var matches = fromurl.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
                 var domain = matches && matches[1];
                 if (domain !== null) {
-                    document.getElementById('fromlink').href = fromurl;
+                    document.getElementById('fromlink').href = encodeURI(fromurl);
                     document.getElementById('fromlink').innerHTML = domain;
                 }
             }
