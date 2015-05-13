@@ -22,7 +22,7 @@
     <link rel="shortcut icon" href="../img/favicon.ico">
     <!-- JQuery -->
     <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript">	
         function getQueryVariable(variable)
         {
             var query = window.location.search.substring(1);
@@ -33,6 +33,25 @@
             }
             return(false);
         }
+		
+		function checkAmpacheIsBack(website)
+		{
+			// Check every second if the Ampache website is back
+			setTimeout(function () {
+				// In case of cross-domain error, redirect
+				var redirectTimeout = setTimeout(function () {
+					window.location = website;
+				}, 5000);
+				$.get(website, function(data) {
+					clearTimeout(redirectTimeout);
+					if (data.indexOf('currently in maintenance') < 0) {
+						window.location = website;
+					} else {
+						checkAmpacheIsBack(website);
+					}
+				});
+			}, 30000);
+		}
         
         window.onload = function() {
             var fromurl = getQueryVariable('from');
@@ -42,7 +61,9 @@
                 var domain = matches && matches[1];
                 if (domain !== null) {
                     document.getElementById('fromlink').href = encodeURI(fromurl);
-                    document.getElementById('fromlink').innerHTML = domain;
+                    document.getElementById('fromlink').textContent = domain;
+					
+					checkAmpacheIsBack(fromurl);
                 }
             }
         };
