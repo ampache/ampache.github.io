@@ -34,7 +34,7 @@ body {
 	background:#f0f0f0;
 	color: #312A1E;
 	font-size: 100%;
-	font-family: 'Quattrocento', serif;
+	font-family: 'fontello', serif;
 }
 
 ::-moz-selection {
@@ -59,7 +59,7 @@ input[type=text], input[type=submit], textarea {
 }
 
 input, button, select, textarea {
-	font-family: 'Quattrocento', serif;
+	font-family: 'fontello', serif;
 }
 
 /* ---------------------------------------------------------------------------------------------------------- 
@@ -100,7 +100,7 @@ a:hover, a:active {
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal; /* reset default browser weight for our webfonts */
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 }
 
 h1 {
@@ -140,7 +140,7 @@ h5 {
 
 strong {
 	font-weight:normal;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'fontello', sans-serif;
 }
 
 small {
@@ -152,7 +152,7 @@ small {
 
 em {
 	font-style: normal;
-	font-family: 'Open Sans';
+	font-family: 'fontello';
 }
 
 bold {
@@ -161,7 +161,7 @@ bold {
 
 .muted {
 	color: #A5A5A2;
-	font-family: 'Quattrocento', serif;
+	font-family: 'fontello', serif;
 }
 
 .impressed {
@@ -172,7 +172,7 @@ bold {
 .more-link {
 	font-size: .875em; /* 14px */
 	margin-top: 1.5em;
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 }
 
 .more-link:link, .more-link:visited {
@@ -206,7 +206,7 @@ bold {
 
 .medium {
 	font-weight: normal;
-	font-family: 'Quattrocento', serif;
+	font-family: 'fontello', serif;
 }
 /* ---------------------------------------------------------------------------------------------------------- 
 04 Navbar ---------------------------------------------------------------------------------------------------
@@ -229,7 +229,7 @@ bold {
 	font-size: 1.75em;
 	margin-left: 0;
 	font-weight: normal;
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 }
 
 .navbar .brand a:hover {
@@ -246,6 +246,7 @@ bold {
 
 .navbar-inner {
 	min-height: 4.75em;
+	padding-bottom: 10px;
 }
 
 .navbar-inverse .navbar-inner {
@@ -263,7 +264,7 @@ bold {
 }
 
 ul#menu-main > li > a {
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	font-weight: normal;
 	font-size: 1em;
 	color: #fff;
@@ -308,7 +309,7 @@ ul#menu-main > li  > a.hllink:hover {
 
 #headerwrap h1 {
 	color: #FFFFFF;
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	font-size: 4em;
 	font-weight: 400;
 	margin: 1em 0;
@@ -316,7 +317,7 @@ ul#menu-main > li  > a.hllink:hover {
 
 #headerwrap h2 {
 	color: #FFFFFF;
-	font-family: 'Open Sans', sans serif;
+	font-family: 'fontello', sans serif;
 	font-size: 2em;
 	font-weight: normal;
 	margin: 0.5em 0;
@@ -329,7 +330,7 @@ ul#menu-main > li  > a.hllink:hover {
 
 #headerwrap input[type=text] {
 	background: rgba(227, 231, 228, 1);
-	font-family: 'Open Sans', sans serif;
+	font-family: 'fontello', sans serif;
 	font-size: 1.3125em;
 	border: 0;
 	text-align: center;
@@ -351,7 +352,7 @@ ul#menu-main > li  > a.hllink:hover {
 }
 
 #headerwrap input[type=submit] {
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	color: #fff;
 	width: 185px;
 	height: 2.9em;
@@ -406,19 +407,19 @@ ul.icon li:hover {
 }
 
 section.single-page {
-	padding: 4.75em 0; /* 76px */
+	padding-top: 20px; /* 76px */
 }
 
 section.single-page h1 {
 	text-align: center;
-	font-family:  'Patua One', cursive;
+	font-family:  'fontello', cursive;
 	margin-bottom: 2em; /* 72px */
 	font-size: 2.25em; /* 36px */
 }
 
 #feature {
 	background: url("../img/yellow.png") repeat-x 0 0;
-	height: 300px;
+	height: 220px;
 	z-index: 500;
 	box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
@@ -432,7 +433,7 @@ section.single-page h1 {
 }
 
 #feature-headline {
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	text-transform: uppercase;
 	color: rgba(228, 229, 229, 1);
 	margin-bottom: 3%; /* 39px */
@@ -442,13 +443,13 @@ section.single-page h1 {
 }
 
 #feature-headline span {
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	text-transform: lowercase;
 }
 
 #feature article p {
-	font-family: 'Patua One', cursive;
-	font-size: 40px;
+	font-family: 'fontello', cursive;
+	font-size: 30px;
 	margin-bottom: 0;
 	line-height: 1.35;
 	color: #fff;
@@ -472,7 +473,7 @@ section#preview hgroup h2 {
 
 section#preview hgroup h3 {
 	margin-top:  .35em;
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 }
 
 section#preview .entry-content {
@@ -514,7 +515,7 @@ section#preview .align {
 /* Services */
 
 section#services {
-	padding-bottom: 9.5em;
+	padding-bottom: 0;
 }
 
 #services h1 {
@@ -612,7 +613,7 @@ footer p {
 	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
 	background-color: transparent;
 	border: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'fontello', sans-serif;
 	opacity: 0.4;
 	border-radius: 0;
 }
@@ -639,7 +640,7 @@ footer p {
 
 #intro-caption {
 	margin-top:150px;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'fontello', sans-serif;
 	text-align: center;
 	font-size: 80px;
 	line-height: 90px;
@@ -649,7 +650,7 @@ footer p {
 }
 
 #intro-caption span {
-	font-family:'Open Sans', sans-serif;
+	font-family:'fontello', sans-serif;
 	font-size: 0.65em;
 }
 
@@ -666,7 +667,7 @@ footer p {
 08 Buttons --------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------- */    
 .btn {
-	font-family: 'Patua One', cursive;
+	font-family: 'fontello', cursive;
 	color: #fff;
 	width: 185px;
 	height: 20px;
@@ -716,7 +717,7 @@ footer p {
         color: #007ac3;
     }
     #intro-caption {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'fontello', sans-serif;
         text-align: center;
         font-size: 60px;
         line-height: 70px;
@@ -829,7 +830,7 @@ footer p {
         text-align:center
     }
     #feature article p {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'fontello', sans-serif;
         font-size: 26px; /* font-size: 26px; */
         margin-bottom: 0;
         line-height: 30px;
@@ -869,7 +870,7 @@ footer p {
         top: 0 !important;
     }
     #feature article p {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'fontello', sans-serif;
         font-size: 26px; /* font-size: 26px; */
         margin-bottom: 0;
         line-height: 30px;
@@ -940,7 +941,7 @@ footer p {
         font-size: 1.1875em; /* 19px */
     }
     #feature article p {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'fontello', sans-serif;
         font-size: 26px; /* font-size: 26px; */
         margin-bottom: 0;
         line-height: 30px;
