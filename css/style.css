@@ -419,7 +419,8 @@ section.single-page h1 {
 
 #feature {
 	background: url("../img/yellow.png") repeat-x 0 0;
-	height: 220px;
+	min-height: 220px;
+	padding-bottom: 10px;
 	z-index: 500;
 	box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 5px 16px rgba(0, 0, 0, 0.3);
