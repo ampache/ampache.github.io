@@ -280,12 +280,15 @@ ul#menu-main > li > a:hover {
 
 ul#menu-main > li  > a.hllink {
     background: rgba(78, 100, 240, .5);
-    padding: 9px 15px;
+    padding: 15px 15px;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 }
 
+ul#menu-main > li  > a.tlink {
+    padding: 15px 15px;
+}
 ul#menu-main > li  > a.hllink:hover {
     background: #f0bf00;
 }
