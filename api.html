@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Ampache - Music Streaming Server</title>
+
+  <!-- Flatdoc -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/legacy.js"></script>
+  <script src="js/flatdoc.js"></script>
+
+  <!-- Flatdoc theme -->
+  <link  href="css/flatdoc.css" rel='stylesheet'>
+  <script src="js/script.js"></script>
+
+  <!-- Meta -->
+  <meta content="Ampache" property="og:title">
+  <meta content="A web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device." name="description">
+
+  <!-- Initializer -->
+  <script>
+    Flatdoc.run({
+      fetcher: Flatdoc.file('api.md')
+    });
+  </script>
+
+    <!-- Ampache.org Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
+    <link href="css/fontello.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 7]>
+        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+    <![endif]-->
+    <style>
+    body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Load ScrollTo -->
+    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <!-- Load LocalScroll -->
+    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+    <!-- prettyPhoto Initialization -->
+    <script type="text/javascript" charset="utf-8">
+                $(document).ready(function(){
+                        $("a[rel^='prettyPhoto']").prettyPhoto();
+                });
+    </script>
+</head>
+<body role='flatdoc'>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="#top">Ampache <img src="./img/logo/ampache-logo.png" style="border: 0px; height: 50px; width: auto;"></a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+				<li><a title="home" href="index.html"class="tlink">Home</a></li>
+				<li><a title="demo" href="demo.html" class="tlink">Demo</a></li>
+				<li><a title="donate" href="donate.html"class="tlink">Donate</a></li>
+                <li><a title="download" href="https://github.com/ampache/ampache/releases"class="tlink">Download</a></li>
+				<li><a title="documentation" href="https://github.com/ampache/ampache/wiki"class="tlink">Documentation</a></li>
+                <li><a title="api" href="https://github.com/ampache/ampache/wiki/XML-API"class="hllink">API Info</a></li>
+                <li><a title="forum" href="https://groups.google.com/forum/#!forum/ampache"class="tlink">Forum</a></li>
+				<li><a title="chat" href="https://kiwiirc.com/client/chat.freenode.net:+6697/?nick=Anonymous|?#ampache"class="tlink">Chat</a></li>
+				<li><a title="github" href="https://github.com/ampache/ampache"><img src="img/GitHub-Mark-32px.png" style="border: 0px;" /></a></li>
+                <li><a title="twitter" href="https://twitter.com/ampache"><img src="img/Twitter_Social_Icon_Rounded_Square_Color.png" style="border: 0px;max-width: 32px;" /></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    <!--******************** Feature ********************-->
+    <div class="scrollblock">
+      <section id="feature">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <article>
+                <p>API all the things!<br />
+				The Ampache XML API is under active development. Check it out and tell us what you need!</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  <div class='content-root'>
+    <div class='menubar'>
+      <div class='menu section' role='flatdoc-menu'></div>
+    </div>
+    <div role='flatdoc-content' class='content'></div>
+  </div>
+    <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+</body>
+</html>
