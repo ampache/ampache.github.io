@@ -36,7 +36,7 @@ http://localhost/ampache/server/xml.server.php?action=handshake&auth=PASSPHRASE&
 The key that must be passed to Ampache is the API Key generated for a specific user (none by default, only the administrator can generate one). Then call the following URL (localhost/ampache is the location of your Ampache installation):
 
 ```Text
-http://localhost/ampache/server/xml.server.php?action=handshake&auth=API_KEY&version=350001
+http://localhost/ampache/server/xml.server.php?action=handshake&auth=APIKEY&version=350001
 ```
 
 In API 400001 the key that must be passed to Ampache is `SHA256(USER+KEY)` where `KEY` is `SHA256('APIKEY')`. Below is a PHP example
@@ -153,9 +153,6 @@ Refer to the [XML-methods](https://github.com/ampache/ampache/wiki/XML-methods) 
 * user_create (MINIMUM_API_VERSION=400001)
 * user_update (MINIMUM_API_VERSION=400001)
 * user_delete (MINIMUM_API_VERSION=400001)
-* stream (MINIMUM_API_VERSION=400001)
-* download (MINIMUM_API_VERSION=400001)
-* get_art (MINIMUM_API_VERSION=400001)
 * rate
 * flag (MINIMUM_API_VERSION=400001)
 * record_play (MINIMUM_API_VERSION=400001)
@@ -171,6 +168,12 @@ Refer to the [XML-methods](https://github.com/ampache/ampache/wiki/XML-methods) 
 * update_artist_info (MINIMUM_API_VERSION=400001)
 * update_art (MINIMUM_API_VERSION=400001)
 
+### Binary Data Methods
+
+* stream (MINIMUM_API_VERSION=400001)
+* download (MINIMUM_API_VERSION=400001)
+* get_art (MINIMUM_API_VERSION=400001)
+
 ### Control Methods
 
 * localplay
@@ -182,11 +185,15 @@ For the purpose of this example the Ampache host is 'localhost' and the path to 
 
 ### Requesting all genres whose name starts with Rock
 
-`http://localhost/ampache/server/xml.server.php?action=tags&auth=1234567890123456789012345678901&filter=Rock`
+```Text
+http://localhost/ampache/server/xml.server.php?action=tags&auth=APIKEY&filter=Rock
+```
 
 ### Requesting all song titles, with an offset of 5000
 
-`localhost/ampache/server/xml.server.php?action=songs&auth=12345678901234567890123456789012&offset=5000`
+```Text
+http://localhost/ampache/server/xml.server.php?action=songs&auth=APIKEY&offset=5000
+```
 
 ## XML Document Examples
 
@@ -348,7 +355,7 @@ This function checks the $input actually has the parameter. Parameters must be a
 
 ## Non-Data Method Documentation
 
-## handshake
+### handshake
 
 * MINIMUM_API_VERSION=380001
 
@@ -364,7 +371,7 @@ This is the function that handles verifying a new handshake Takes a timestamp, a
 |'timestamp'|integer|UNIXTIME() (Timestamp used in seed of password hash. Required if login/password authentication)|YES     |
 |'version'  |string |$version (API Version that the application understands)|YES     |
 
-## ping
+### ping
 
 * MINIMUM_API_VERSION=380001
 
@@ -375,7 +382,7 @@ This can be called without being authenticated, it is useful for determining if 
 |------|------|-----------|-------:|
 |'auth'|string|(Session ID) destroys the session if it exists|YES      |
 
-## goodbye
+### goodbye
 
 * MINIMUM_API_VERSION=400001
 
@@ -387,7 +394,7 @@ Destroy a session using the auth parameter.
 |------|------|-----------|-------:|
 |'auth'|string|(Session ID) returns version information and extends the session if passed|NO     |
 
-## url_to_song
+### url_to_song
 
 * MINIMUM_API_VERSION=380001
 
@@ -400,7 +407,7 @@ This takes a url and returns the song object in question
 
 ## Data Method Documentation
 
-## get_indexes
+### get_indexes
 
 * MINIMUM_API_VERSION=400001
 
@@ -417,19 +424,19 @@ This takes a collection of inputs and returns ID + name for the object type
 |'offset'|integer|                                     |YES     |
 |'limit' |integer|                                     |YES     |
 
-## advanced_search
+### advanced_search
 
 * MINIMUM_API_VERSION=380001
 * CHANGED_IN_API_VERSION=400001
 
-### Changes to text searches
+#### Changes to text searches
 
 * 'is not' has been added shifting values down the list.
   0=contains, 1=does not contain, 2=starts with, 3=ends with
   4=is, 5=is not, 6=sounds like, 7=does not sound like
 * rule_1['name'] is depreciated. Instead of rule_1['name'] use rule_1['title'] (I have put a temp workaround into the search rules to alleviate this change for any existing apps)
 
-### Using advanced_search
+#### Using advanced_search
 
 Perform an advanced search given passed rules. This works in a similar way to the web/UI search pages.
 You can pass multiple rules as well as joins to create in depth search results
@@ -520,7 +527,7 @@ Send the correct input based on the type of search.
   * offset = (integer)
   * limit' = (integer)
 
-## artists
+### artists
 
 * MINIMUM_API_VERSION=380001
 
@@ -537,7 +544,7 @@ This takes a collection of inputs and returns artist objects. This function is d
 |'limit'  |    |           |YES     |
 |'include'|array|Array specified using GET convention, can contain `albums` or `songs` and will include the corresponding XML nested in the artist XML|NO      |
 
-## artist
+### artist
 
 * MINIMUM_API_VERSION=380001
 
@@ -549,7 +556,7 @@ This returns a single artist based on the UID of said artist
 |'filter' |    |UID of Artist, returns artist XML|NO      |
 |'include'|array|Array specified using GET convention, can contain `albums` or `songs` and will include the corresponding XML nested in the artist XML|NO      |
 
-## artist_albums
+### artist_albums
 
 * MINIMUM_API_VERSION=380001
 
@@ -562,7 +569,7 @@ This returns the albums of an artist
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## artist_songs
+### artist_songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -575,7 +582,7 @@ This returns the songs of the specified artist
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## albums
+### albums
 
 * MINIMUM_API_VERSION=380001
 
@@ -592,7 +599,7 @@ This returns albums based on the provided search filters
 |'limit'  |    |           |YES     |
 |'include'|array|Array specified using GET convention, can contain `songs` and will include the corresponding XML nested in the album XML|YES     |
 
-## album
+### album
 
 * MINIMUM_API_VERSION=380001
 
@@ -604,7 +611,7 @@ This returns a single album based on the UID provided
 |'filter' |    |UID of Album, returns album XML|NO      |
 |'include'|array|Array specified using GET convention, can contain `songs` and will include the corresponding XML nested in the album XML|NO      |
 
-## album_songs
+### album_songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -617,7 +624,7 @@ This returns the songs of a specified album
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## tags
+### tags
 
 * MINIMUM_API_VERSION=380001
 
@@ -631,7 +638,7 @@ This returns the tags (Genres) based on the specified filter
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## tag
+### tag
 
 * MINIMUM_API_VERSION=380001
 
@@ -642,7 +649,7 @@ This returns a single tag based on UID
 |--------|----|-----------|-------:|
 |'filter'|    |UID of tag, returns tag XML|NO      |
 
-## tag_artists
+### tag_artists
 
 * MINIMUM_API_VERSION=380001
 
@@ -655,7 +662,7 @@ This returns the artists associated with the tag in question as defined by the U
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## tag_albums
+### tag_albums
 
 * MINIMUM_API_VERSION=380001
 
@@ -668,7 +675,7 @@ This returns the albums associated with the tag in question
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## tag_songs
+### tag_songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -681,7 +688,7 @@ returns the songs for this tag
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## songs
+### songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -697,7 +704,7 @@ Returns songs based on the specified filter
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## song
+### song
 
 * MINIMUM_API_VERSION=380001
 
@@ -708,7 +715,7 @@ returns a single song
 |--------|----|-----------|-------:|
 |'filter'|    |UID of Song, returns song XML|NO      |
 
-## playlists
+### playlists
 
 * MINIMUM_API_VERSION=380001
 
@@ -724,7 +731,7 @@ This returns playlists based on the specified filter
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## playlist
+### playlist
 
 * MINIMUM_API_VERSION=380001
 
@@ -735,7 +742,7 @@ This returns a single playlist
 |--------|----|-----------|-------:|
 |'filter'|    |UID of playlist, returns playlist XML|NO      |
 
-## playlist_songs
+### playlist_songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -748,7 +755,7 @@ This returns the songs for a playlist
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## playlist_create
+### playlist_create
 
 * MINIMUM_API_VERSION=380001
 
@@ -760,7 +767,7 @@ This create a new playlist and return it
 |'name'|    |Playlist name|NO      |
 |'type'|    |Playlist type 'public', 'private'|YES     |
 
-## playlist_edit
+### playlist_edit
 
 * MINIMUM_API_VERSION=400001
 * CHANGED_IN_API_VERSION=400003
@@ -775,7 +782,7 @@ Previously name and type were mandatory while filter wasn't. this has been rever
 |'name'|    |Playlist name|YES     |
 |'type'|    |Playlist type 'public', 'private'|YES     |
 
-## playlist_delete
+### playlist_delete
 
 * MINIMUM_API_VERSION=380001
 
@@ -786,7 +793,7 @@ This deletes a playlist
 |--------|----|-----------|-------:|
 |'filter'|    |UID of Playlist|NO      |
 
-## playlist_add_song
+### playlist_add_song
 
 * MINIMUM_API_VERSION=380001
 * CHANGED_IN_API_VERSION=400001
@@ -800,7 +807,7 @@ This adds a song to a playlist. setting check=1 will not add duplicates to the p
 |'song'  |integer|UID of song to add to playlist|NO      |
 |'check' |boolean|0, 1 Whether to check and ignore duplicates (default = 0)|YES     |
 
-## playlist_remove_song
+### playlist_remove_song
 
 * MINIMUM_API_VERSION=380001
 * CHANGED_IN_API_VERSION=400001
@@ -815,7 +822,7 @@ Previous versions required 'track' instead of 'song'.
 |'song'  |    |UID of song to remove from playlist|YES     |
 |'track' |    |Track number to remove from playlist|YES     |
 
-## playlist_generate
+### playlist_generate
 
 * MINIMUM_API_VERSION=400001
 * CHANGED_IN_API_VERSION=400002
@@ -838,7 +845,7 @@ Get a list of song XML, indexes or id's based on some simple search criteria
 |'offset'|integer|          |YES     |
 |'limit' |integer|          |YES     |
 
-## search_songs
+### search_songs
 
 * MINIMUM_API_VERSION=380001
 
@@ -851,7 +858,7 @@ This searches the songs and returns... songs
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## videos
+### videos
 
 * MINIMUM_API_VERSION=380001
 
@@ -865,7 +872,7 @@ This returns video objects!
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-## video
+### video
 
 * MINIMUM_API_VERSION=380001
 
@@ -876,7 +883,7 @@ This returns a single video
 |--------|----|-----------|-------:|
 |'filter'|    |UID of video, returns video XML|NO      |
 
-## stats
+### stats
 
 * MINIMUM_API_VERSION=380001
 * CHANGED_IN_API_VERSION=400001
@@ -895,7 +902,7 @@ This method has partial backwards compatibility with older api versions but shou
 |'offset'  |integer|                                                          |YES     |
 |'limit'   |integer|                                                          |YES     |
 
-## user
+### user
 
 * MINIMUM_API_VERSION=380001
 
@@ -906,7 +913,7 @@ This get an user public information
 |----------|----|-----------|-------:|
 |'username'|    |Username of the user for who to get details|NO      |
 
-## user_create
+### user_create
 
 * MINIMUM_API_VERSION=400001
 
@@ -921,7 +928,7 @@ Create a new user. (Requires the username, password and email.)
 |'fullname'  |string |                          |YES     |
 |'disable'   |boolean|0, 1                      |YES     |
 
-## user_update
+### user_update
 
 * MINIMUM_API_VERSION=400001
 
@@ -940,7 +947,7 @@ Update an existing user.
 |'disable'   |boolean|0, 1                      |YES     |
 |'maxbitrate'|string |                          |YES     |
 
-## user_delete
+### user_delete
 
 * MINIMUM_API_VERSION=400001
 
@@ -951,7 +958,7 @@ Delete an existing user.
 |----------|----|-----------|-------:|
 |'username'|string|           |NO      |
 
-## followers
+### followers
 
 * MINIMUM_API_VERSION=380001
 
@@ -962,7 +969,7 @@ This get an user followers
 |----------|----|-----------|-------:|
 |'username'|string|Username of the user for who to get followers list|NO      |
 
-## following
+### following
 
 * MINIMUM_API_VERSION=380001
 
@@ -973,7 +980,7 @@ This get the user list followed by an user
 |----------|----|-----------|-------:|
 |'username'|string|(Username of the user for who to get following list|NO      |
 
-## toggle_follow
+### toggle_follow
 
 * MINIMUM_API_VERSION=380001
 
@@ -984,7 +991,7 @@ This follow/unfollow an user
 |----------|----|-----------|-------:|
 |'username'|string|Username of the user to follow/unfollow|NO      |
 
-## last_shouts
+### last_shouts
 
 * MINIMUM_API_VERSION=380001
 
@@ -996,7 +1003,7 @@ This get the latest posted shouts
 |'username'|    |Username of the user for who to get latest shouts|YES     |
 |'limit'   |    |           |YES     |
 
-## rate
+### rate
 
 * MINIMUM_API_VERSION=380001
 
@@ -1009,7 +1016,7 @@ This rates a library item
 |'id'    |    |library item id|NO      |
 |'rating'|    |rating between 0-5|NO      |
 
-## flag
+### flag
 
 * MINIMUM_API_VERSION=400001
 
@@ -1025,7 +1032,7 @@ This flags a library item as a favorite
 |'id'  |integer|$object_id                |NO      |
 |'flag'|boolean|0, 1                      |NO      |
 
-## record_play
+### record_play
 
 * MINIMUM_API_VERSION=400001
 
@@ -1038,7 +1045,7 @@ Take a song_id and update the object_count and user_activity table with a play. 
 |'user'  |integer|$user_id   |NO      |
 |'client'|string |$agent     |YES     |
 
-## scrobble
+### scrobble
 
 * MINIMUM_API_VERSION=400001
 
@@ -1056,7 +1063,7 @@ Search for a song using text info and then record a play if found. This allows o
 |'date'      |integer|UNIXTIME()  |YES     |
 |'client'    |string |$agent      |YES     |
 
-## catalog_action
+### catalog_action
 
 * MINIMUM_API_VERSION=400001
 
@@ -1068,7 +1075,7 @@ Kick off a catalog update or clean for the selected catalog
 |'task'   |string |'add_to_catalog', 'clean_catalog'|NO      |
 |'catalog'|integer|$catalog_id                      |NO      |
 
-## timeline
+### timeline
 
 * MINIMUM_API_VERSION=380001
 
@@ -1081,7 +1088,7 @@ This get an user timeline
 |'limit'   |integer|           |YES     |
 |'since'   |integer|UNIXTIME() |YES     |
 
-## friends_timeline
+### friends_timeline
 
 * MINIMUM_API_VERSION=380001
 
@@ -1093,7 +1100,7 @@ This get current user friends timeline
 |'limit'|integer|           |YES     |
 |'since'|integer|UNIXTIME() |NO      |
 
-## update_from_tags
+### update_from_tags
 
 * MINIMUM_API_VERSION=400001
 
@@ -1105,7 +1112,7 @@ Update a single album, artist, song from the tag data
 |'type'|string |'artist', 'album', 'song'      |NO      |
 |'id'  |integer|$artist_id, $album_id, $song_id|NO      |
 
-## update_artist_info
+### update_artist_info
 
 * MINIMUM_API_VERSION=400001
 
@@ -1117,7 +1124,7 @@ Make sure lastfm_API_key is set in your configuration file
 |---------|-------|---------------------------|-------:|
 |'id'     |integer|$artist_id                 |NO      |
 
-## update_art
+### update_art
 
 * MINIMUM_API_VERSION=400001
 
@@ -1131,9 +1138,9 @@ Doesn't overwrite existing art by default.
 |'type'     |string |'song', 'podcast'|NO      |
 |'overwrite'|boolean|0, 1             |YES     |
 
-## Binary Data Methods
+## Binary Data Method Documentation
 
-## stream
+### stream
 
 * MINIMUM_API_VERSION=400001
 
@@ -1149,7 +1156,7 @@ Streams a given media file. Takes the file id in parameter with optional max bit
 |'offset' |integer|time offset in seconds     |YES     |
 |'length' |boolean|0, 1                       |YES     |
 
-## download
+### download
 
 * MINIMUM_API_VERSION=400001
 
@@ -1162,7 +1169,7 @@ Downloads a given media file. set format=raw to download the full file
 |'type'  |string |'song', 'podcast'       |NO      |
 |'format'|string |'mp3', 'ogg', 'raw', etc|YES     |
 
-## get_art
+### get_art
 
 * MINIMUM_API_VERSION=400001
 
@@ -1176,7 +1183,7 @@ Get an art image.
 
 ## Control Method Documentation
 
-## localplay
+### localplay
 
 * MINIMUM_API_VERSION=380001
 
@@ -1187,7 +1194,7 @@ This is for controlling localplay
 |---------|----|-----------|-------:|
 |'command'|string|'next', 'prev', 'stop', 'play'|NO      |
 
-## democratic
+### democratic
 
 * MINIMUM_API_VERSION=380001
 
