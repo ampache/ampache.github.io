@@ -34,7 +34,7 @@
     if (!$card.length) return;
 
     var $header = $('.header');
-    var headerHeight = $header.length ? $header.outerHeight() : 0;
+    var headerHeight = 120;
 
     $window
       .on('resize.title-card', function() {
@@ -105,9 +105,10 @@
     // Find the top offsets of each section
     var offsets = [];
     $sections.each(function(i) {
-      var offset = $(this).attr('data-anchor-offset') ?
-        parseInt($(this).attr('data-anchor-offset'), 10) :
-        (options.offset || 0);
+      //var offset = $(this).attr('data-anchor-offset') ?
+      //  parseInt($(this).attr('data-anchor-offset'), 10) :
+      //  (options.offset || 0);
+      var offset = -90;
 
       offsets.push({
         id: $(this).attr('id'),
@@ -183,7 +184,7 @@
 (function($) {
   var defaults = {
     'speed': 500,
-    'offset': 0,
+    'offset': -90,
     'for': null,
     'parent': null
   };
@@ -212,7 +213,7 @@
   $.anchorjump = function(href, options) {
     options = $.extend({}, defaults, options);
 
-    var top = 0;
+    var top = -90;
 
     if (href != '#') {
       var $area = $(href);
