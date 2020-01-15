@@ -321,7 +321,7 @@ a:hover {
 .content h2,
 .content .big-heading,
 body.big-h3 .content h3 {
-  padding-top: 80px;
+  padding-top: 90px;
 }
 .content h1:before,
 .content h2:before,
@@ -542,11 +542,12 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   }
   body:not(.no-literate) .content > pre,
   body:not(.no-literate) .content > blockquote {
-    width: 380px;
+    width: 480px;
     padding-left: 20px;
     padding-right: 20px;
     float: right;
     clear: right;
+    margin-right: -120px;
   }
   body:not(.no-literate) .content > pre + p,
   body:not(.no-literate) .content > blockquote + p,
@@ -592,6 +593,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
     margin-bottom: 3px;
     padding-left: 0;
     padding-right: 0;
+    padding-top: 90px;
   }
 }
 .header {
