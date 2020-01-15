@@ -633,7 +633,7 @@ This returns the tags (Genres) based on the specified filter
 
 |Input   |Type|Description|Optional|
 |--------|----|-----------|-------:|
-|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|NO      |
+|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|YES     |
 |'exact' |boolean|if true filter is exact rather then fuzzy|NO      |
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
@@ -1222,34 +1222,74 @@ This is for controlling democratic play
 
 Ampache's XML errors are loosely based around the HTTP status codes. All errors are returned in the form of an XML Document however the string error message provided is translated into the language of the Ampache server in question. All services should only use the code value.
 
-## Current Error Codes
+## API Error Codes
 
 All error codes are accompanied by a string value for the error and derived from the [HTTP/1.1 Status Codes](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 * **501**
   * This is a fatal error, the Ampache server you have requested does not currently have access control enabled. The API is disabled.
+
 ```XML
 <root>
       <error code="501">Access Control Not Enabled</error>
 </root>
 ```
+
 * **400**
   * Used when you have specified a valid method but something about the input is incorrect / invalid. See Error message for details, but do not re-attempt the exact same request.
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<error code="400"><![CDATA[failed to end session: AUTH_TOKEN]]></error>
+</root>
+```
+
 * **401**
   * This is a temporary error, this means no valid session was passed or the handshake failed. This should be an indication for services to attempt another handshake
-  ```XML
+
+```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<error code="401"><![CDATA[Missing mandatory parameter 'filter']]></error>
 </root>
 ```
+
 * **403**
   * This is a fatal error, the ACL on the Ampache server prevents access from the current source IP Address.
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<error code="403"><![CDATA[Unauthorized access attempt to API - ACL Error]]></error>
+</root>
+```
+
+```JSON
+{
+    "error": {
+        "code": "403",
+        "message": "Unauthorised access attempt to API - ACL Error"
+    }
+}
+```
+
 * **405**
   * This is a fatal error, the service requested a method that the API does not implement.
+
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
 	<error code="405"><![CDATA[Invalid Request]]></error>
 </root>
+```
+
+
+```JSON
+{
+    "error": {
+        "code": "405",
+        "message": "Invalid Request"
+    }
+}
 ```
