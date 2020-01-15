@@ -28,7 +28,7 @@ $passphrase = hash('sha256',$time . $key);
 Once you've generated the encoded passphrase, you can call the following URL (localhost/ampache is the location of your Ampache installation)
 
 ```Text
-http://localhost/ampache/server/xml.server.php?action=handshake&auth=PASSPHRASE&timestamp=TIME&version=350001&user=USER
+http://ampache.local/server/xml.server.php?action=handshake&auth=PASSPHRASE&timestamp=TIME&version=350001&user=USER
 ```
 
 ### Api Key
@@ -36,7 +36,7 @@ http://localhost/ampache/server/xml.server.php?action=handshake&auth=PASSPHRASE&
 The key that must be passed to Ampache is the API Key generated for a specific user (none by default, only the administrator can generate one). Then call the following URL (localhost/ampache is the location of your Ampache installation):
 
 ```Text
-http://localhost/ampache/server/xml.server.php?action=handshake&auth=APIKEY&version=350001
+http://ampache.local/server/xml.server.php?action=handshake&auth=APIKEY&version=350001
 ```
 
 In API 400001 the key that must be passed to Ampache is `SHA256(USER+KEY)` where `KEY` is `SHA256('APIKEY')`. Below is a PHP example
@@ -186,13 +186,13 @@ For the purpose of this example the Ampache host is 'localhost' and the path to 
 ### Requesting all genres whose name starts with Rock
 
 ```Text
-http://localhost/ampache/server/xml.server.php?action=tags&auth=APIKEY&filter=Rock
+http://ampache.local/server/xml.server.php?action=tags&auth=APIKEY&filter=Rock
 ```
 
 ### Requesting all song titles, with an offset of 5000
 
 ```Text
-http://localhost/ampache/server/xml.server.php?action=songs&auth=APIKEY&offset=5000
+http://ampache.local/server/xml.server.php?action=songs&auth=APIKEY&offset=5000
 ```
 
 ## XML Document Examples
@@ -239,7 +239,7 @@ Album XML Document. ID's are Ampache's unique identifier for the album and artis
         <tag id="2481" count="2">Rock & Roll</tag>
         <tag id="2482" count="1">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
-        <art>http://localhost/image.php?id=129348</art>
+        <art>http://ampache.local/image.php?id=129348</art>
         <preciserating>3</preciserating>
         <rating>2.9</rating>
 </album>
@@ -259,9 +259,9 @@ Single Song XML document, includes references to its parent objects.
         <tag id="2483" count="1">Roll</tag>
         <track>4</track>
         <time>234</time>
-        <url>http://localhost/play/index.php?oid=123908...</url>
+        <url>http://ampache.local/play/index.php?oid=123908...</url>
         <size>Song Filesize in Bytes</size>
-        <art>http://localhost/image.php?id=129348</art>
+        <art>http://ampache.local/image.php?id=129348</art>
         <preciserating>3</preciserating>
         <rating>2.9</rating>
 </song>
@@ -311,7 +311,7 @@ Video XML Document -- Attention UIDs for video elements are non-unique against s
           <size>Video Filesize in Bytes</size>
           <tag id="12131" count="3">Futurama</tag>
           <tag id="32411" count="1">Movie</tag>
-          <url>http://localhost/play/index.php?oid=123908...</url>
+          <url>http://ampache.local/play/index.php?oid=123908...</url>
 </video>
 </root>
 ```
@@ -371,6 +371,24 @@ This is the function that handles verifying a new handshake Takes a timestamp, a
 |'timestamp'|integer|UNIXTIME() (Timestamp used in seed of password hash. Required if login/password authentication)|YES     |
 |'version'  |string |$version (API Version that the application understands)|YES     |
 
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <auth><![CDATA[AUTHTOKEN]]></auth>
+    <api><![CDATA[400002]]></api>
+    <session_expire><![CDATA[2019-12-05T10:25:59+10:00]]></session_expire>
+    <update><![CDATA[2019-11-26T16:35:05+10:00]]></update>
+    <add><![CDATA[2019-12-05T05:35:58+10:00]]></add>
+    <clean><![CDATA[2019-12-05T05:35:33+10:00]]></clean>
+    <songs><![CDATA[269459]]></songs>
+    <albums><![CDATA[25779]]></albums>
+    <artists><![CDATA[11069]]></artists>
+    <playlists><![CDATA[21]]></playlists>
+    <videos><![CDATA[0]]></videos>
+    <catalogs><![CDATA[4]]></catalogs>
+</root>
+```
+
 ### ping
 
 * MINIMUM_API_VERSION=380001
@@ -381,6 +399,16 @@ This can be called without being authenticated, it is useful for determining if 
 |Input |Type  |Description|Optional|
 |------|------|-----------|-------:|
 |'auth'|string|(Session ID) destroys the session if it exists|YES      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <session_expire><![CDATA[2019-12-05T10:26:43+10:00]]></session_expire>
+    <server><![CDATA[4.1.0-develop]]></server>
+    <version><![CDATA[400002]]></version>
+    <compatible><![CDATA[350001]]></compatible>
+</root>
+```
 
 ### goodbye
 
@@ -393,6 +421,13 @@ Destroy a session using the auth parameter.
 |Input |Type  |Description|Optional|
 |------|------|-----------|-------:|
 |'auth'|string|(Session ID) returns version information and extends the session if passed|NO     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <success code="1"><![CDATA[goodbye: fdd9473fec26cf82717639b6828d00d0]]></success>
+</root>
+```
 
 ### url_to_song
 
@@ -423,6 +458,35 @@ This takes a collection of inputs and returns ID + name for the object type
 |'update'|set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results updated between two dates|YES     |
 |'offset'|integer|                                     |YES     |
 |'limit' |integer|                                     |YES     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>11193</total_count>
+<artist id="13429">
+    <name><![CDATA[!!!]]></name>
+        <album id="67123"><![CDATA[Softcore Jukebox]]></album>
+</artist>
+<artist id="3858">
+    <name><![CDATA[!Bang Elektronika]]></name>
+        <album id="51047"><![CDATA[Aktivierung!]]></album>
+</artist>
+<artist id="2461">
+    <name><![CDATA[!distain]]></name>
+        <album id="67480"><![CDATA[Farewell to the Past]]></album>
+        <album id="38481"><![CDATA[The Archive Collection 1992-2016]]></album>
+</artist>
+<artist id="1206">
+    <name><![CDATA["Weird Al" Yankovic]]></name>
+        <album id="50055"><![CDATA[Mandatory Fun]]></album>
+        <album id="70304"><![CDATA[Captain Underpants: The First Epic Movie (Original Motion Picture Soundtrack)]]></album>
+</artist>
+<artist id="15784">
+    <name><![CDATA[#366: A life lived]]></name>
+        <album id="70378"><![CDATA[Face the Beat: Session 2]]></album>
+</artist>
+</root>
+```
 
 ### advanced_search
 
@@ -544,6 +608,30 @@ This takes a collection of inputs and returns artist objects. This function is d
 |'limit'  |    |           |YES     |
 |'include'|array|Array specified using GET convention, can contain `albums` or `songs` and will include the corresponding XML nested in the artist XML|NO      |
 
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>11069</total_count>
+<artist id="13429">
+    <name><![CDATA[!!!]]></name>
+    <tag id="55" count="1" ><![CDATA[Electro]]></tag>
+    <albums>1</albums>
+    <songs>1</songs>
+    <art><![CDATA[http://ampache.local/image.php?object_id=13429&object_type=artist&auth=AUTHTOKEN]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>f26c72d3-e52c-467b-b651-679c73d8e1a7</mbid>
+    <summary><![CDATA[!!! is an American dance-punk band from  Sacramento, California that formed in Autumn 1996 from the former band members of The Yah Mos, Black Liquorice and Popesmashers.
+
+After a tour together, members of local Sacramento, CA bands Black Liquorice and Popesmashers formed !!!. The band's name was inspired by the subtitles of the movie The Gods Must Be Crazy, in which the mouth-clicking sounds of the Bushmen were represented as "!". Chk Chk Chk is the most common pronunciation ]]></summary>
+    <yearformed>0</yearformed>
+    <placeformed><![CDATA[]]></placeformed>
+</artist>
+</root>
+```
+
 ### artist
 
 * MINIMUM_API_VERSION=380001
@@ -555,6 +643,30 @@ This returns a single artist based on the UID of said artist
 |---------|----|-----------|-------:|
 |'filter' |    |UID of Artist, returns artist XML|NO      |
 |'include'|array|Array specified using GET convention, can contain `albums` or `songs` and will include the corresponding XML nested in the artist XML|NO      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<artist id="13429">
+    <name><![CDATA[!!!]]></name>
+    <tag id="55" count="1" ><![CDATA[Electro]]></tag>
+    <albums>1</albums>
+    <songs>1</songs>
+    <art><![CDATA[http://ampache.local/image.php?object_id=13429&object_type=artist&auth=AUTHTOKEN]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>f26c72d3-e52c-467b-b651-679c73d8e1a7</mbid>
+    <summary><![CDATA[!!! is an American dance-punk band from  Sacramento, California that formed in Autumn 1996 from the former band members of The Yah Mos, Black Liquorice and Popesmashers.
+
+After a tour together, members of local Sacramento, CA bands Black Liquorice and Popesmashers formed !!!. The band's name was inspired by the subtitles of the movie The Gods Must Be Crazy, in which the mouth-clicking sounds of the Bushmen were represented as "!". Chk Chk Chk is the most common pronunciation ]]></summary>
+    <yearformed>0</yearformed>
+    <placeformed><![CDATA[]]></placeformed>
+</artist>
+</root>
+```
 
 ### artist_albums
 
@@ -569,6 +681,27 @@ This returns the albums of an artist
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<album id="67123">
+    <name><![CDATA[Softcore Jukebox]]></name>
+    <artist id="1009"><![CDATA[Ladytron]]></artist>
+    <year>2003</year>
+    <tracks>18</tracks>
+    <disk>1</disk>
+    <tag id="4" count="1" ><![CDATA[Electronic]]></tag>
+    <tag id="55" count="1" ><![CDATA[Electro]]></tag>
+    <art><![CDATA[http://ampache.local/image.php?object_id=67123&object_type=album&auth=AUTHTOKEN]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>b6cbb7a5-a0c2-47f8-93a2-7157874249eb</mbid>
+</album>
+</root>
+```
 ### artist_songs
 
 * MINIMUM_API_VERSION=380001
@@ -581,6 +714,49 @@ This returns the songs of the specified artist
 |'filter'|    |UID of Artist, returns Song XML|NO      |
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<song id="857257">
+    <title><![CDATA[Feel Good Hit of the Fall]]></title>
+    <name><![CDATA[Feel Good Hit of the Fall]]></name>
+    <artist id="13429"><![CDATA[!!!]]></artist>
+    <album id="67123"><![CDATA[Softcore Jukebox]]></album>
+    <tag id="55" count="1" ><![CDATA[Electro]]></tag>
+    <filename><![CDATA[/mnt/music/Ladytron/(2003) Softcore Jukebox [EMN 7071-2]/109 - Feel Good Hit of the Fall.flac]]></filename>
+    <track>9</track>
+    <time>314</time>
+    <year>2003</year>
+    <bitrate>972192</bitrate>
+    <rate>44100</rate>
+    <mode>vbr</mode>
+    <mime>audio/x-flac</mime>
+    <url><![CDATA[http://ampache.local/play/index.php?ssid=AUTHTOKEN&type=song&oid=857257&uid=2&player=api&name=-%20-%20Feel%20Good%20Hit%20of%20the%20Fall.flac]]></url>
+    <size>38262252</size>
+    <mbid>388170b3-ae1d-4adb-b116-4e046e0f60e8</mbid>
+    <album_mbid></album_mbid>
+    <artist_mbid></artist_mbid>
+    <albumartist_mbid></albumartist_mbid>
+    <art><![CDATA[http://ampache.local/image.php?object_id=67123&object_type=album&auth=AUTHTOKEN&name=art.jpg]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <composer><![CDATA[]]></composer>
+    <channels></channels>
+    <comment><![CDATA[]]></comment>
+    <publisher><![CDATA[]]></publisher>
+    <language></language>
+    <replaygain_album_gain>0.000000</replaygain_album_gain>
+    <replaygain_album_peak>0.000000</replaygain_album_peak>
+    <replaygain_track_gain>0.000000</replaygain_track_gain>
+    <replaygain_track_peak>0.000000</replaygain_track_peak>
+    <genre><![CDATA[Electro]]></genre>
+</song>
+</root>
+```
 
 ### albums
 
@@ -598,6 +774,79 @@ This returns albums based on the provided search filters
 |'offset' |    |           |YES     |
 |'limit'  |    |           |YES     |
 |'include'|array|Array specified using GET convention, can contain `songs` and will include the corresponding XML nested in the album XML|YES     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>5</total_count>
+<album id="67512">
+    <name><![CDATA[Brain Invaders]]></name>
+    <artist id="10912"><![CDATA[Zebrahead]]></artist>
+    <year>2019</year>
+    <tracks>14</tracks>
+    <disk>1</disk>
+    <tag id="33" count="1" ><![CDATA[Alternative Rock]]></tag>
+    <art><![CDATA[http://ampache.local/image.php?object_id=67512&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>8046ba84-0285-46de-8ec5-1aa35cf5367a</mbid>
+</album>
+<album id="63824">
+    <name><![CDATA[Groove Invaders]]></name>
+    <artist id="11373"><![CDATA[Psyburbia]]></artist>
+    <year>2001</year>
+    <tracks>11</tracks>
+    <disk>1</disk>
+    <art><![CDATA[http://ampache.local/image.php?object_id=63824&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>987ccaab-dccc-43f4-9f6b-915cc2963f51</mbid>
+</album>
+<album id="44142">
+    <name><![CDATA[Invaders]]></name>
+    <artist id="7247"><![CDATA[al | bo]]></artist>
+    <year>2016</year>
+    <tracks>42</tracks>
+    <disk>1</disk>
+    <art><![CDATA[http://ampache.local/image.php?object_id=44142&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid></mbid>
+</album>
+<album id="65269">
+    <name><![CDATA[Invaders]]></name>
+    <artist id="12735"><![CDATA[Hollywood Burns]]></artist>
+    <year>2018</year>
+    <tracks>11</tracks>
+    <disk>1</disk>
+    <art><![CDATA[http://ampache.local/image.php?object_id=65269&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <flag>0</flag>
+    <preciserating>0</preciserating>
+    <rating>0</rating>
+    <averagerating>0</averagerating>
+    <mbid>a8f0b50f-d6f2-49de-9236-9c9204692aae</mbid>
+</album>
+<album id="54185">
+    <name><![CDATA[Invaders Must Die]]></name>
+    <artist id="605"><![CDATA[Prodigy]]></artist>
+    <year>2009</year>
+    <tracks>13</tracks>
+    <disk>1</disk>
+    <art><![CDATA[http://ampache.local/image.php?object_id=54185&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <flag>1</flag>
+    <preciserating>5</preciserating>
+    <rating>5</rating>
+    <averagerating>0</averagerating>
+    <mbid>dfc85b85-d12e-4950-9378-a3c1e67833d9</mbid>
+</album>
+</root>
+```
 
 ### album
 
@@ -741,6 +990,19 @@ This returns a single playlist
 |Input   |Type|Description|Optional|
 |--------|----|-----------|-------:|
 |'filter'|    |UID of playlist, returns playlist XML|NO      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<playlist id="1990">
+    <name><![CDATA[sam - 5 Star Albums]]></name>
+    <owner><![CDATA[sam]]></owner>
+    <items>14</items>
+    <type>public</type>
+</playlist>
+</root>
+```
 
 ### playlist_songs
 
@@ -969,6 +1231,15 @@ This get an user followers
 |----------|----|-----------|-------:|
 |'username'|string|Username of the user for who to get followers list|NO      |
 
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<users>
+    <username><![CDATA[tdawg]]></username>
+</users>
+</root>
+```
+
 ### following
 
 * MINIMUM_API_VERSION=380001
@@ -979,6 +1250,15 @@ This get the user list followed by an user
 |Input     |Type|Description|Optional|
 |----------|----|-----------|-------:|
 |'username'|string|(Username of the user for who to get following list|NO      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<users>
+    <username><![CDATA[]]></username>
+</users>
+</root>
+```
 
 ### toggle_follow
 
@@ -1002,6 +1282,24 @@ This get the latest posted shouts
 |----------|----|-----------|-------:|
 |'username'|    |Username of the user for who to get latest shouts|YES     |
 |'limit'   |    |           |YES     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<shouts>
+    <shout id="5">
+        <date>1572321464</date>
+        <text><![CDATA[good!]]></text>
+        <username><![CDATA[myuser]]></username>
+    </shout>
+    <shout id="4">
+        <date>1569416407</date>
+        <text><![CDATA[not the right one?]]></text>
+        <username><![CDATA[myuser]]></username>
+    </shout>
+</shouts>
+</root>
+```
 
 ### rate
 
@@ -1100,6 +1398,98 @@ This get current user friends timeline
 |'limit'|integer|           |YES     |
 |'since'|integer|UNIXTIME() |NO      |
 
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<timeline>
+    <activity id="160992">
+        <date>1575443631</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>839448</object_id>
+        <action><![CDATA[userflag]]></action>
+        <username><![CDATA[glen]]></username>
+    </activity>
+    <activity id="160991">
+        <date>1575423937</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>839504</object_id>
+        <action><![CDATA[userflag]]></action>
+        <username><![CDATA[glen]]></username>
+    </activity>
+    <activity id="160990">
+        <date>1575423933</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>839504</object_id>
+        <action><![CDATA[userflag]]></action>
+        <username><![CDATA[glen]]></username>
+    </activity>
+    <activity id="160989">
+        <date>1575423760</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>839448</object_id>
+        <action><![CDATA[userflag]]></action>
+        <username><![CDATA[glen]]></username>
+    </activity>
+    <activity id="160988">
+        <date>1575423719</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>839448</object_id>
+        <action><![CDATA[userflag]]></action>
+        <username><![CDATA[glen]]></username>
+    </activity>
+    <activity id="160947">
+        <date>1575325499</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>40251</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[tdawg]]></username>
+    </activity>
+    <activity id="160945">
+        <date>1575325287</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>40257</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[tdawg]]></username>
+    </activity>
+    <activity id="160943">
+        <date>1575324905</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>68826</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[tdawg]]></username>
+    </activity>
+    <activity id="160849">
+        <date>1575183103</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>57278</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[family]]></username>
+    </activity>
+    <activity id="160848">
+        <date>1575183050</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>889923</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[family]]></username>
+    </activity>
+    <activity id="160846">
+        <date>1575105767</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>79124</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[tdawg]]></username>
+    </activity>
+    <activity id="160845">
+        <date>1575099445</date>
+        <object_type><![CDATA[song]]></object_type>
+        <object_id>79131</object_id>
+        <action><![CDATA[play]]></action>
+        <username><![CDATA[tdawg]]></username>
+    </activity>
+</timeline>
+
+</root>
+```
 ### update_from_tags
 
 * MINIMUM_API_VERSION=400001
@@ -1235,14 +1625,32 @@ All error codes are accompanied by a string value for the error and derived from
 </root>
 ```
 
+```JSON
+{
+    "error": {
+        "code": "501",
+        "message": "Access Control Not Enabled"
+    }
+}
+```
+
 * **400**
   * Used when you have specified a valid method but something about the input is incorrect / invalid. See Error message for details, but do not re-attempt the exact same request.
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<error code="400"><![CDATA[failed to end session: AUTH_TOKEN]]></error>
+    <error code="400"><![CDATA[failed to end session: AUTH_TOKEN]]></error>
 </root>
+```
+
+```JSON
+{
+    "error": {
+        "code": "400",
+        "message": "failed to end session: AUTH_TOKEN"
+    }
+}
 ```
 
 * **401**
@@ -1251,8 +1659,17 @@ All error codes are accompanied by a string value for the error and derived from
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<error code="401"><![CDATA[Missing mandatory parameter 'filter']]></error>
+    <error code="401"><![CDATA[Missing mandatory parameter 'filter']]></error>
 </root>
+```
+
+```JSON
+{
+    "error": {
+        "code": "401",
+        "message": "Missing mandatory parameter 'filter'"
+    }
+}
 ```
 
 * **403**
@@ -1261,7 +1678,7 @@ All error codes are accompanied by a string value for the error and derived from
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<error code="403"><![CDATA[Unauthorized access attempt to API - ACL Error]]></error>
+    <error code="403"><![CDATA[Unauthorized access attempt to API - ACL Error]]></error>
 </root>
 ```
 
@@ -1280,10 +1697,9 @@ All error codes are accompanied by a string value for the error and derived from
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-	<error code="405"><![CDATA[Invalid Request]]></error>
+    <error code="405"><![CDATA[Invalid Request]]></error>
 </root>
 ```
-
 
 ```JSON
 {
