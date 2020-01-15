@@ -100,7 +100,7 @@ All future interactions with the Ampache API must include the `AUTHENTICATION_TO
 
 ## Errors
 
-All errors will be returned as an XML document as specified in the [XML API Error Document](XML-API-ERRORS). When possible the text part of the message will be translated into the users configured language.
+All errors will be returned as an XML document as specified in the [XML API Error Document](#xml-api-errors). When possible the text part of the message will be translated into the users configured language.
 
 ## Methods
 
@@ -108,76 +108,76 @@ All methods must be passed as `action=METHODNAME`. All methods except the `hands
 
 You can also pass it `limit=none` to overcome the `limit` limitation and return **all** the matching elements.
 
-Refer to the [XML-methods](https://github.com/ampache/ampache/wiki/XML-methods) page for further information regarding  each method
+Refer to the [XML-methods](#api-class) page for further information regarding  each method
 
 ### Non-Data Methods
 
-* handshake
-* ping
-* goodbye (MINIMUM_API_VERSION=400001)
-* url_to_song
-* check_parameter (MINIMUM_API_VERSION=400001)
+* [handshake](#api-class-non-data-method-documentation-handshake)
+* [ping](#api-class-non-data-method-documentation-ping)
+* [goodbye](#api-class-non-data-method-documentation-goodbye) (MINIMUM_API_VERSION=400001)
+* [url_to_song](#api-class-non-data-method-documentation-url_to_song)
+* [check_parameter](#api-class-non-data-method-documentation-check_parameter) (MINIMUM_API_VERSION=400001)
 
 ### Data Methods
 
-* get_indexes (MINIMUM_API_VERSION=400001)
-* artists
-* artist
-* artist_songs
-* artist_albums
-* albums
-* album
-* album_songs
-* tags
-* tag
-* tag_artists
-* tag_albums
-* tag_songs
-* songs
-* song
-* advanced_search (CHANGED_IN_API_VERSION=400001)
-* stats (Changed in 400001 `filter` added)
-* playlists
-* playlist
-* playlist_songs
-* playlist_create
-* playlist_edit (MINIMUM_API_VERSION=400001)
-* playlist_delete
-* playlist_add_song (CHANGED_IN_API_VERSION=400001)
-* playlist_remove_song (CHANGED_IN_API_VERSION=400001)
-* playlist_generate (MINIMUM_API_VERSION=400001)
-* search_songs
-* videos
-* video
-* user
-* user_create (MINIMUM_API_VERSION=400001)
-* user_update (MINIMUM_API_VERSION=400001)
-* user_delete (MINIMUM_API_VERSION=400001)
-* rate
-* flag (MINIMUM_API_VERSION=400001)
-* record_play (MINIMUM_API_VERSION=400001)
-* scrobble (MINIMUM_API_VERSION=400001)
-* followers
-* following
-* toggle_follow
-* last_shouts
-* timeline
-* friends_timeline
-* catalog_action (MINIMUM_API_VERSION=400001)
-* update_from_tags (MINIMUM_API_VERSION=400001)
-* update_artist_info (MINIMUM_API_VERSION=400001)
-* update_art (MINIMUM_API_VERSION=400001)
+* [get_indexes](#api-class-data-method-documentation-get_indexes) (MINIMUM_API_VERSION=400001)
+* [artist](#api-class-data-method-documentation-artists)
+* [artist](#api-class-data-method-documentation-artist)
+* [artist_songs](#api-class-data-method-documentation-artist_songs)
+* [artist_albums](#api-class-data-method-documentation-artist_albums)
+* [albums](#api-class-data-method-documentation-albums)
+* [album](#api-class-data-method-documentation-album)
+* [album_songs](#api-class-data-method-documentation-album_songs)
+* [tags](#api-class-data-method-documentation-tags)
+* [tag](#api-class-data-method-documentation-tag)
+* [tag_artists](#api-class-data-method-documentation-tag_artists)
+* [tag_albums](#api-class-data-method-documentation-tag_albums)
+* [tag_songs](#api-class-data-method-documentation-tag_songs)
+* [songs](#api-class-data-method-documentation-songs)
+* [song](#api-class-data-method-documentation-song)
+* [advanced_search](#api-class-data-method-documentation-advanced_search) (CHANGED_IN_API_VERSION=400001)
+* [stats](#api-class-data-method-documentation-stats) (Changed in 400001 `filter` added)
+* [playlists](#api-class-data-method-documentation-playlists)
+* [playlist](#api-class-data-method-documentation-playlist)
+* [playlist_songs](#api-class-data-method-documentation-playlist_songs)
+* [playlist_create](#api-class-data-method-documentation-playlist_create)
+* [playlist_edit](#api-class-data-method-documentation-playlist_edit) (MINIMUM_API_VERSION=400001)
+* [playlist_delete](#api-class-data-method-documentation-playlist_delete)
+* [playlist_add_song](#api-class-data-method-documentation-playlist_add_song) (CHANGED_IN_API_VERSION=400001)
+* [playlist_remove_song](#api-class-data-method-documentation-playlist_remove_song) (CHANGED_IN_API_VERSION=400001)
+* [playlist_generate](#api-class-data-method-documentation-playlist_generate) (MINIMUM_API_VERSION=400001)
+* [search_songs](#api-class-data-method-documentation-search_songs)
+* [videos](#api-class-data-method-documentation-videos)
+* [video](#api-class-data-method-documentation-video)
+* [user](#api-class-data-method-documentation-user)
+* [user_create](#api-class-data-method-documentation-user_create) (MINIMUM_API_VERSION=400001)
+* [user_update](#api-class-data-method-documentation-user_update) (MINIMUM_API_VERSION=400001)
+* [user_delete](#api-class-data-method-documentation-user_delete) (MINIMUM_API_VERSION=400001)
+* [rate](#api-class-data-method-documentation-rate)
+* [flag](#api-class-data-method-documentation-flag) (MINIMUM_API_VERSION=400001)
+* [record_play](#api-class-data-method-documentation-record_play) (MINIMUM_API_VERSION=400001)
+* [scrobble](#api-class-data-method-documentation-scrobble) (MINIMUM_API_VERSION=400001)
+* [followers](#api-class-data-method-documentation-followers)
+* [following](#api-class-data-method-documentation-following)
+* [toggle_follow](#api-class-data-method-documentation-toggle_follow)
+* [last_shouts](#api-class-data-method-documentation-last_shouts)
+* [timeline](#api-class-data-method-documentation-timeline)
+* [friends_timeline](#api-class-data-method-documentation-friends_timeline)
+* [catalog_action](#api-class-data-method-documentation-catalog_action) (MINIMUM_API_VERSION=400001)
+* [update_from_tags](#api-class-data-method-documentation-update_from_tags) (MINIMUM_API_VERSION=400001)
+* [update_artist_info](#api-class-data-method-documentation-update_artist_info) (MINIMUM_API_VERSION=400001)
+* [update_art](#api-class-data-method-documentation-update_art) (MINIMUM_API_VERSION=400001)
 
 ### Binary Data Methods
 
-* stream (MINIMUM_API_VERSION=400001)
-* download (MINIMUM_API_VERSION=400001)
-* get_art (MINIMUM_API_VERSION=400001)
+* [stream](#api-class-binary-data-method-documentation-stream) (MINIMUM_API_VERSION=400001)
+* [download](#api-class-binary-data-method-documentation-download) (MINIMUM_API_VERSION=400001)
+* [get_art](#api-class-binary-data-method-documentation-get_art) (MINIMUM_API_VERSION=400001)
 
 ### Control Methods
 
-* localplay
-* democratic
+* [localplay](#api-class-control-method-documentation-localplay)
+* [democratic](#api-class-control-method-documentation-democratic)
 
 ## Request URL Examples
 
@@ -1222,26 +1222,34 @@ This is for controlling democratic play
 
 Ampache's XML errors are loosely based around the HTTP status codes. All errors are returned in the form of an XML Document however the string error message provided is translated into the language of the Ampache server in question. All services should only use the code value.
 
-## Example Error
-
-```xml
-<root>
-      <error code="501">Access Control Not Enabled</error>
-</root>
-```
-
 ## Current Error Codes
 
 All error codes are accompanied by a string value for the error and derived from the [HTTP/1.1 Status Codes](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
 
 * **501**
   * This is a fatal error, the Ampache server you have requested does not currently have access control enabled. The API is disabled.
+```XML
+<root>
+      <error code="501">Access Control Not Enabled</error>
+</root>
+```
 * **400**
   * Used when you have specified a valid method but something about the input is incorrect / invalid. See Error message for details, but do not re-attempt the exact same request.
 * **401**
   * This is a temporary error, this means no valid session was passed or the handshake failed. This should be an indication for services to attempt another handshake
+  ```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<error code="401"><![CDATA[Missing mandatory parameter 'filter']]></error>
+</root>
+```
 * **403**
   * This is a fatal error, the ACL on the Ampache server prevents access from the current source IP Address.
 * **405**
   * This is a fatal error, the service requested a method that the API does not implement.
-  
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<error code="405"><![CDATA[Invalid Request]]></error>
+</root>
+```
