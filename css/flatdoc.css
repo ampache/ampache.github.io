@@ -598,8 +598,6 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
 }
 .header {
   background: #0b333f;
-  border-bottom: solid 1px #dfe2e7;
-  padding: 15px 15px 15px 30px;
   zoom: 1;
   line-height: 20px;
   position: relative;
@@ -665,10 +663,6 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
     border-left: solid 1px #dfe2e7;
     margin-left: 15px;
   }
-  .header li {
-    border-left: solid 1px rgba(255,255,255,0.5);
-    border-right: solid 1px #dfe2e7;
-  }
   .header li:last-child {
     border-right: 0;
   }
@@ -686,7 +680,7 @@ body.no-literate .content pre > code:hover::-webkit-scrollbar-thumb {
   text-rendering: optimizeLegibility;
 }
 .menubar .section {
-  padding: 30px 30px;
+  padding: 40px 30px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -752,7 +746,7 @@ a.big.button:hover:visited {
   .menubar.fixed {
     position: fixed;
     overflow-y: auto;
-    padding-top: 60px;
+    padding-top: 90px;
   }
   .menubar.fixed {
     -webkit-overflow-scrolling: touch;
