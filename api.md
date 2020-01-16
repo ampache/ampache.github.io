@@ -66,9 +66,11 @@ ampache://authentication@hostname[:port]/subdirectory[#parameters]
 ```
 
 for example:
+
 ```Text
 ampache://myuser:mypwd@localhost/ampache
 ```
+
 ```Text
 ampache://yourapikey@localhost:993/ampache#ssl=true
 ```
@@ -140,7 +142,6 @@ Refer to the [XML-methods](#api-class) page for further information regarding  e
 
 ### Non-Data API Methods
 
-<<<<<<< HEAD
 * [handshake](#api-class-non-data-methods-handshake)
 * [ping](#api-class-non-data-methods-ping)
 * [goodbye](#api-class-non-data-methods-goodbye) (MINIMUM V400001)
@@ -207,74 +208,6 @@ Refer to the [XML-methods](#api-class) page for further information regarding  e
 
 * [localplay](#api-class-control-methods-localplay)
 * [democratic](#api-class-control-methods-democratic)
-=======
-* [handshake](#api-class-non-data-method-documentation-handshake)
-* [ping](#api-class-non-data-method-documentation-ping)
-* [goodbye](#api-class-non-data-method-documentation-goodbye) (MINIMUM V400001)
-* [url_to_song](#api-class-non-data-method-documentation-url_to_song)
-* [check_parameter](#api-class-non-data-method-documentation-check_parameter) (MINIMUM V400001)
-
-### Data API Methods
-
-* [get_indexes](#api-class-data-method-documentation-get_indexes) (MINIMUM V400001)
-* [artist](#api-class-data-method-documentation-artists)
-* [artist](#api-class-data-method-documentation-artist)
-* [artist_songs](#api-class-data-method-documentation-artist_songs)
-* [artist_albums](#api-class-data-method-documentation-artist_albums)
-* [albums](#api-class-data-method-documentation-albums)
-* [album](#api-class-data-method-documentation-album)
-* [album_songs](#api-class-data-method-documentation-album_songs)
-* [tags](#api-class-data-method-documentation-tags)
-* [tag](#api-class-data-method-documentation-tag)
-* [tag_artists](#api-class-data-method-documentation-tag_artists)
-* [tag_albums](#api-class-data-method-documentation-tag_albums)
-* [tag_songs](#api-class-data-method-documentation-tag_songs)
-* [songs](#api-class-data-method-documentation-songs)
-* [song](#api-class-data-method-documentation-song)
-* [advanced_search](#api-class-data-method-documentation-advanced_search) (CHANGED V400001)
-* [stats](#api-class-data-method-documentation-stats) (CHANGED V400001 `filter` added)
-* [playlists](#api-class-data-method-documentation-playlists)
-* [playlist](#api-class-data-method-documentation-playlist)
-* [playlist_songs](#api-class-data-method-documentation-playlist_songs)
-* [playlist_create](#api-class-data-method-documentation-playlist_create)
-* [playlist_edit](#api-class-data-method-documentation-playlist_edit) (MINIMUM V400001)
-* [playlist_delete](#api-class-data-method-documentation-playlist_delete)
-* [playlist_add_song](#api-class-data-method-documentation-playlist_add_song) (CHANGED V400001)
-* [playlist_remove_song](#api-class-data-method-documentation-playlist_remove_song) (CHANGED V400001)
-* [playlist_generate](#api-class-data-method-documentation-playlist_generate) (MINIMUM V400001)
-* [search_songs](#api-class-data-method-documentation-search_songs)
-* [videos](#api-class-data-method-documentation-videos)
-* [video](#api-class-data-method-documentation-video)
-* [user](#api-class-data-method-documentation-user)
-* [user_create](#api-class-data-method-documentation-user_create) (MINIMUM V400001)
-* [user_update](#api-class-data-method-documentation-user_update) (MINIMUM V400001)
-* [user_delete](#api-class-data-method-documentation-user_delete) (MINIMUM V400001)
-* [rate](#api-class-data-method-documentation-rate)
-* [flag](#api-class-data-method-documentation-flag) (MINIMUM V400001)
-* [record_play](#api-class-data-method-documentation-record_play) (MINIMUM V400001)
-* [scrobble](#api-class-data-method-documentation-scrobble) (MINIMUM V400001)
-* [followers](#api-class-data-method-documentation-followers)
-* [following](#api-class-data-method-documentation-following)
-* [toggle_follow](#api-class-data-method-documentation-toggle_follow)
-* [last_shouts](#api-class-data-method-documentation-last_shouts)
-* [timeline](#api-class-data-method-documentation-timeline)
-* [friends_timeline](#api-class-data-method-documentation-friends_timeline)
-* [catalog_action](#api-class-data-method-documentation-catalog_action) (MINIMUM V400001)
-* [update_from_tags](#api-class-data-method-documentation-update_from_tags) (MINIMUM V400001)
-* [update_artist_info](#api-class-data-method-documentation-update_artist_info) (MINIMUM V400001)
-* [update_art](#api-class-data-method-documentation-update_art) (MINIMUM V400001)
-
-### Binary Data API Methods
-
-* [stream](#api-class-binary-data-method-documentation-stream) (MINIMUM V400001)
-* [download](#api-class-binary-data-method-documentation-download) (MINIMUM V400001)
-* [get_art](#api-class-binary-data-method-documentation-get_art) (MINIMUM V400001)
-
-### Control API Methods
-
-* [localplay](#api-class-control-method-documentation-localplay)
-* [democratic](#api-class-control-method-documentation-democratic)
->>>>>>> d042b445f49148efd8564f76b8f9c11689aef634
 
 # API Class
 
@@ -656,6 +589,7 @@ This returns the albums of an artist
 </album>
 </root>
 ```
+
 ### artist_songs
 
 * MINIMUM V380001
@@ -1671,13 +1605,13 @@ All error codes are accompanied by a string value for the error and derived from
 
 For the purpose of this example the Ampache host is 'localhost' and the path to Ampache is /ampache
 
-### Requesting all genres whose name starts with Rock
+### Request genre LIKE Rock
 
 ```Text
 http://ampache.local/server/xml.server.php?action=tags&auth=APIKEY&filter=Rock
 ```
 
-### Requesting all song titles, with an offset of 5000
+### Request songs with offset=5000
 
 ```Text
 http://ampache.local/server/xml.server.php?action=songs&auth=APIKEY&offset=5000
@@ -1805,4 +1739,3 @@ Video XML Document -- Attention UIDs for video elements are non-unique against s
 ```
 
 ## JSON Examples
-
