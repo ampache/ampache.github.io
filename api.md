@@ -140,78 +140,136 @@ You can also pass it `limit=none` to overcome the `limit` limitation and return 
 
 Refer to the [XML-methods](#api-class) page for further information regarding  each method
 
-### Non-Data API Methods
+### System API Methods
 
-* [handshake](#api-class-non-data-methods-handshake)
-* [ping](#api-class-non-data-methods-ping)
-* [goodbye](#api-class-non-data-methods-goodbye) (MINIMUM V400001)
-* [url_to_song](#api-class-non-data-methods-url_to_song)
-* [check_parameter](#api-class-non-data-methods-check_parameter) (MINIMUM V400001)
+Methods that are to be used in connection and general access to Ampache servers.
 
-### Data API Methods
+* [handshake](#api-class-system-methods-handshake)
+* [ping](#api-class-system-methods-ping)
+* [goodbye](#api-class-system-methods-goodbye) (MINIMUM V400001)
+* [url_to_song](#api-class-system-methods-url_to_song)
+* [check_parameter](#api-class-system-methods-check_parameter) (MINIMUM V400001)
 
-* [get_indexes](#api-class-data-methods-get_indexes) (MINIMUM V400001)
-* [artist](#api-class-data-methods-artists)
-* [artist](#api-class-data-methods-artist)
-* [artist_songs](#api-class-data-methods-artist_songs)
-* [artist_albums](#api-class-data-methods-artist_albums)
-* [albums](#api-class-data-methods-albums)
-* [album](#api-class-data-methods-album)
-* [album_songs](#api-class-data-methods-album_songs)
-* [tags](#api-class-data-methods-tags)
-* [tag](#api-class-data-methods-tag)
-* [tag_artists](#api-class-data-methods-tag_artists)
-* [tag_albums](#api-class-data-methods-tag_albums)
-* [tag_songs](#api-class-data-methods-tag_songs)
-* [songs](#api-class-data-methods-songs)
-* [song](#api-class-data-methods-song)
-* [advanced_search](#api-class-data-methods-advanced_search) (CHANGED V400001)
-* [stats](#api-class-data-methods-stats) (CHANGED V400001 `filter` added)
-* [playlists](#api-class-data-methods-playlists)
-* [playlist](#api-class-data-methods-playlist)
-* [playlist_songs](#api-class-data-methods-playlist_songs)
-* [playlist_create](#api-class-data-methods-playlist_create)
-* [playlist_edit](#api-class-data-methods-playlist_edit) (MINIMUM V400001)
-* [playlist_delete](#api-class-data-methods-playlist_delete)
-* [playlist_add_song](#api-class-data-methods-playlist_add_song) (CHANGED V400001)
-* [playlist_remove_song](#api-class-data-methods-playlist_remove_song) (CHANGED V400001)
-* [playlist_generate](#api-class-data-methods-playlist_generate) (MINIMUM V400001)
-* [search_songs](#api-class-data-methods-search_songs)
-* [videos](#api-class-data-methods-videos)
-* [video](#api-class-data-methods-video)
-* [user](#api-class-data-methods-user)
-* [user_create](#api-class-data-methods-user_create) (MINIMUM V400001)
-* [user_update](#api-class-data-methods-user_update) (MINIMUM V400001)
-* [user_delete](#api-class-data-methods-user_delete) (MINIMUM V400001)
-* [rate](#api-class-data-methods-rate)
-* [flag](#api-class-data-methods-flag) (MINIMUM V400001)
-* [record_play](#api-class-data-methods-record_play) (MINIMUM V400001)
-* [scrobble](#api-class-data-methods-scrobble) (MINIMUM V400001)
-* [followers](#api-class-data-methods-followers)
-* [following](#api-class-data-methods-following)
-* [toggle_follow](#api-class-data-methods-toggle_follow)
-* [last_shouts](#api-class-data-methods-last_shouts)
-* [timeline](#api-class-data-methods-timeline)
-* [friends_timeline](#api-class-data-methods-friends_timeline)
-* [catalog_action](#api-class-data-methods-catalog_action) (MINIMUM V400001)
-* [update_from_tags](#api-class-data-methods-update_from_tags) (MINIMUM V400001)
-* [update_artist_info](#api-class-data-methods-update_artist_info) (MINIMUM V400001)
-* [update_art](#api-class-data-methods-update_art) (MINIMUM V400001)
+### Search API Methods
+
+Searching for items once you have connected to your server.
+
+* [get_indexes](#api-class-search-methods-get_indexes) (MINIMUM V400001)
+* [advanced_search](#api-class-search-methods-advanced_search) (CHANGED V400001)
+* [playlist_generate](#api-class-search-methods-playlist_generate) (MINIMUM V400001)
+* [stats](#api-class-search-methods-stats) (CHANGED V400001 `filter` added)
+* [search_songs](#api-class-search-methods-search_songs)
+
+### Playlist API Methods
+
+Manage your playlists (including smart lists)
+
+* [playlists](#api-class-playlist-methods-playlists)
+* [playlist](#api-class-playlist-methods-playlist)
+* [playlist_songs](#api-class-playlist-methods-playlist_songs)
+* [playlist_create](#api-class-playlist-methods-playlist_create)
+* [playlist_edit](#api-class-playlist-methods-playlist_edit) (MINIMUM V400001)
+* [playlist_delete](#api-class-playlist-methods-playlist_delete)
+* [playlist_add_song](#api-class-playlist-methods-playlist_add_song) (CHANGED V400001)
+* [playlist_remove_song](#api-class-playlist-methods-playlist_remove_song) (CHANGED V400001)
+
+### Media Action API Methods
+
+Send ratings, star/flag changes and scrobbles to your server.
+
+* [rate](#api-class-media-action-methods-rate)
+* [flag](#api-class-media-action-methods-flag) (MINIMUM V400001)
+* [record_play](#api-class-media-action-methods-record_play) (MINIMUM V400001)
+* [scrobble](#api-class-media-action-methods-scrobble) (MINIMUM V400001)
+
+### Media Detail API Methods
+
+Get details on artists including albums and songs connected to their id.
+
+* [artists](#api-class-media-detail-methods-artists)
+* [artist](#api-class-media-detail-methods-artist)
+* [artist_songs](#api-class-media-detail-methods-artist_songs)
+* [artist_albums](#api-class-media-detail-methods-artist_albums)
+
+Get albums and the songs in that album.
+
+* [albums](#api-class-media-detail-methods-albums)
+* [album](#api-class-media-detail-methods-album)
+* [album_songs](#api-class-media-detail-methods-album_songs)
+
+Song methods.
+
+* [songs](#api-class-media-detail-methods-songs)
+* [song](#api-class-media-detail-methods-song)
+
+Get details about genres, including objects that contain the tag.
+
+* [tags](#api-class-media-detail-methods-tags)
+* [tag](#api-class-media-detail-methods-tag)
+* [tag_artists](#api-class-media-detail-methods-tag_artists)
+* [tag_albums](#api-class-media-detail-methods-tag_albums)
+* [tag_songs](#api-class-media-detail-methods-tag_songs)
+
+Get video details.
+
+* [videos](#api-class-media-detail-methods-videos)
+* [video](#api-class-media-detail-methods-video)
 
 ### Binary Data API Methods
+
+Methods that return binary data such as a media file or image.
 
 * [stream](#api-class-binary-data-methods-stream) (MINIMUM V400001)
 * [download](#api-class-binary-data-methods-download) (MINIMUM V400001)
 * [get_art](#api-class-binary-data-methods-get_art) (MINIMUM V400001)
 
+### User API Methods
+
+General user mthods used for getting information about individual users.
+
+* [users](#api-class-user-methods-users)
+* [user](#api-class-user-methods-user)
+* [followers](#api-class-user-methods-followers)
+* [following](#api-class-user-methods-following)
+* [toggle_follow](#api-class-user-methods-toggle_follow)
+* [last_shouts](#api-class-user-methods-last_shouts)
+* [timeline](#api-class-user-methods-timeline)
+* [friends_timeline](#api-class-user-methods-friends_timeline)
+
+### Share API Methods
+
+* None - **TO BE COMPLETED**
+
+### Podcast API Methods
+
+* None - **TO BE COMPLETED**
+
+### Streaming Radio API Methods
+
+* None - **TO BE COMPLETED**
+
+### Administration API Methods
+
+Advanced methods that make changes to the system.
+
+* [user_create](#api-class-administration-methods-user_create) (MINIMUM V400001)
+* [user_update](#api-class-administration-methods-user_update) (MINIMUM V400001)
+* [user_delete](#api-class-administration-methods-user_delete) (MINIMUM V400001)
+* [catalog_action](#api-class-administration-methods-catalog_action) (MINIMUM V400001)
+* [update_from_tags](#api-class-administration-methods-update_from_tags) (MINIMUM V400001)
+* [update_artist_info](#api-class-administration-methods-update_artist_info) (MINIMUM V400001)
+* [update_art](#api-class-administration-methods-update_art) (MINIMUM V400001)
+
 ### Control API Methods
+
+Methods used for server backends.
 
 * [localplay](#api-class-control-methods-localplay)
 * [democratic](#api-class-control-methods-democratic)
 
 # API Class
 
-## Non-Data Methods
+## System Methods
 
 ### handshake
 
@@ -328,7 +386,7 @@ This function checks the $input actually has the parameter. Parameters must be a
 |'input' |array   |input from the API           |NO      |
 |'parameters' |string[]|array of parameters to check           |NO      |
 
-## Data Methods
+## Search Methods
 
 ### get_indexes
 
@@ -477,6 +535,247 @@ Send the correct input based on the type of search.
 |'type'    |string |'song', 'album', 'artist', 'playlist', 'label', 'user', 'video'|NO |
 |'offset'  |integer| |YES|
 |'limit'   |integer| |YES|
+
+### playlist_generate
+
+* MINIMUM V400001
+* CHANGED V400002
+
+Get a list of song XML, indexes or id's based on some simple search criteria
+'recent' will search for tracks played after 'Popular Threshold' days
+'forgotten' will search for tracks played before 'Popular Threshold' days
+'unplayed' added in 400002 for searching unplayed tracks
+
+@param array $input
+
+|Input   |Type   |Description|Optional|
+|--------|-------|-----------|-------:|
+|'mode'  |string |'recent', 'forgotten', 'unplayed', 'random' (default = 'random')|YES     |
+|'filter'|string |string LIKE matched to song title|YES     |
+|'album' |integer|$album_id |YES     |
+|'artist'|integer|$artist_id |YES     |
+|'flag'  |integer|get flagged songs only 0, 1 (default = 0)|YES     |
+|'format'|string |'song', 'index','id' (default = 'song')|YES     |
+|'offset'|integer|          |YES     |
+|'limit' |integer|          |YES     |
+
+### stats
+
+* MINIMUM V380001
+* CHANGED V400001
+
+Get some items based on some simple search types and filters.
+This method has partial backwards compatibility with older api versions but should be updated to follow the current input values.
+(CHANGED V400001 `filter` added)
+@param array $input
+
+|Input     |Type   |Description                                               |Optional|
+|----------|-------|----------------------------------------------------------|-------:|
+|'type'    |string |'song', 'album', 'artist'                                 |NO      |
+|'filter'  |string |'newest', 'highest', 'frequent', 'recent', 'forgotten', 'flagged', 'random'|NO      |
+|'user_id' |integer|                                                          |YES     |
+|'username'|string |                                                          |YES     |
+|'offset'  |integer|                                                          |YES     |
+|'limit'   |integer|                                                          |YES     |
+
+### search_songs
+
+* MINIMUM V380001
+
+This searches the songs and returns... songs
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |Value is Alpha Match for Song Title, Artist Name, Album Name, Genre Name returns song Object|NO      |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+## Playlist Methods
+
+### playlists
+
+* MINIMUM V380001
+
+This returns playlists based on the specified filter
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|YES     |
+|'exact' |boolean|if true filter is exact rather then fuzzy|YES     |
+|'add'    |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results added between two dates|YES     |
+|'update' |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results updated between two dates|YES     |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+### playlist
+
+* MINIMUM V380001
+
+This returns a single playlist
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of playlist, returns playlist Object|NO      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<playlist id="1990">
+    <name><![CDATA[sam - 5 Star Albums]]></name>
+    <owner><![CDATA[sam]]></owner>
+    <items>14</items>
+    <type>public</type>
+</playlist>
+</root>
+```
+
+### playlist_songs
+
+* MINIMUM V380001
+
+This returns the songs for a playlist
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Playlist, returns song Object|NO      |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+### playlist_create
+
+* MINIMUM V380001
+
+This create a new playlist and return it
+@param array $input
+
+|Input |Type|Description|Optional|
+|------|----|-----------|-------:|
+|'name'|    |Playlist name|NO      |
+|'type'|    |Playlist type 'public', 'private'|YES     |
+
+### playlist_edit
+
+* MINIMUM V400001
+* CHANGED V400003
+
+This modifies name and type of a playlist
+Previously name and type were mandatory while filter wasn't. this has been reversed.
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Playlist|NO     |
+|'name'|    |Playlist name|YES     |
+|'type'|    |Playlist type 'public', 'private'|YES     |
+
+### playlist_delete
+
+* MINIMUM V380001
+
+This deletes a playlist
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Playlist|NO      |
+
+### playlist_add_song
+
+* MINIMUM V380001
+* CHANGED V400001
+
+This adds a song to a playlist. setting check=1 will not add duplicates to the playlist
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|integer|UID of Playlist|NO      |
+|'song'  |integer|UID of song to add to playlist|NO      |
+|'check' |boolean|0, 1 Whether to check and ignore duplicates (default = 0)|YES     |
+
+### playlist_remove_song
+
+* MINIMUM V380001
+* CHANGED V400001
+
+This remove a song from a playlist.
+Previous versions required 'track' instead of 'song'.
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Playlist|NO      |
+|'song'  |    |UID of song to remove from playlist|YES     |
+|'track' |    |Track number to remove from playlist|YES     |
+
+## Media Action Methods
+
+### rate
+
+* MINIMUM V380001
+
+This rates a library item
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'type'  |    |library item type, album, artist, song, video|NO      |
+|'id'    |    |library item id|NO      |
+|'rating'|    |rating between 0-5|NO      |
+
+### flag
+
+* MINIMUM V400001
+
+This flags a library item as a favorite
+
+* Setting flag to true (1) will set the flag
+* Setting flag to false (0) will remove the flag
+@param array $input
+
+|Input |Type   |Description               |Optional|
+|------|-------|--------------------------|-------:|
+|'type'|string |'song', 'album', 'artist', 'video' |NO      |
+|'id'  |integer|$object_id                |NO      |
+|'flag'|boolean|0, 1                      |NO      |
+
+### record_play
+
+* MINIMUM V400001
+
+Take a song_id and update the object_count and user_activity table with a play. This allows other sources to record play history to ampache
+@param array $input
+
+|Input   |Type   |Description|Optional|
+|--------|-------|-----------|-------:|
+|'id'    |integer|$object_id |NO      |
+|'user'  |integer|$user_id   |NO      |
+|'client'|string |$agent     |YES     |
+
+### scrobble
+
+* MINIMUM V400001
+
+Search for a song using text info and then record a play if found. This allows other sources to record play history to ampache
+@param array $input
+
+|Input       |Type   |Description |Optional|
+|------------|-------|------------|-------:|
+|'song'      |string |$song_name  |NO      |
+|'artist'    |string |$artist_name|NO      |
+|'album'     |string |$album_name |NO      |
+|'songmbid'  |string |$song_mbid  |YES     |
+|'artistmbid'|string |$artist_mbid|YES     |
+|'albummbid' |string |$album_mbid |YES     |
+|'date'      |integer|UNIXTIME()  |YES     |
+|'client'    |string |$agent      |YES     |
+
+## Media Detail Methods
 
 ### artists
 
@@ -761,6 +1060,33 @@ This returns the songs of a specified album
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
+### songs
+
+* MINIMUM V380001
+
+Returns songs based on the specified filter
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|NO      |
+|'add'    |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results added between two dates|YES     |
+|'update' |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results updated between two dates|YES     |
+|'exact' |boolean|if true filter is exact rather then fuzzy|NO      |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+### song
+
+* MINIMUM V380001
+
+returns a single song
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Song, returns song Object|NO      |
+
 ### tags
 
 * MINIMUM V380001
@@ -825,208 +1151,6 @@ returns the songs for this tag
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
-### songs
-
-* MINIMUM V380001
-
-Returns songs based on the specified filter
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|NO      |
-|'add'    |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results added between two dates|YES     |
-|'update' |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results updated between two dates|YES     |
-|'exact' |boolean|if true filter is exact rather then fuzzy|NO      |
-|'offset'|    |           |YES     |
-|'limit' |    |           |YES     |
-
-### song
-
-* MINIMUM V380001
-
-returns a single song
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of Song, returns song Object|NO      |
-
-### playlists
-
-* MINIMUM V380001
-
-This returns playlists based on the specified filter
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |Value is Alpha Match for returned results, may be more than one letter/number|YES     |
-|'exact' |boolean|if true filter is exact rather then fuzzy|YES     |
-|'add'    |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results added between two dates|YES     |
-|'update' |set_filter|ISO 8601 Date Format assumed filter method is newer then specified date, however [START]/[END] can be specified to receive only results updated between two dates|YES     |
-|'offset'|    |           |YES     |
-|'limit' |    |           |YES     |
-
-### playlist
-
-* MINIMUM V380001
-
-This returns a single playlist
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of playlist, returns playlist Object|NO      |
-
-```XML
-<?xml version="1.0" encoding="UTF-8" ?>
-<root>
-<total_count>1</total_count>
-<playlist id="1990">
-    <name><![CDATA[sam - 5 Star Albums]]></name>
-    <owner><![CDATA[sam]]></owner>
-    <items>14</items>
-    <type>public</type>
-</playlist>
-</root>
-```
-
-### playlist_songs
-
-* MINIMUM V380001
-
-This returns the songs for a playlist
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of Playlist, returns song Object|NO      |
-|'offset'|    |           |YES     |
-|'limit' |    |           |YES     |
-
-### playlist_create
-
-* MINIMUM V380001
-
-This create a new playlist and return it
-@param array $input
-
-|Input |Type|Description|Optional|
-|------|----|-----------|-------:|
-|'name'|    |Playlist name|NO      |
-|'type'|    |Playlist type 'public', 'private'|YES     |
-
-### playlist_edit
-
-* MINIMUM V400001
-* CHANGED V400003
-
-This modifies name and type of a playlist
-Previously name and type were mandatory while filter wasn't. this has been reversed.
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of Playlist|NO     |
-|'name'|    |Playlist name|YES     |
-|'type'|    |Playlist type 'public', 'private'|YES     |
-
-### playlist_delete
-
-* MINIMUM V380001
-
-This deletes a playlist
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of Playlist|NO      |
-
-### playlist_add_song
-
-* MINIMUM V380001
-* CHANGED V400001
-
-This adds a song to a playlist. setting check=1 will not add duplicates to the playlist
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|integer|UID of Playlist|NO      |
-|'song'  |integer|UID of song to add to playlist|NO      |
-|'check' |boolean|0, 1 Whether to check and ignore duplicates (default = 0)|YES     |
-
-### playlist_remove_song
-
-* MINIMUM V380001
-* CHANGED V400001
-
-This remove a song from a playlist.
-Previous versions required 'track' instead of 'song'.
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |UID of Playlist|NO      |
-|'song'  |    |UID of song to remove from playlist|YES     |
-|'track' |    |Track number to remove from playlist|YES     |
-
-### playlist_generate
-
-* MINIMUM V400001
-* CHANGED V400002
-
-Get a list of song XML, indexes or id's based on some simple search criteria
-'recent' will search for tracks played after 'Popular Threshold' days
-'forgotten' will search for tracks played before 'Popular Threshold' days
-'unplayed' added in 400002 for searching unplayed tracks
-
-@param array $input
-
-|Input   |Type   |Description|Optional|
-|--------|-------|-----------|-------:|
-|'mode'  |string |'recent', 'forgotten', 'unplayed', 'random' (default = 'random')|YES     |
-|'filter'|string |string LIKE matched to song title|YES     |
-|'album' |integer|$album_id |YES     |
-|'artist'|integer|$artist_id |YES     |
-|'flag'  |integer|get flagged songs only 0, 1 (default = 0)|YES     |
-|'format'|string |'song', 'index','id' (default = 'song')|YES     |
-|'offset'|integer|          |YES     |
-|'limit' |integer|          |YES     |
-
-### stats
-
-* MINIMUM V380001
-* CHANGED V400001
-
-Get some items based on some simple search types and filters.
-This method has partial backwards compatibility with older api versions but should be updated to follow the current input values.
-(CHANGED V400001 `filter` added)
-@param array $input
-
-|Input     |Type   |Description                                               |Optional|
-|----------|-------|----------------------------------------------------------|-------:|
-|'type'    |string |'song', 'album', 'artist'                                 |NO      |
-|'filter'  |string |'newest', 'highest', 'frequent', 'recent', 'forgotten', 'flagged', 'random'|NO      |
-|'user_id' |integer|                                                          |YES     |
-|'username'|string |                                                          |YES     |
-|'offset'  |integer|                                                          |YES     |
-|'limit'   |integer|                                                          |YES     |
-
-### search_songs
-
-* MINIMUM V380001
-
-This searches the songs and returns... songs
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'filter'|    |Value is Alpha Match for Song Title, Artist Name, Album Name, Genre Name returns song Object|NO      |
-|'offset'|    |           |YES     |
-|'limit' |    |           |YES     |
-
 ### videos
 
 * MINIMUM V380001
@@ -1052,6 +1176,51 @@ This returns a single video
 |--------|----|-----------|-------:|
 |'filter'|    |UID of video, returns video Object|NO      |
 
+## Binary Data Methods
+
+### stream
+
+* MINIMUM V400001
+
+Streams a given media file. Takes the file id in parameter with optional max bit rate, file format, time offset, size and estimate content length option.
+@param array $input
+
+|Input    |Type   |Description                |Optional|
+|---------|-------|---------------------------|-------:|
+|'id'     |integer|$object_id                 |NO      |
+|'type'   |string |'song', 'podcast'          |NO      |
+|'bitrate'|integer|max bitrate for transcoding|YES     |
+|'format' |string |'mp3', 'ogg', 'raw', etc   |YES     |
+|'offset' |integer|time offset in seconds     |YES     |
+|'length' |boolean|0, 1                       |YES     |
+
+### download
+
+* MINIMUM V400001
+
+Downloads a given media file. set format=raw to download the full file
+@param array $input
+
+|Input   |Type   |Description             |Optional|
+|--------|-------|------------------------|-------:|
+|'id'    |integer|$object_id              |NO      |
+|'type'  |string |'song', 'podcast'       |NO      |
+|'format'|string |'mp3', 'ogg', 'raw', etc|YES     |
+
+### get_art
+
+* MINIMUM V400001
+
+Get an art image.
+@param array $input
+
+|Input |Type   |Description                                               |Optional|
+|------|-------|----------------------------------------------------------|-------:|
+|'id'  |integer|$object_id                                                |NO      |
+|'type'|string |'song', 'artist', 'album', 'playlist', 'search', 'podcast'|NO      |
+
+## User Methods
+
 ### user
 
 * MINIMUM V380001
@@ -1062,111 +1231,6 @@ This get an user public information
 |Input     |Type|Description|Optional|
 |----------|----|-----------|-------:|
 |'username'|    |Username of the user for who to get details|NO      |
-
-### user_create
-
-* MINIMUM V400001
-
-Create a new user. (Requires the username, password and email.)
-@param array $input
-
-|Input       |Type   |Description               |Optional|
-|------------|-------|--------------------------|-------:|
-|'username'  |string |$username                 |NO      |
-|'password'  |string |hash('sha256', $password))|NO      |
-|'email'     |string |'user@gmail.com'          |NO      |
-|'fullname'  |string |                          |YES     |
-|'disable'   |boolean|0, 1                      |YES     |
-
-### user_update
-
-* MINIMUM V400001
-
-Update an existing user.
-@param array $input
-
-|Input       |Type   |Description               |Optional|
-|------------|-------|--------------------------|-------:|
-|'username'  |string |$username                 |NO      |
-|'password'  |string |hash('sha256', $password))|YES     |
-|'email'     |string |'user@gmail.com'          |YES     |
-|'fullname'  |string |                          |YES     |
-|'website'   |string |                          |YES     |
-|'state'     |string |                          |YES     |
-|'city'      |string |                          |YES     |
-|'disable'   |boolean|0, 1                      |YES     |
-|'maxbitrate'|string |                          |YES     |
-
-### user_delete
-
-* MINIMUM V400001
-
-Delete an existing user.
-@param array $input
-
-|Input     |Type|Description|Optional|
-|----------|----|-----------|-------:|
-|'username'|string|           |NO      |
-
-### rate
-
-* MINIMUM V380001
-
-This rates a library item
-@param array $input
-
-|Input   |Type|Description|Optional|
-|--------|----|-----------|-------:|
-|'type'  |    |library item type, album, artist, song, video|NO      |
-|'id'    |    |library item id|NO      |
-|'rating'|    |rating between 0-5|NO      |
-
-### flag
-
-* MINIMUM V400001
-
-This flags a library item as a favorite
-
-* Setting flag to true (1) will set the flag
-* Setting flag to false (0) will remove the flag
-@param array $input
-
-|Input |Type   |Description               |Optional|
-|------|-------|--------------------------|-------:|
-|'type'|string |'song', 'album', 'artist', 'video' |NO      |
-|'id'  |integer|$object_id                |NO      |
-|'flag'|boolean|0, 1                      |NO      |
-
-### record_play
-
-* MINIMUM V400001
-
-Take a song_id and update the object_count and user_activity table with a play. This allows other sources to record play history to ampache
-@param array $input
-
-|Input   |Type   |Description|Optional|
-|--------|-------|-----------|-------:|
-|'id'    |integer|$object_id |NO      |
-|'user'  |integer|$user_id   |NO      |
-|'client'|string |$agent     |YES     |
-
-### scrobble
-
-* MINIMUM V400001
-
-Search for a song using text info and then record a play if found. This allows other sources to record play history to ampache
-@param array $input
-
-|Input       |Type   |Description |Optional|
-|------------|-------|------------|-------:|
-|'song'      |string |$song_name  |NO      |
-|'artist'    |string |$artist_name|NO      |
-|'album'     |string |$album_name |NO      |
-|'songmbid'  |string |$song_mbid  |YES     |
-|'artistmbid'|string |$artist_mbid|YES     |
-|'albummbid' |string |$album_mbid |YES     |
-|'date'      |integer|UNIXTIME()  |YES     |
-|'client'    |string |$agent      |YES     |
 
 ### followers
 
@@ -1367,6 +1431,65 @@ This get current user friends timeline
 </root>
 ```
 
+## Share Methods
+
+**TO BE COMPLETED**
+
+## Podcast Methods
+
+**TO BE COMPLETED**
+
+## Streaming Radio Methods
+
+**TO BE COMPLETED**
+
+## Administration Methods
+
+### user_create
+
+* MINIMUM V400001
+
+Create a new user. (Requires the username, password and email.)
+@param array $input
+
+|Input       |Type   |Description               |Optional|
+|------------|-------|--------------------------|-------:|
+|'username'  |string |$username                 |NO      |
+|'password'  |string |hash('sha256', $password))|NO      |
+|'email'     |string |'user@gmail.com'          |NO      |
+|'fullname'  |string |                          |YES     |
+|'disable'   |boolean|0, 1                      |YES     |
+
+### user_update
+
+* MINIMUM V400001
+
+Update an existing user.
+@param array $input
+
+|Input       |Type   |Description               |Optional|
+|------------|-------|--------------------------|-------:|
+|'username'  |string |$username                 |NO      |
+|'password'  |string |hash('sha256', $password))|YES     |
+|'email'     |string |'user@gmail.com'          |YES     |
+|'fullname'  |string |                          |YES     |
+|'website'   |string |                          |YES     |
+|'state'     |string |                          |YES     |
+|'city'      |string |                          |YES     |
+|'disable'   |boolean|0, 1                      |YES     |
+|'maxbitrate'|string |                          |YES     |
+
+### user_delete
+
+* MINIMUM V400001
+
+Delete an existing user.
+@param array $input
+
+|Input     |Type|Description|Optional|
+|----------|----|-----------|-------:|
+|'username'|string|           |NO      |
+
 ### catalog_action
 
 * MINIMUM V400001
@@ -1416,49 +1539,6 @@ Doesn't overwrite existing art by default.
 |'id'       |integer|$object_id       |NO      |
 |'type'     |string |'song', 'podcast'|NO      |
 |'overwrite'|boolean|0, 1             |YES     |
-
-## Binary Data Methods
-
-### stream
-
-* MINIMUM V400001
-
-Streams a given media file. Takes the file id in parameter with optional max bit rate, file format, time offset, size and estimate content length option.
-@param array $input
-
-|Input    |Type   |Description                |Optional|
-|---------|-------|---------------------------|-------:|
-|'id'     |integer|$object_id                 |NO      |
-|'type'   |string |'song', 'podcast'          |NO      |
-|'bitrate'|integer|max bitrate for transcoding|YES     |
-|'format' |string |'mp3', 'ogg', 'raw', etc   |YES     |
-|'offset' |integer|time offset in seconds     |YES     |
-|'length' |boolean|0, 1                       |YES     |
-
-### download
-
-* MINIMUM V400001
-
-Downloads a given media file. set format=raw to download the full file
-@param array $input
-
-|Input   |Type   |Description             |Optional|
-|--------|-------|------------------------|-------:|
-|'id'    |integer|$object_id              |NO      |
-|'type'  |string |'song', 'podcast'       |NO      |
-|'format'|string |'mp3', 'ogg', 'raw', etc|YES     |
-
-### get_art
-
-* MINIMUM V400001
-
-Get an art image.
-@param array $input
-
-|Input |Type   |Description                                               |Optional|
-|------|-------|----------------------------------------------------------|-------:|
-|'id'  |integer|$object_id                                                |NO      |
-|'type'|string |'song', 'artist', 'album', 'playlist', 'search', 'podcast'|NO      |
 
 ## Control Methods
 
