@@ -3,10 +3,12 @@
 ## General Info
 
 **Compatible Versions:** _>= 350001_
+
 Ampache Provides an API for pulling out it's meta data in the form of simple XML documents. This was originally created for use by [Amarok](http://amarok.kde.org/), but there is no reason it couldn't be used to create other front-ends to the Ampache data.
 
 Access to the API is controlled by the Internal [Access Control Lists](https://github.com/ampache/ampache/wiki/ACL). The KEY defined in the ACL is the passphrase that must be used to establish an API session. By default requests are limited to a maximum of 5000 results for performance reasons. To get additional results pass offset as an additional parameter.
-If you have any questions or requests for this API please submit a [Feature Request](https://github.com/ampache/ampache/issues?state=closed). All dates in the API calls should be passed as [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) dates.
+
+If you have any questions or requests for this API please submit a [Feature Request](https://github.com/ampache/ampache/issues?q=is%3Aopen). All dates in the API calls should be passed as [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) dates.
 
 ## Current Version
 
@@ -91,6 +93,8 @@ Optionally, you can also provide geolocation information `&geo_latitude=$latitud
 
 If your authenticated User and IP match a row in the Access List the following will be returned.
 
+All future interactions with the Ampache API must include the `AUTHENTICATION_TOKEN` as a `GET` variable named `auth`.
+
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
@@ -126,8 +130,6 @@ If your authenticated User and IP match a row in the Access List the following w
 }
 ```
 
-All future interactions with the Ampache API must include the `AUTHENTICATION_TOKEN` as a `GET` variable named `auth`.
-
 ## Errors
 
 All errors will be returned as an XML document as specified in the [API Error Document](#xml-api-errors). When possible the text part of the message will be translated into the users configured language.
@@ -138,11 +140,11 @@ All methods must be passed as `action=METHODNAME`. All methods except the `hands
 
 You can also pass it `limit=none` to overcome the `limit` limitation and return **all** the matching elements.
 
-Refer to the [XML-methods](#api-class) page for further information regarding  each method
+Refer to the [API Class](#api-class) page for further information regarding each method.
 
 ### System API Methods
 
-Methods that are to be used in connection and general access to Ampache servers.
+Methods that are to be used for interaction and access to Ampache servers.
 
 * [handshake](#api-class-system-methods-handshake)
 * [ping](#api-class-system-methods-ping)
@@ -159,6 +161,7 @@ Searching for items once you have connected to your server.
 * [playlist_generate](#api-class-search-methods-playlist_generate) (MINIMUM V400001)
 * [stats](#api-class-search-methods-stats) (CHANGED V400001 `filter` added)
 * [search_songs](#api-class-search-methods-search_songs)
+* get_similar
 
 ### Playlist API Methods
 
@@ -167,6 +170,8 @@ Manage your playlists (including smart lists)
 * [playlists](#api-class-playlist-methods-playlists)
 * [playlist](#api-class-playlist-methods-playlist)
 * [playlist_songs](#api-class-playlist-methods-playlist_songs)
+* playlist_import
+* playlist_export
 * [playlist_create](#api-class-playlist-methods-playlist_create)
 * [playlist_edit](#api-class-playlist-methods-playlist_edit) (MINIMUM V400001)
 * [playlist_delete](#api-class-playlist-methods-playlist_delete)
@@ -201,6 +206,8 @@ Song methods.
 
 * [songs](#api-class-media-detail-methods-songs)
 * [song](#api-class-media-detail-methods-song)
+* song_delete
+* song_organize
 
 Get details about genres, including objects that contain the tag.
 
@@ -214,6 +221,15 @@ Get video details.
 
 * [videos](#api-class-media-detail-methods-videos)
 * [video](#api-class-media-detail-methods-video)
+
+### Upload API Methods
+
+Methods that return binary data such as a media file or image.
+
+* uploads
+* upload
+* upload_create
+* upload_delete
 
 ### Binary Data API Methods
 
@@ -229,24 +245,47 @@ General user mthods used for getting information about individual users.
 
 * [users](#api-class-user-methods-users)
 * [user](#api-class-user-methods-user)
+* play_queue (get/save a playlist as the current queue)
 * [followers](#api-class-user-methods-followers)
 * [following](#api-class-user-methods-following)
 * [toggle_follow](#api-class-user-methods-toggle_follow)
 * [last_shouts](#api-class-user-methods-last_shouts)
 * [timeline](#api-class-user-methods-timeline)
 * [friends_timeline](#api-class-user-methods-friends_timeline)
+* pref_interface (User Config preferences)
+* pref_options (User Config preferences)
+* pref_playlist (User Config preferences)
+* pref_plugins (User Config preferences)
+* pref_streaming (User Config preferences)
 
 ### Share API Methods
 
-* None - **TO BE COMPLETED**
+* shares
+* share
+* share_create
+* share_edit
+* share_delete
 
 ### Podcast API Methods
 
-* None - **TO BE COMPLETED**
+* podcasts
+* podcast
+* podcast_episodes
+* podcast_episode
+* podcast_create
+* podcast_edit
+* podcast_delete
 
 ### Streaming Radio API Methods
 
-* None - **TO BE COMPLETED**
+* radios
+* radio
+* radio_create
+* radio_edit
+* radio_delete
+* channel_create
+* channel_edit
+* channel_delete
 
 ### Administration API Methods
 
@@ -255,10 +294,30 @@ Advanced methods that make changes to the system.
 * [user_create](#api-class-administration-methods-user_create) (MINIMUM V400001)
 * [user_update](#api-class-administration-methods-user_update) (MINIMUM V400001)
 * [user_delete](#api-class-administration-methods-user_delete) (MINIMUM V400001)
+* user_clear_data
+* catalogs
+* catalog
 * [catalog_action](#api-class-administration-methods-catalog_action) (MINIMUM V400001)
+* catalog_create
+* catalog_edit
+* catalog_delete
 * [update_from_tags](#api-class-administration-methods-update_from_tags) (MINIMUM V400001)
 * [update_artist_info](#api-class-administration-methods-update_artist_info) (MINIMUM V400001)
 * [update_art](#api-class-administration-methods-update_art) (MINIMUM V400001)
+* acls
+* acl
+* acl_create
+* acl_edit
+* acl_delete
+* ampache_update (update from git)
+* ampache_interface (Server preferences)
+* ampache_options (Server preferences)
+* ampache_playlist (Server preferences)
+* ampache_plugins (Server preferences)
+* ampache_streaming (Server preferences)
+* ampache_system (Server preferences)
+* db_optimize (bin/catalog_update)
+* db_clean_art (bin/clean_art_table)
 
 ### Control API Methods
 
@@ -266,6 +325,15 @@ Methods used for server backends.
 
 * [localplay](#api-class-control-methods-localplay)
 * [democratic](#api-class-control-methods-democratic)
+* channel (start/stop/status)
+
+###Script API Methods
+
+Methods used for editing individual files in user scripts
+
+* file_add
+* file_clean
+* file_verify
 
 # API Class
 
