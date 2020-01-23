@@ -252,11 +252,11 @@ General user mthods used for getting information about individual users.
 * [last_shouts](#api-class-user-methods-last_shouts)
 * [timeline](#api-class-user-methods-timeline)
 * [friends_timeline](#api-class-user-methods-friends_timeline)
-* [pref_interface](#api-class-user-methods-methods-pref_interface) (User Config preferences)
-* [pref_options](#api-class-user-methods-methods-pref_options) (User Config preferences)
-* [pref_playlist](#api-class-user-methods-methods-pref_playlist) (User Config preferences)
-* [pref_plugins](#api-class-user-methods-methods-pref_plugins) (User Config preferences)
-* [pref_streaming](#api-class-user-methods-methods-pref_streaming) (User Config preferences)
+* [pref_interface](#api-class-user-methods-pref_interface) (User Config preferences)
+* [pref_options](#api-class-user-methods-pref_options) (User Config preferences)
+* [pref_playlist](#api-class-user-methods-pref_playlist) (User Config preferences)
+* [pref_plugins](#api-class-user-methods-pref_plugins) (User Config preferences)
+* [pref_streaming](#api-class-user-methods-pref_streaming) (User Config preferences)
 
 ### Share API Methods
 
