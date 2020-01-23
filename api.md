@@ -161,7 +161,7 @@ Searching for items once you have connected to your server.
 * [playlist_generate](#api-class-search-methods-playlist_generate) (MINIMUM V400001)
 * [stats](#api-class-search-methods-stats) (CHANGED V400001 `filter` added)
 * [search_songs](#api-class-search-methods-search_songs)
-* get_similar
+* [get_similar](#api-class-search-methods-get_similar)
 
 ### Playlist API Methods
 
@@ -170,8 +170,8 @@ Manage your playlists (including smart lists)
 * [playlists](#api-class-playlist-methods-playlists)
 * [playlist](#api-class-playlist-methods-playlist)
 * [playlist_songs](#api-class-playlist-methods-playlist_songs)
-* playlist_import
-* playlist_export
+* [playlist_import](#api-class-playlist-methods-playlist_import)
+* [playlist_export](#api-class-playlist-methods-playlist_export)
 * [playlist_create](#api-class-playlist-methods-playlist_create)
 * [playlist_edit](#api-class-playlist-methods-playlist_edit) (MINIMUM V400001)
 * [playlist_delete](#api-class-playlist-methods-playlist_delete)
@@ -206,8 +206,8 @@ Song methods.
 
 * [songs](#api-class-media-detail-methods-songs)
 * [song](#api-class-media-detail-methods-song)
-* song_delete
-* song_organize
+* [song_delete](#api-class-media-detail-methods-song_delete)
+* [song_organize](#api-class-media-detail-methods-song_organize)
 
 Get details about genres, including objects that contain the tag.
 
@@ -226,10 +226,10 @@ Get video details.
 
 Methods that return binary data such as a media file or image.
 
-* uploads
-* upload
-* upload_create
-* upload_delete
+* [uploads](#api-class-upload-methods-uploads)
+* [upload](#api-class-upload-methods-upload)
+* [upload_create](#api-class-upload-methods-upload_create)
+* [upload_delete](#api-class-upload-methods-upload_delete)
 
 ### Binary Data API Methods
 
@@ -245,47 +245,47 @@ General user mthods used for getting information about individual users.
 
 * [users](#api-class-user-methods-users)
 * [user](#api-class-user-methods-user)
-* play_queue (get/save a playlist as the current queue)
+* [play_queue](#api-class-user-methods-user) (get/save a playlist as the current queue)
 * [followers](#api-class-user-methods-followers)
 * [following](#api-class-user-methods-following)
 * [toggle_follow](#api-class-user-methods-toggle_follow)
 * [last_shouts](#api-class-user-methods-last_shouts)
 * [timeline](#api-class-user-methods-timeline)
 * [friends_timeline](#api-class-user-methods-friends_timeline)
-* pref_interface (User Config preferences)
-* pref_options (User Config preferences)
-* pref_playlist (User Config preferences)
-* pref_plugins (User Config preferences)
-* pref_streaming (User Config preferences)
+* [pref_interface](#api-class-user-methods-methods-pref_interface) (User Config preferences)
+* [pref_options](#api-class-user-methods-methods-pref_options) (User Config preferences)
+* [pref_playlist](#api-class-user-methods-methods-pref_playlist) (User Config preferences)
+* [pref_plugins](#api-class-user-methods-methods-pref_plugins) (User Config preferences)
+* [pref_streaming](#api-class-user-methods-methods-pref_streaming) (User Config preferences)
 
 ### Share API Methods
 
-* shares
-* share
-* share_create
-* share_edit
-* share_delete
+* [shares](#api-class-share-methods-shares)
+* [share](#api-class-share-methods-share)
+* [share_create](#api-class-share-methods-share_create)
+* [share_edit](#api-class-share-methods-share_edit)
+* [share_delete](#api-class-share-methods-share_delete)
 
 ### Podcast API Methods
 
-* podcasts
-* podcast
-* podcast_episodes
-* podcast_episode
-* podcast_create
-* podcast_edit
-* podcast_delete
+* [podcasts](#api-class-podcast-methods-podcasts)
+* [podcast](#api-class-podcast-methods-podcast)
+* [podcast_episodes](#api-class-podcast-methods-podcast_episodes)
+* [podcast_episode](#api-class-podcast-methods-podcast_episode)
+* [podcast_create](#api-class-podcast-methods-podcast_create)
+* [podcast_edit](#api-class-podcast-methods-podcast_edit)
+* [podcast_delete](#api-class-podcast-methods-podcast_delete)
 
 ### Streaming Radio API Methods
 
-* radios
-* radio
-* radio_create
-* radio_edit
-* radio_delete
-* channel_create
-* channel_edit
-* channel_delete
+* [radios](#api-class-streaming-radio-methods-radios)
+* [radio](#api-class-streaming-radio-methods-radio)
+* [radio_create](#api-class-streaming-radio-methods-radio_create)
+* [radio_edit](#api-class-streaming-radio-methods-radio_edit)
+* [radio_delete](#api-class-streaming-radio-methods-radio_delete)
+* [channel_create](#api-class-streaming-radio-methods-channel_create)
+* [channel_edit](#api-class-streaming-radio-methods-channel_edit)
+* [channel_delete](#api-class-streaming-radio-methods-channel_delete)
 
 ### Administration API Methods
 
@@ -294,30 +294,30 @@ Advanced methods that make changes to the system.
 * [user_create](#api-class-administration-methods-user_create) (MINIMUM V400001)
 * [user_update](#api-class-administration-methods-user_update) (MINIMUM V400001)
 * [user_delete](#api-class-administration-methods-user_delete) (MINIMUM V400001)
-* user_clear_data
-* catalogs
-* catalog
+* [user_clear_data](#api-class-administration-methods-user_clear_data)
+* [catalogs](#api-class-administration-methods-catalogs)
+* [catalog](#api-class-administration-methods-catalog)
 * [catalog_action](#api-class-administration-methods-catalog_action) (MINIMUM V400001)
-* catalog_create
-* catalog_edit
-* catalog_delete
+* [catalog_create](#api-class-administration-methods-catalog_create)
+* [catalog_edit](#api-class-administration-methods-catalog_edit)
+* [catalog_delete](#api-class-administration-methods-catalog_delete)
 * [update_from_tags](#api-class-administration-methods-update_from_tags) (MINIMUM V400001)
 * [update_artist_info](#api-class-administration-methods-update_artist_info) (MINIMUM V400001)
 * [update_art](#api-class-administration-methods-update_art) (MINIMUM V400001)
-* acls
-* acl
-* acl_create
-* acl_edit
-* acl_delete
-* ampache_update (update from git)
-* ampache_interface (Server preferences)
-* ampache_options (Server preferences)
-* ampache_playlist (Server preferences)
-* ampache_plugins (Server preferences)
-* ampache_streaming (Server preferences)
-* ampache_system (Server preferences)
-* db_optimize (bin/catalog_update)
-* db_clean_art (bin/clean_art_table)
+* [acls](#api-class-administration-methods-acls)
+* [acl](#api-class-administration-methods-acl)
+* [acl_create](#api-class-administration-methods-acl_create)
+* [acl_edit](#api-class-administration-methods-acl_edit)
+* [acl_delete](#api-class-administration-methods-acl_delete)
+* [ampache_update](#api-class-administration-methods-ampache_update) (update from git)
+* [ampache_interface](#api-class-administration-methods-ampache_interface) (Server preferences)
+* [ampache_options](#api-class-administration-methods-ampache_options) (Server preferences)
+* [ampache_playlist](#api-class-administration-methods-ampache_playlist) (Server preferences)
+* [ampache_plugins](#api-class-administration-methods-ampache_plugins) (Server preferences)
+* [ampache_streaming](#api-class-administration-methods-ampache_streaming) (Server preferences)
+* [ampache_system](#api-class-administration-methods-ampache_system) (Server preferences)
+* [db_optimize](#api-class-administration-methods-db_optimize) (bin/catalog_update)
+* [db_clean_art](#api-class-administration-methods-db_clean_art) (bin/clean_art_table)
 
 ### Control API Methods
 
@@ -325,15 +325,15 @@ Methods used for server backends.
 
 * [localplay](#api-class-control-methods-localplay)
 * [democratic](#api-class-control-methods-democratic)
-* channel (start/stop/status)
+* [channel](#api-class-control-methods-channel) (start/stop/status)
 
-###Script API Methods
+### Script API Methods
 
 Methods used for editing individual files in user scripts
 
-* file_add
-* file_clean
-* file_verify
+* [file_add](#api-class-script-methods-file_add)
+* [file_clean](#api-class-script-methods-file_clean)
+* [file_verify](#api-class-script-methods-file_verify)
 
 # API Class
 
@@ -659,6 +659,8 @@ This searches the songs and returns... songs
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
 
+### get_similar
+
 ## Playlist Methods
 
 ### playlists
@@ -713,6 +715,14 @@ This returns the songs for a playlist
 |'filter'|    |UID of Playlist, returns song Object|NO      |
 |'offset'|    |           |YES     |
 |'limit' |    |           |YES     |
+
+### playlist_import
+
+* NOT IMPLEMENTED
+
+### playlist_export
+
+* NOT IMPLEMENTED
 
 ### playlist_create
 
@@ -1155,6 +1165,14 @@ returns a single song
 |--------|----|-----------|-------:|
 |'filter'|    |UID of Song, returns song Object|NO      |
 
+### song_delete
+
+* NOT IMPLEMENTED
+
+### song_organize
+
+* NOT IMPLEMENTED
+
 ### tags
 
 * MINIMUM V380001
@@ -1244,6 +1262,24 @@ This returns a single video
 |--------|----|-----------|-------:|
 |'filter'|    |UID of video, returns video Object|NO      |
 
+## Upload Methods
+
+### uploads
+
+* NOT IMPLEMENTED
+
+### upload
+
+* NOT IMPLEMENTED
+
+### upload_create
+
+* NOT IMPLEMENTED
+
+### upload_delete
+
+* NOT IMPLEMENTED
+
 ## Binary Data Methods
 
 ### stream
@@ -1289,6 +1325,10 @@ Get an art image.
 
 ## User Methods
 
+### users
+
+* NOT IMPLEMENTED
+
 ### user
 
 * MINIMUM V380001
@@ -1299,6 +1339,10 @@ This get an user public information
 |Input     |Type|Description|Optional|
 |----------|----|-----------|-------:|
 |'username'|    |Username of the user for who to get details|NO      |
+
+### play_queue (get/save a playlist as the current queue)
+
+* NOT IMPLEMENTED
 
 ### followers
 
@@ -1499,17 +1543,111 @@ This get current user friends timeline
 </root>
 ```
 
+### pref_interface (User Config preferences)
+
+* NOT IMPLEMENTED
+
+### pref_options (User Config preferences)
+
+* NOT IMPLEMENTED
+
+### pref_playlist (User Config preferences)
+
+* NOT IMPLEMENTED
+
+### pref_plugins (User Config preferences)
+
+* NOT IMPLEMENTED
+
+### pref_streaming (User Config preferences)
+
+* NOT IMPLEMENTED
+
 ## Share Methods
 
-**TO BE COMPLETED**
+### shares
+
+* NOT IMPLEMENTED
+
+### share
+
+* NOT IMPLEMENTED
+
+### share_create
+
+* NOT IMPLEMENTED
+
+### share_edit
+
+* NOT IMPLEMENTED
+
+### share_delete
+
+* NOT IMPLEMENTED
 
 ## Podcast Methods
 
-**TO BE COMPLETED**
+### podcasts
+
+* NOT IMPLEMENTED
+
+### podcast
+
+* NOT IMPLEMENTED
+
+### podcast_episodes
+
+* NOT IMPLEMENTED
+
+### podcast_episode
+
+* NOT IMPLEMENTED
+
+### podcast_create
+
+* NOT IMPLEMENTED
+
+### podcast_edit
+
+* NOT IMPLEMENTED
+
+### podcast_delete
+
+* NOT IMPLEMENTED
 
 ## Streaming Radio Methods
 
-**TO BE COMPLETED**
+### radios
+
+* NOT IMPLEMENTED
+
+### radio
+
+* NOT IMPLEMENTED
+
+### radio_create
+
+* NOT IMPLEMENTED
+
+### radio_edit
+
+* NOT IMPLEMENTED
+
+### radio_delete
+
+* NOT IMPLEMENTED
+
+### channel_create
+
+* NOT IMPLEMENTED
+
+### channel_edit
+
+* NOT IMPLEMENTED
+
+### channel_delete
+
+* NOT IMPLEMENTED
 
 ## Administration Methods
 
@@ -1558,6 +1696,18 @@ Delete an existing user.
 |----------|----|-----------|-------:|
 |'username'|string|           |NO      |
 
+### user_clear_data
+
+* NOT IMPLEMENTED
+
+### catalogs
+
+* NOT IMPLEMENTED
+
+### catalog
+
+* NOT IMPLEMENTED
+
 ### catalog_action
 
 * MINIMUM V400001
@@ -1569,6 +1719,18 @@ Kick off a catalog update or clean for the selected catalog
 |---------|-------|---------------------------------|-------:|
 |'task'   |string |'add_to_catalog', 'clean_catalog'|NO      |
 |'catalog'|integer|$catalog_id                      |NO      |
+
+### catalog_create
+
+* NOT IMPLEMENTED
+
+### catalog_edit
+
+* NOT IMPLEMENTED
+
+### catalog_delete
+
+* NOT IMPLEMENTED
 
 ### update_from_tags
 
@@ -1608,6 +1770,62 @@ Doesn't overwrite existing art by default.
 |'type'     |string |'song', 'podcast'|NO      |
 |'overwrite'|boolean|0, 1             |YES     |
 
+### acls
+
+* NOT IMPLEMENTED
+
+### acl
+
+* NOT IMPLEMENTED
+
+### acl_create
+
+* NOT IMPLEMENTED
+
+### acl_edit
+
+* NOT IMPLEMENTED
+
+### acl_delete
+
+* NOT IMPLEMENTED
+
+### ampache_update (update from git)
+
+* NOT IMPLEMENTED
+
+### ampache_interface (Server preferences)
+
+* NOT IMPLEMENTED
+
+### ampache_options (Server preferences)
+
+* NOT IMPLEMENTED
+
+### ampache_playlist (Server preferences)
+
+* NOT IMPLEMENTED
+
+### ampache_plugins (Server preferences)
+
+* NOT IMPLEMENTED
+
+### ampache_streaming (Server preferences)
+
+* NOT IMPLEMENTED
+
+### ampache_system (Server preferences)
+
+* NOT IMPLEMENTED
+
+### db_optimize (bin/catalog_update)
+
+* NOT IMPLEMENTED
+
+### db_clean_art (bin/clean_art_table)
+
+* NOT IMPLEMENTED
+
 ## Control Methods
 
 ### localplay
@@ -1644,6 +1862,24 @@ This is for controlling democratic play
 |'oid'   |integer|           |NO      |
 |'method'|string|           |NO      |
 |'action'|string|           |NO      |
+
+### channel (start/stop/status)
+
+* NOT IMPLEMENTED
+
+## Script Methods
+
+### file_add
+
+* NOT IMPLEMENTED
+
+### file_clean
+
+* NOT IMPLEMENTED
+
+### file_verify
+
+* NOT IMPLEMENTED
 
 # API Errors
 
