@@ -661,6 +661,8 @@ This searches the songs and returns... songs
 
 ### get_similar
 
+* NOT IMPLEMENTED
+
 ## Playlist Methods
 
 ### playlists
@@ -1340,7 +1342,7 @@ This get an user public information
 |----------|----|-----------|-------:|
 |'username'|    |Username of the user for who to get details|NO      |
 
-### play_queue (get/save a playlist as the current queue)
+### play_queue
 
 * NOT IMPLEMENTED
 
@@ -1543,23 +1545,23 @@ This get current user friends timeline
 </root>
 ```
 
-### pref_interface (User Config preferences)
+### pref_interface
 
 * NOT IMPLEMENTED
 
-### pref_options (User Config preferences)
+### pref_options
 
 * NOT IMPLEMENTED
 
-### pref_playlist (User Config preferences)
+### pref_playlist
 
 * NOT IMPLEMENTED
 
-### pref_plugins (User Config preferences)
+### pref_plugins
 
 * NOT IMPLEMENTED
 
-### pref_streaming (User Config preferences)
+### pref_streaming
 
 * NOT IMPLEMENTED
 
@@ -1790,39 +1792,39 @@ Doesn't overwrite existing art by default.
 
 * NOT IMPLEMENTED
 
-### ampache_update (update from git)
+### ampache_update
 
 * NOT IMPLEMENTED
 
-### ampache_interface (Server preferences)
+### ampache_interface
 
 * NOT IMPLEMENTED
 
-### ampache_options (Server preferences)
+### ampache_options
 
 * NOT IMPLEMENTED
 
-### ampache_playlist (Server preferences)
+### ampache_playlist
 
 * NOT IMPLEMENTED
 
-### ampache_plugins (Server preferences)
+### ampache_plugins
 
 * NOT IMPLEMENTED
 
-### ampache_streaming (Server preferences)
+### ampache_streaming
 
 * NOT IMPLEMENTED
 
-### ampache_system (Server preferences)
+### ampache_system
 
 * NOT IMPLEMENTED
 
-### db_optimize (bin/catalog_update)
+### db_optimize
 
 * NOT IMPLEMENTED
 
-### db_clean_art (bin/clean_art_table)
+### db_clean_art
 
 * NOT IMPLEMENTED
 
@@ -1863,7 +1865,7 @@ This is for controlling democratic play
 |'method'|string|           |NO      |
 |'action'|string|           |NO      |
 
-### channel (start/stop/status)
+### channel
 
 * NOT IMPLEMENTED
 
