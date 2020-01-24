@@ -527,6 +527,12 @@ Use operator ('and'|'or') to choose whether to join or separate each rule when s
   * rule operator (e.g. rule_1_operator[0], rule_2_operator[3])
   * rule input (e.g. rule_1_input['Prodigy'], rule_2_input['Land'])
 
+* Optional rule array "subtype"
+  * e.g. rule_1_subtype[0]
+
+Subtype is used in all 'multiple' search types. (Currently only metadata)
+e.g. to search metadata you must also search a meta type.
+
 Select the type of search based on the type of data you are searching for. (songs, playlists, etc)
 
 |rule_1        |Title                |Type             |Valid Items          |Description                           |
