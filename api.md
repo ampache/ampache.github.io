@@ -600,6 +600,33 @@ Send the correct input based on the type of search.
 |integer     |
 |boolean     |
 
+**NOTE** To search metadata you need to add a 4th rule "rule_X_subtype"
+Operators for metadata are using the text/tag types **AND** numeric types in a single list as they can be ints/strings/dates.
+Currently there is not a simple way to identify what metadata types you have saved. New methods will be created for this.
+
+|rule_1_operator | Metadata |
+|-- | -- |
+|0 | contains |
+|1 | does not contain |
+|2 | starts with |
+|3 | ends with |
+|4 | is |
+|5 | is not |
+|6 | sounds like (Text Only) |
+|7 | does not sound like (Text Only)|
+|8 | is greater than or equal to|
+|9 | is less than or equal to|
+|10 | is |
+|11 | is not |
+|12 | is greater than |
+|13 |is less than |
+
+* To search a mixed type like metadata you must search using 4 rules.
+  * rule name (e.g. rule_1['metadata'], rule_2['metadata'])
+  * rule operator (e.g. rule_1_operator[0], rule_2_operator[12])
+  * rule input (e.g. rule_1_input['Prodigy'], rule_2_input['120'])
+  * rule subtype (e.g. rule_1_subtype['4'], rule_2_subtype['9'])
+
 @param array $input
 
 |Input     |Type   |Description|Optional|
