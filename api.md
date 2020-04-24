@@ -4,7 +4,7 @@
 
 **Compatible Versions:** _>= 350001_
 
-Ampache Provides an API for pulling out it's meta data in the form of simple XML documents. This was originally created for use by [Amarok](http://amarok.kde.org/), but there is no reason it couldn't be used to create other front-ends to the Ampache data.
+Ampache Provides an API for pulling out it's meta data in the form of simple XML documents. T&amp;&amp;s was originally created for use by [Amarok](http://amarok.kde.org/), but there is no reason it couldn't be used to create other front-ends to the Ampache data.
 
 Access to the API is controlled by the Internal [Access Control Lists](https://github.com/ampache/ampache/wiki/ACL). The KEY defined in the ACL is the passphrase that must be used to establish an API session. By default requests are limited to a maximum of 5000 results for performance reasons. To get additional results pass offset as an additional parameter.
 
@@ -12,8 +12,8 @@ If you have any questions or requests for this API please submit a [Feature Requ
 
 ## Current Version
 
-* Master 400003
-* Develop 400004
+* Master 400004
+* Develop 400005
 
 ## Handshake Requests
 
@@ -98,8 +98,8 @@ All future interactions with the Ampache API must include the `AUTHENTICATION_TO
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
 <root>
-    <auth><%AUTHENTICATION TOKEN%></auth>
-    <api><%APIVERSION%></api>
+    <auth><AUTHENTICATION_TOKEN></auth>
+    <api><API_VERSION></api>
     <session_expire><![CDATA[2019-12-03T09:36:46+10:00]]></session_expire>
     <update><![CDATA[2019-11-26T16:35:05+10:00]]></update>
     <add><![CDATA[2019-12-03T06:42:55+10:00]]></add>
@@ -1086,7 +1086,7 @@ This returns albums based on the provided search filters
     <tracks>14</tracks>
     <disk>1</disk>
     <tag id="33" count="1" ><![CDATA[Alternative Rock]]></tag>
-    <art><![CDATA[http://ampache.local/image.php?object_id=67512&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <art><![CDATA[http://ampache.local/image.php?object_id=67512&object_type=album&auth=AUTHTOKEN]]></art>
     <flag>0</flag>
     <preciserating>0</preciserating>
     <rating>0</rating>
@@ -1099,7 +1099,7 @@ This returns albums based on the provided search filters
     <year>2001</year>
     <tracks>11</tracks>
     <disk>1</disk>
-    <art><![CDATA[http://ampache.local/image.php?object_id=63824&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <art><![CDATA[http://ampache.local/image.php?object_id=63824&object_type=album&auth=AUTHTOKEN]]></art>
     <flag>0</flag>
     <preciserating>0</preciserating>
     <rating>0</rating>
@@ -1112,7 +1112,7 @@ This returns albums based on the provided search filters
     <year>2016</year>
     <tracks>42</tracks>
     <disk>1</disk>
-    <art><![CDATA[http://ampache.local/image.php?object_id=44142&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <art><![CDATA[http://ampache.local/image.php?object_id=44142&object_type=album&auth=AUTHTOKEN]]></art>
     <flag>0</flag>
     <preciserating>0</preciserating>
     <rating>0</rating>
@@ -1125,7 +1125,7 @@ This returns albums based on the provided search filters
     <year>2018</year>
     <tracks>11</tracks>
     <disk>1</disk>
-    <art><![CDATA[http://ampache.local/image.php?object_id=65269&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <art><![CDATA[http://ampache.local/image.php?object_id=65269&object_type=album&auth=AUTHTOKEN]]></art>
     <flag>0</flag>
     <preciserating>0</preciserating>
     <rating>0</rating>
@@ -1138,7 +1138,7 @@ This returns albums based on the provided search filters
     <year>2009</year>
     <tracks>13</tracks>
     <disk>1</disk>
-    <art><![CDATA[http://ampache.local/image.php?object_id=54185&object_type=album&auth=263297b0a7ee3000a0feebd05bc0a651]]></art>
+    <art><![CDATA[http://ampache.local/image.php?object_id=54185&object_type=album&auth=AUTHTOKEN]]></art>
     <flag>1</flag>
     <preciserating>5</preciserating>
     <rating>5</rating>
@@ -2027,13 +2027,13 @@ For the purpose of this example the Ampache host is 'localhost' and the path to 
 ### Request genre LIKE Rock
 
 ```Text
-http://ampache.local/server/xml.server.php?action=tags&auth=APIKEY&filter=Rock
+http://ampache.local/server/xml.server.php?action=tags&auth=AUTHTOKEN&filter=Rock
 ```
 
 ### Request songs with offset=5000
 
 ```Text
-http://ampache.local/server/xml.server.php?action=songs&auth=APIKEY&offset=5000
+http://ampache.local/server/xml.server.php?action=songs&auth=AUTHTOKEN&offset=5000
 ```
 
 ## XML Examples
@@ -2048,7 +2048,7 @@ Artists XML Document. ID's are Ampache's unique Identifier for the artist.
         <name>Metallica</name>
         <albums># of Albums</albums>
         <songs># of Songs</songs>
-        <tag id="2481" count="2">Rock & Roll</tag>
+        <tag id="2481" count="2"><![CDATA[Rock & Roll]]></tag>
         <tag id="2482" count="1">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
         <preciserating>3</preciserating>
@@ -2058,7 +2058,7 @@ Artists XML Document. ID's are Ampache's unique Identifier for the artist.
         <name>AC/DC</name>
         <albums># of Albums</albums>
         <songs># of Songs</songs>
-        <tag id="2481" count="2">Rock & Roll</tag>
+        <tag id="2481" count="2"><![CDATA[Rock & Roll]]></tag>
         <tag id="2482" count="2">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
         <preciserating>3</preciserating>
@@ -2077,7 +2077,7 @@ Album XML Document. ID's are Ampache's unique identifier for the album and artis
         <year>1984</year>
         <tracks>12</tracks>
         <disk>1</disk>
-        <tag id="2481" count="2">Rock & Roll</tag>
+        <tag id="2481" count="2"><![CDATA[Rock & Roll]]></tag>
         <tag id="2482" count="1">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
         <art>http://ampache.local/image.php?id=129348</art>
@@ -2095,7 +2095,7 @@ Single Song XML document, includes references to its parent objects.
         <title>Hells Bells</title>
         <artist id="129348">AC/DC</artist>
         <album id="2910">Back in Black</album>
-        <tag id="2481" count="3">Rock & Roll</tag>
+        <tag id="2481" count="3"><![CDATA[Rock & Roll]]></tag>
         <tag id="2482" count="1">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
         <track>4</track>
@@ -2114,7 +2114,7 @@ Tag XML Document, includes counts for it's child objects
 ```XML
 <root>
 <tag id="2481">
-        <name>Rock & Roll</name>
+        <name><![CDATA[Rock & Roll]]></name>
         <albums>84</albums>
         <artists>29</artists>
         <songs>239</songs>
@@ -2133,7 +2133,7 @@ Playlist XML Document, includes counts for it's child objects
         <name>The Good Stuff</name>
         <owner>Karl Vollmer</owner>
         <items>50</items>
-        <tag id="2481" count="2">Rock & Roll</tag>
+        <tag id="2481" count="2"><![CDATA[Rock & Roll]]></tag>
         <tag id="2482" count="2">Rock</tag>
         <tag id="2483" count="1">Roll</tag>
         <type>Public</type>
