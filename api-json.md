@@ -3741,8 +3741,55 @@ ID
         ]
     }
 ]
-
 ```
+
+## shares
+
+* MINIMUM_API_VERSION=400005
+
+This searches the shares and returns... shares
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |Value is Alpha Match for Song Title, Artist Name, Album Name, Genre Name returns song XML|NO      |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+```JSON
+```
+
+## share
+
+* (MINIMUM_API_VERSION=400005
+
+Return shares by UID
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Share, returns song JSON 	NO|NO      |
+
+```JSON
+```
+
+## get_similar
+
+* MINIMUM_API_VERSION=400005
+
+Return similar artist id's or similar song ids compared to the input filter
+@param array $input
+
+|Input   |Type   |Description|Optional|
+|--------|-------|-----------|-------:|
+|'type'  |string |'song' or 'artist'|NO|
+|'filter'|integer|artist id or song id|NO|
+|'offset'|integer|                |YES|
+|'limit' |integer|                |YES|
+
+```JSON
+```
+
 ## search_songs
 
 * MINIMUM_API_VERSION=380001

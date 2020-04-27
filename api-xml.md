@@ -3700,8 +3700,142 @@ ID
 	<genre><![CDATA[Hip Hop]]></genre>
 </song>
 </root>
-
 ```
+
+## shares
+
+* MINIMUM_API_VERSION=400005
+
+This searches the shares and returns... shares
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |Value is Alpha Match for Song Title, Artist Name, Album Name, Genre Name returns song XML|NO      |
+|'offset'|    |           |YES     |
+|'limit' |    |           |YES     |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<share id="104">
+	<name><![CDATA[Amir]]></name>
+	<user><![CDATA[user]]></user>
+	<allow_stream>1</allow_stream>
+	<allow_download>1</allow_download>
+	<creation_date><![CDATA[2020/04/17 10:23PM]]></creation_date>
+	<lastvisit_date><![CDATA[2020/04/17 10:23PM]]></lastvisit_date>
+	<object_type><![CDATA[album]]></object_type>
+	<object_id>72222</object_id>
+	<expire_days>7</expire_days>
+	<max_counter>0</max_counter>
+	<counter>8</counter>
+	<secret><![CDATA[gz4rAkiM]]></secret>
+	<public_url><![CDATA[https://music.com.au/share.php?id=104&secret=gz4rAkiM]]></public_url>
+	<description><![CDATA[Amir (Tamino)]]></description>
+</share>
+</root>
+```
+
+## share
+
+* (MINIMUM_API_VERSION=400005
+
+Return shares by UID
+@param array $input
+
+|Input   |Type|Description|Optional|
+|--------|----|-----------|-------:|
+|'filter'|    |UID of Share, returns song JSON 	NO|NO      |
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>1</total_count>
+<share id="104">
+	<name><![CDATA[Amir]]></name>
+	<user><![CDATA[user]]></user>
+	<allow_stream>1</allow_stream>
+	<allow_download>1</allow_download>
+	<creation_date><![CDATA[2020/04/17 10:23PM]]></creation_date>
+	<lastvisit_date><![CDATA[2020/04/17 10:23PM]]></lastvisit_date>
+	<object_type><![CDATA[album]]></object_type>
+	<object_id>72222</object_id>
+	<expire_days>7</expire_days>
+	<max_counter>0</max_counter>
+	<counter>8</counter>
+	<secret><![CDATA[gz4rAkiM]]></secret>
+	<public_url><![CDATA[https://music.com.au/share.php?id=104&secret=gz4rAkiM]]></public_url>
+	<description><![CDATA[Amir (Tamino)]]></description>
+</share>
+</root>
+```
+
+## get_similar
+
+* MINIMUM_API_VERSION=400005
+
+Return similar artist id's or similar song ids compared to the input filter
+@param array $input
+
+|Input   |Type   |Description|Optional|
+|--------|-------|-----------|-------:|
+|'type'  |string |'song' or 'artist'|NO|
+|'filter'|integer|artist id or song id|NO|
+|'offset'|integer|                |YES|
+|'limit' |integer|                |YES|
+
+```XML
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+<total_count>10</total_count>
+<artist id="8770">
+	<name><![CDATA[The Weakerthans]]></name>
+		<album id="56428"><![CDATA[Punk-O-Rama, Volume 9]]></album>
+</artist>
+<artist id="110">
+	<name><![CDATA[Bright Eyes]]></name>
+		<album id="32916"><![CDATA[Triple J: Hottest 100, Volume 13]]></album>
+</artist>
+<artist id="10157">
+	<name><![CDATA[Sufjan Stevens]]></name>
+		<album id="72778"><![CDATA[Aporia]]></album>
+</artist>
+<artist id="15558">
+	<name><![CDATA[The Magnetic Fields]]></name>
+		<album id="70196"><![CDATA[69 Love Songs]]></album>
+</artist>
+<artist id="15422">
+	<name><![CDATA[Silver Jews]]></name>
+		<album id="70118"><![CDATA[Bright Flight]]></album>
+</artist>
+<artist id="15803">
+	<name><![CDATA[Jeffrey Lewis]]></name>
+		<album id="70409"><![CDATA[Bad Wiring]]></album>
+</artist>
+<artist id="7537">
+	<name><![CDATA[Iron & Wine]]></name>
+		<album id="65345"><![CDATA[Weed Garden]]></album>
+</artist>
+<artist id="16616">
+	<name><![CDATA[Waxahatchee]]></name>
+		<album id="72816"><![CDATA[Saint Cloud]]></album>
+		<album id="72874"><![CDATA[Great Thunder]]></album>
+		<album id="72871"><![CDATA[Early Recordings]]></album>
+</artist>
+<artist id="12698">
+	<name><![CDATA[Julien Baker]]></name>
+		<album id="65187"><![CDATA[Sprained Ankle]]></album>
+</artist>
+<artist id="8407">
+	<name><![CDATA[Elliott Smith]]></name>
+		<album id="55848"><![CDATA[Heaven Adores You Soundtrack]]></album>
+		<album id="34873"><![CDATA[New Moon]]></album>
+</artist>
+</root>
+```
+
 ## search_songs
 
 * MINIMUM_API_VERSION=380001
