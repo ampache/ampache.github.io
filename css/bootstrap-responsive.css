@@ -907,7 +907,7 @@
  position: static;
 }
  .navbar-fixed-top {
- margin-bottom: 0px;
+ margin-bottom: 0;
 }
  .navbar-fixed-bottom {
  margin-top: 20px;
