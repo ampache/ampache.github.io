@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 <url> <loc>http://ampache.org/api/api/api-acls</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://ampache.org/api/api/api-standards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/old-versions/api-4.1.0/xml-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://ampache.org/api/api/api-standards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-advanced-search</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-examples</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-json-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
