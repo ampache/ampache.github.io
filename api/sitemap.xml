@@ -4,13 +4,13 @@
 <url> <loc>http://ampache.org/api/api/api-errors</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-advanced-search</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://ampache.org/api/api/api-standards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/versions/api-4.2/api-json-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://ampache.org/api/api/versions/api-4.2/api-errors</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://ampache.org/api/api/api-standards</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/versions/api-4.2/api-xml-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://ampache.org/api/api/versions/api-4.2/api-errors</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-json-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>http://ampache.org/api/api/versions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-xml-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://ampache.org/api/api/versions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/api-acls</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/old-versions</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://ampache.org/api/api/versions/api-4.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
