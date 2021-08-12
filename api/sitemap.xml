@@ -4,8 +4,8 @@
 <url> <loc>https://ampache.org/api/api/api-changelog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/api-advanced-search</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://ampache.org/api/api/api-acls</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/api-json-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://ampache.org/api/api/api-acls</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/api-xml-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/api-errors</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://ampache.org/api/api/api-4/api-json-methods</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
