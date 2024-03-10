@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">API Changelog | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-changelog"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Changelog | Ampache API"><meta data-rh="true" name="description" content="API Changelog"><meta data-rh="true" property="og:description" content="API Changelog"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-changelog"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.4aa65190.css">
-<script src="/api/assets/js/runtime~main.431982b8.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.6a056d54.js" defer="defer"></script>
 <script src="/api/assets/js/main.a560127f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -13,11 +13,14 @@
 <ul>
 <li>API6<!-- -->
 <ul>
+<li>New Method: search_group (return multiple object types from a single set of search rules)</li>
+<li>New Method: search (alias for advanced_search)</li>
 <li>New Method: user_playlists (return user playlists and does not include smartlists)</li>
 <li>New Method: user_smartlists (return user smartlists (searches) and does not include playlists)</li>
 <li>New Method: playlist_add (add songs to a playlist, allowing different song parent types)</li>
 <li>New Method: index (replaces get_indexes with a simpler list of id&#x27;s. children can be included)</li>
-<li>Add <code>has_art</code> parameter to any object with an <code>art_url</code></li>
+<li>Add <code>has_art</code> parameter to any object with an <code>art</code> url</li>
+<li>Add avatar url to user objects</li>
 </ul>
 </li>
 </ul>
@@ -25,8 +28,9 @@
 <ul>
 <li>API6<!-- -->
 <ul>
-<li>playlist_add_song is depreciated and will be removed in <strong>API7</strong> (Use playlist_add)</li>
-<li>share_create add more valid types (&#x27;playlist&#x27;, &#x27;podcast&#x27;, &#x27;podcast_episode&#x27;, &#x27;video&#x27;)</li>
+<li>playlist_add_song: depreciated and will be removed in <strong>API7</strong> (Use playlist_add)</li>
+<li>share_create: add more valid types (&#x27;playlist&#x27;, &#x27;podcast&#x27;, &#x27;podcast_episode&#x27;, &#x27;video&#x27;)</li>
+<li>user: make username optional</li>
 </ul>
 </li>
 </ul>
@@ -35,6 +39,8 @@
 <li>ALL<!-- -->
 <ul>
 <li>Userflag wasn&#x27;t sending bool when cached in the database</li>
+<li>Admin would always get everyones playlists when filtering</li>
+<li>Stream methods would not send the bitrate correctly</li>
 </ul>
 </li>
 <li>API4<!-- -->
