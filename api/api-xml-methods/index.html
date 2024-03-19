@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">API6 XML Methods | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-xml-methods"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API6 XML Methods | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-xml-methods"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-xml-methods" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-xml-methods" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.4aa65190.css">
-<script src="/api/assets/js/runtime~main.65414abe.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.25b2c778.js" defer="defer"></script>
 <script src="/api/assets/js/main.a560127f.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -134,7 +134,7 @@
 <p><a href="https://raw.githubusercontent.com/ampache/python3-ampache/api6/docs/xml-responses/ping.xml">Example</a></p>
 <h3 id="register">register</h3>
 <p>Register as a new user if allowed. (Requires the username, password and email.)</p>
-<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. <a href="mailto:user@gmail.com">user@gmail.com</a></td><td style="text-align:right">NO</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr></tbody></table>
+<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. (<a href="mailto:user@gmail.com">user@gmail.com</a>)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr></tbody></table>
 <ul>
 <li>return</li>
 </ul>
@@ -1568,27 +1568,35 @@ Each type is a grouping of object types so allow single search calls to be made<
 <li>artist</li>
 </ul>
 </li>
-</ul>
+<li>
 <p>song_artist</p>
 <ul>
 <li>song</li>
 <li>album</li>
 <li>song_artist</li>
 </ul>
+</li>
+<li>
 <p>album_artist</p>
 <ul>
 <li>song</li>
 <li>album</li>
 <li>album_artist</li>
 </ul>
+</li>
+<li>
 <p>podcast</p>
 <ul>
 <li>podcast</li>
 <li>podcast_episode</li>
 </ul>
+</li>
+<li>
 <p>video</p>
 <ul>
 <li>video</li>
+</ul>
+</li>
 </ul>
 <table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>operator</td><td>string</td><td>and, or (whether to match one rule or all)</td><td style="text-align:right">NO</td></tr><tr><td>rule_*</td><td>array</td><td>[<code>rule_1</code>, <code>rule_1_operator</code>, <code>rule_1_input</code>]</td><td style="text-align:right">NO</td></tr><tr><td>rule_*</td><td>array</td><td>[<code>rule_2</code>, <code>rule_2_operator</code>, <code>rule_2_input</code>], [etc]</td><td style="text-align:right">YES</td></tr><tr><td>type</td><td>string</td><td><code>all</code>, <code>music</code>, <code>song_artist</code>, <code>album_artist</code>, <code>podcast</code>, <code>video</code> (<code>all</code> by default)</td><td style="text-align:right">YES</td></tr><tr><td>random</td><td>boolean</td><td><code>0</code>, <code>1</code> (random order of results; default to 0)</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;offset&#x27;</td><td>integer</td><td>Return results starting from this index position</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;limit&#x27;</td><td>integer</td><td>Maximum number of results to return</td><td style="text-align:right">YES</td></tr></tbody></table>
 <ul>
@@ -1936,7 +1944,7 @@ Make sure lastfm_API_key is set in your configuration file</p>
 <h3 id="user_create">user_create</h3>
 <p>Create a new user. (Requires the username, password and email.)</p>
 <p><strong>ACCESS REQUIRED:</strong> 100 (Admin)</p>
-<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. <a href="mailto:user@gmail.com">user@gmail.com</a></td><td style="text-align:right">NO</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;disable&#x27;</td><td>boolean</td><td><code>0</code>, <code>1</code></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;group&#x27;</td><td>integer</td><td>Catalog filter group, default = 0</td><td style="text-align:right">YES</td></tr></tbody></table>
+<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. (<a href="mailto:user@gmail.com">user@gmail.com</a>)</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;disable&#x27;</td><td>boolean</td><td><code>0</code>, <code>1</code></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;group&#x27;</td><td>integer</td><td>Catalog filter group, default = 0</td><td style="text-align:right">YES</td></tr></tbody></table>
 <ul>
 <li>return</li>
 </ul>
@@ -1971,7 +1979,7 @@ Make sure lastfm_API_key is set in your configuration file</p>
 <p>Update an existing user.</p>
 <p><strong>ACCESS REQUIRED:</strong> 100 (Admin)</p>
 <p><strong>NOTE</strong> This function has been renamed from user_update to match other edit functions</p>
-<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. <a href="mailto:user@gmail.com">user@gmail.com</a></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;website&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;state&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;city&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;disable&#x27;</td><td>boolean</td><td><code>0</code>, <code>1</code></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;group&#x27;</td><td>integer</td><td>Catalog filter group, default = 0</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;maxbitrate&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;fullname_public&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> show fullname in public display</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;reset_apikey&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset user Api Key</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;reset_streamtoken&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset user Stream Token</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;clear_stats&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset all stats for this user</td><td style="text-align:right">YES</td></tr></tbody></table>
+<table><thead><tr><th>Input</th><th>Type</th><th>Description</th><th style="text-align:right">Optional</th></tr></thead><tbody><tr><td>&#x27;username&#x27;</td><td>string</td><td>$username</td><td style="text-align:right">NO</td></tr><tr><td>&#x27;password&#x27;</td><td>string</td><td>hash(&#x27;sha256&#x27;, $password)</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;email&#x27;</td><td>string</td><td>e.g. (<a href="mailto:user@gmail.com">user@gmail.com</a>)</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;fullname&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;website&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;state&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;city&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;disable&#x27;</td><td>boolean</td><td><code>0</code>, <code>1</code></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;group&#x27;</td><td>integer</td><td>Catalog filter group, default = 0</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;maxbitrate&#x27;</td><td>string</td><td></td><td style="text-align:right">YES</td></tr><tr><td>&#x27;fullname_public&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> show fullname in public display</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;reset_apikey&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset user Api Key</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;reset_streamtoken&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset user Stream Token</td><td style="text-align:right">YES</td></tr><tr><td>&#x27;clear_stats&#x27;</td><td>integer</td><td><code>0</code>, <code>1</code> reset all stats for this user</td><td style="text-align:right">YES</td></tr></tbody></table>
 <ul>
 <li>return</li>
 </ul>
