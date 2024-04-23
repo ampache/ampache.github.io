@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.2.1">
 <title data-rh="true">Media Methods | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-media-methods"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Media Methods | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-media-methods"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.c170e95e.css">
-<script src="/api/assets/js/runtime~main.cc07b6c8.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.5e35f601.js" defer="defer"></script>
 <script src="/api/assets/js/main.347d046c.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -67,9 +67,11 @@
 <p>Example, when using the default settings:</p>
 <ul>
 <li>You stream TRACK1</li>
-<li>You start to stream TRACK2 within the 10 seconds after TRACK1 started</li>
-<li>TRACK1 will change to a skip</li>
-<li>TRACK2 will be marked as your current <code>now_playing</code> track.</li>
+<li>TRACK1 is recorded as a &#x27;stream&#x27;</li>
+<li>You start to stream TRACK2 10 seconds after TRACK1 started</li>
+<li>The &#x27;stream&#x27; for TRACK1 will change to a &#x27;skip&#x27;</li>
+<li>TRACK2 is now recorded as a &#x27;stream&#x27;</li>
+<li>TRACK2 is recorded as your current <code>now_playing</code> track.</li>
 </ul>
 <h2 id="explaining-scrobble">Explaining scrobble</h2>
 <p>The <code>scrobble</code> and <code>record_play</code> methods are used for recording plays from saved information/data.</p>
