@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.2.1">
 <title data-rh="true">Media Methods | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-media-methods"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Media Methods | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-media-methods"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.c170e95e.css">
-<script src="/api/assets/js/runtime~main.d7eff7cd.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.cc07b6c8.js" defer="defer"></script>
 <script src="/api/assets/js/main.347d046c.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -45,7 +45,7 @@
 <li>Play counts are <strong>NOT</strong> incremented.</li>
 </ul>
 <p>Download is used for caching files without the server thinking you&#x27;ve played 40 songs in 3 minutes.</p>
-<p>Use the helper functions when playing downloads so you can informa the server when you actually play the files you download.</p>
+<p>Use the helper functions when playing downloads so you can inform the server when you actually play the files you download.</p>
 <h2 id="the-ampache-media-playback-process">The Ampache media playback process</h2>
 <p>Stat checks happen every time you call a <code>stream</code> or <code>download</code> <strong>URL</strong> (including part stream content-range calls)</p>
 <p>e.g. <code>https://music.com.au/play/index.php?ssid=cfj3f237d563f479f5223k23189dbb34&amp;type=song&amp;oid=54&amp;uid=4&amp;player=api&amp;name=Synthetic%20-%20Red-GreenSmoke.mp3</code></p>
