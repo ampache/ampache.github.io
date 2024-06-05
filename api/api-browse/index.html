@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.3.2">
 <title data-rh="true">API Browse methods | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-browse"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Browse methods | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-browse"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-browse" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-browse" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.bae7945a.css">
-<script src="/api/assets/js/runtime~main.ebbf7aad.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.45246c3d.js" defer="defer"></script>
 <script src="/api/assets/js/main.816b41a9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -22,14 +22,15 @@
 <h3 id="cond">cond</h3>
 <p>Apply a filter to the objects.</p>
 <p>Add comma separated filter and value pairs, use <code>;</code> to split additional filters.</p>
-<p><code>&amp;cond=artist,1240;catalog,2</code></p>
-<p>Conditions that don&#x27;t require a value can be sent with a null value. (<code>&amp;cond=unplayed,;catalog,2</code>)</p>
+<p>e.g. <code>&amp;cond=artist,1240;catalog,2</code></p>
+<p>Conditions that don&#x27;t require a value can be sent with a null value.</p>
+<p>e.g. <code>&amp;cond=unplayed,;catalog,2</code></p>
 <p>Example:</p>
 <ul>
 <li>The <code>songs</code> method uses a song browse to return <code>song</code> objects.</li>
 <li>You can filter this browse by <code>genre</code> and return all songs that have that genre.</li>
 </ul>
-<p><code>https://music.com.au/server/json.server.php?action=songs&amp;auth=eeb9f1b6056246a7d563f479f518bb34&amp;cond=genre,111</code></p>
+<p>e.g. <code>https://music.com.au/server/json.server.php?action=songs&amp;auth=eeb9f1b6056246a7d563f479f518bb34&amp;cond=genre,111</code></p>
 <h3 id="sort">sort</h3>
 <p>Apply a different sort for the output repsonse.</p>
 <p><strong>NOTE</strong> There can only be one sort applied to each browse.</p>
@@ -38,9 +39,9 @@
 <p>Example:</p>
 <ul>
 <li>The <code>users</code> method uses a user browse to return <code>user</code> objects in order of id number.</li>
-<li>You can filter this browse by <code>username</code> and return all users in alphabetical order.</li>
+<li>You can sort this browse by <code>username</code> and return all users in alphabetical order.</li>
 </ul>
-<p><code>https://music.com.au/server/json.server.php?action=users&amp;auth=f57766d256df0ad5e5ec163d35f05a21&amp;sort=username,desc</code></p>
+<p>e.g. <code>https://music.com.au/server/json.server.php?action=users&amp;auth=f57766d256df0ad5e5ec163d35f05a21&amp;sort=username,desc</code></p>
 <h2 id="browse-types-and-available-methods">Browse types and available methods</h2>
 <p>When you create a browse you are querying a database table and to return an object from that table.</p>
 <p>The exception to this is a <code>playlist_search</code> browse which is a combination of <code>playlist</code> and <code>search</code> tables.</p>

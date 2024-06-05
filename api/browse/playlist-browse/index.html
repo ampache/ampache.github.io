@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.3.2">
 <title data-rh="true">Playlist Browse | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/browse/playlist-browse"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Playlist Browse | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/browse/playlist-browse"><link data-rh="true" rel="alternate" href="https://ampache.org/api/browse/playlist-browse" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/browse/playlist-browse" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.bae7945a.css">
-<script src="/api/assets/js/runtime~main.ebbf7aad.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.45246c3d.js" defer="defer"></script>
 <script src="/api/assets/js/main.816b41a9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -13,10 +13,9 @@
 <p>In the Ampache API a playlist is actually a combined object of static playlists and dynamic searches.</p>
 <p>Smartlists are prefixes with <code>smart_</code> to ensure ID values don&#x27;t clash with playlists</p>
 <p>This allows you to list these objects together in a single call.</p>
-<p>There are options to ignore, hide or filter searches from your playlist calls but playlist calls will return both types of object.</p>
+<p>There are options to ignore, hide or filter searches from your playlist calls but playlist calls can return both types of object.</p>
 <h2 id="available-browse-filters">Available browse filters</h2>
 <p>You can filter responses by the object name using the following conditions.</p>
-<p>e.g. <code>cond=like,unplayed+tracks</code></p>
 <ul>
 <li>Name/Title string filters<!-- -->
 <ul>
@@ -30,13 +29,11 @@
 </ul>
 </li>
 </ul>
+<p>e.g. <code>cond=like,unplayed+tracks</code></p>
 <p>When returning combined playlists and smartlists in a single response you can use the following extra filters.</p>
 <ul>
-<li>hide_dupe_smartlist: Hide smartlists from the reesponse when there is already a playlist with the same name</li>
+<li>hide_dupe_smartlist: Hide smartlists from the response when there is already a playlist with the same name</li>
 <li>smartlist: return smartlists only</li>
-</ul>
-<p>Finally these conditions are playlist specific and not commonly shared between browse types.</p>
-<ul>
 <li>playlist_open: filter by user accessible playlists (public playlists and owner = you)</li>
 <li>playlist_user: filter for playlists you own</li>
 </ul>
@@ -44,41 +41,23 @@
 <p>Sorts are applied with an optional order. (<code>asc</code> or <code>desc</code> depending on the method)</p>
 <p>When you apply a sort you will overwrite the default sort order.</p>
 <ul>
-<li>
-<p>rand: Random sort order</p>
-</li>
-<li>
-<p>date: Creation date</p>
-</li>
-<li>
-<p>last_count: Item count</p>
-</li>
-<li>
-<p>last_update: Modification date</p>
-</li>
-<li>
-<p>name: Object name</p>
-</li>
-<li>
-<p>rating: Object rating</p>
-</li>
-<li>
-<p>type: Public / private</p>
-</li>
-<li>
-<p>user: Owner id</p>
-</li>
-<li>
-<p>username: Owner username</p>
-</li>
-<li>
-<p>user_flag: Loved flag</p>
-</li>
-<li>
-<p>Additional sorts for smartlist browses</p>
+<li>rand: random sort order using SQL RAND()</li>
+<li>date: creation date</li>
+<li>last_count: item count</li>
+<li>last_update: modification date</li>
+<li>name: object name</li>
+<li>rating: object rating</li>
+<li>type: public / private</li>
+<li>user: owner id</li>
+<li>username: owner username</li>
+<li>user_flag: object loved flag</li>
+</ul>
+<p>Smartlist specific sorts will not affect playlist/combined results.</p>
 <ul>
-<li>limit: Smartlist item limit</li>
-<li>random: Smartlist has random sort enabled</li>
+<li>Additional sorts for smartlist browses<!-- -->
+<ul>
+<li>limit: smartlist item limit</li>
+<li>random: smartlist has random sort enabled</li>
 </ul>
 </li>
 </ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/api/browse/live_stream-browse"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Live Stream Browse</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api/browse/podcast_episode-browse"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Podcast Browse</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#available-browse-filters" class="table-of-contents__link toc-highlight">Available browse filters</a></li><li><a href="#available-browse-sorts" class="table-of-contents__link toc-highlight">Available browse sorts</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2024 Ampache.org</div></div></div></footer></div>
