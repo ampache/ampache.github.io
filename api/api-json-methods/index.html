@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">JSON Methods | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-json-methods"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="JSON Methods | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-json-methods"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-json-methods" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-json-methods" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.bae7945a.css">
-<script src="/api/assets/js/runtime~main.cac02d0e.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.440f75da.js" defer="defer"></script>
 <script src="/api/assets/js/main.dcdbb356.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -381,14 +381,19 @@ Just add 1 to the rule value to create a new group of rules.</p>
 <ul>
 <li>return</li>
 </ul>
-<pre><code class="language-XML">&lt;root&gt;
-    &lt;bookmark&gt;
-&lt;/root&gt;
+<pre><code class="language-JSON">&quot;id&quot;: &quot;&quot;,
+&quot;owner&quot;: &quot;&quot;,
+&quot;object_type&quot;: &quot;&quot;,
+&quot;object_id&quot;: &quot;&quot;,
+&quot;position&quot;: 0,
+&quot;client&quot;: &quot;&quot;,
+&quot;creation_date&quot;: 0,
+&quot;update_date&quot;: 0
 </code></pre>
 <ul>
 <li>throws</li>
 </ul>
-<pre><code class="language-XML">&lt;root&gt;&lt;error&gt;&lt;/root&gt;
+<pre><code class="language-JSON">&quot;error&quot;: &quot;&quot;
 </code></pre>
 <p><a href="https://raw.githubusercontent.com/ampache/python3-ampache/api6/docs/xml-responses/bookmark.json">Example</a>
 <a href="https://raw.githubusercontent.com/ampache/python3-ampache/api6/docs/xml-responses/bookmark%20(with%20include).json">Example (with include)</a></p>
@@ -398,7 +403,14 @@ Just add 1 to the rule value to create a new group of rules.</p>
 <ul>
 <li>return array</li>
 </ul>
-<pre><code class="language-JSON">&quot;bookmark&quot;: []
+<pre><code class="language-JSON">&quot;id&quot;: &quot;&quot;,
+&quot;owner&quot;: &quot;&quot;,
+&quot;object_type&quot;: &quot;&quot;,
+&quot;object_id&quot;: &quot;&quot;,
+&quot;position&quot;: 0,
+&quot;client&quot;: &quot;&quot;,
+&quot;creation_date&quot;: 0,
+&quot;update_date&quot;: 0
 </code></pre>
 <ul>
 <li>throws object</li>
@@ -518,7 +530,17 @@ Takes the file id with optional description and expires parameters.</p>
 <ul>
 <li>return array</li>
 </ul>
-<pre><code class="language-JSON">&quot;catalog&quot;: []
+<pre><code class="language-JSON">&quot;id&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;type&quot;: &quot;&quot;,
+&quot;gather_types&quot;: &quot;&quot;,
+&quot;enabled&quot;: 0,
+&quot;last_add&quot;: &quot;&quot;,
+&quot;last_clean&quot;: &quot;&quot;,
+&quot;last_update&quot;: &quot;&quot;,
+&quot;path&quot;: &quot;&quot;,
+&quot;rename_pattern&quot;: &quot;&quot;,
+&quot;sort_pattern&quot;: &quot;&quot;
 </code></pre>
 <ul>
 <li>throws object</li>
@@ -1008,7 +1030,16 @@ By default; get only the most recent bookmark. Use <code>all</code> to retrieve 
 <ul>
 <li>return array</li>
 </ul>
-<pre><code class="language-JSON">&quot;live_stream&quot;: []
+<pre><code class="language-JSON">&quot;id&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;artists&quot;: 0,
+&quot;summary&quot;: &quot;&quot;,
+&quot;external_link&quot;: &quot;&#x27;&quot;,
+&quot;address&quot;: &quot;&quot;,
+&quot;category&quot;: &quot;&quot;,
+&quot;email&quot;: &quot;&quot;,
+&quot;website&quot;: &quot;&quot;,
+&quot;user&quot;: 0
 </code></pre>
 <ul>
 <li>throws object</li>
@@ -1038,7 +1069,16 @@ By default; get only the most recent bookmark. Use <code>all</code> to retrieve 
 <ul>
 <li>return array</li>
 </ul>
-<pre><code class="language-JSON">&quot;live_stream&quot;: []
+<pre><code class="language-JSON">&quot;id&quot;: &quot;&quot;,
+&quot;name&quot;: &quot;&quot;,
+&quot;artists&quot;: 0,
+&quot;summary&quot;: &quot;&quot;,
+&quot;external_link&quot;: &quot;&#x27;&quot;,
+&quot;address&quot;: &quot;&quot;,
+&quot;category&quot;: &quot;&quot;,
+&quot;email&quot;: &quot;&quot;,
+&quot;website&quot;: &quot;&quot;,
+&quot;user&quot;: 0
 </code></pre>
 <ul>
 <li>throws object</li>
