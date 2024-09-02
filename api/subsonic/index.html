@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.4.0">
 <title data-rh="true">Subsonic API | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/subsonic"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Subsonic API | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/subsonic"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="x-default"><link rel="stylesheet" href="/api/assets/css/styles.bae7945a.css">
-<script src="/api/assets/js/runtime~main.982ad46b.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.fcb924b5.js" defer="defer"></script>
 <script src="/api/assets/js/main.dcdbb356.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -12,26 +12,50 @@
 <p>Ampache implements the <a href="http://www.subsonic.org/pages/api.jsp">Subsonic API</a> with some minor extensions for clients.</p>
 <p><strong>Compatible Versions:</strong></p>
 <ul>
+<li>Ampache7 =&gt; OpenSubsonic extensions &amp; Subsonic <a href="http://www.subsonic.org/pages/inc/api/schema/subsonic-rest-api-1.16.1.xsd">1.16.1</a></li>
 <li>Ampache6 =&gt; Subsonic <a href="http://www.subsonic.org/pages/inc/api/schema/subsonic-rest-api-1.16.1.xsd">1.16.1</a></li>
 <li>Ampache5 =&gt; Subsonic <a href="http://www.subsonic.org/pages/inc/api/schema/subsonic-rest-api-1.13.0.xsd">1.13.0</a></li>
 <li>Ampache4 =&gt; Subsonic <a href="http://www.subsonic.org/pages/inc/api/schema/subsonic-rest-api-1.13.0.xsd">1.13.0</a></li>
 <li>Ampache3 =&gt; Subsonic <a href="http://www.subsonic.org/pages/inc/api/schema/subsonic-rest-api-1.11.0.xsd">1.11.0</a></li>
 </ul>
+<h2 id="opensubsonic-api-extension">OpenSubsonic API extension</h2>
 <p><a href="https://opensubsonic.netlify.app/docs/">OpenSubsonic API</a> is an open source initiative to create backward-compatible extensions for the original Subsonic API.</p>
 <p>Ampache Subsonic support is being extended to support these changes</p>
+<h3 id="extensions">Extensions</h3>
 <ul>
 <li>Expanded <a href="https://opensubsonic.netlify.app/docs/responses/subsonic-response/">subsonic-response</a></li>
-<li><a href="https://opensubsonic.netlify.app/docs/extensions/formpost/">HTTP form POST</a></li>
+<li>Support <a href="https://opensubsonic.netlify.app/docs/extensions/formpost/">HTTP form POST</a></li>
 <li>Tentatively supported <a href="https://opensubsonic.netlify.app/docs/extensions/transcodeoffset/">Transcode Offset</a> (Parameter is supported but untested)</li>
-<li>Edit search3 to allow empty query argument</li>
-<li>Add getOpenSubsonicExtensions=</li>
+</ul>
+<h3 id="endpoint-extenstion">Endpoint extenstion</h3>
+<ul>
+<li>Edit <a href="https://opensubsonic.netlify.app/docs/endpoints/search3/">search3</a> to allow empty query argument</li>
+<li>Add <a href="https://opensubsonic.netlify.app/docs/endpoints/getopensubsonicextensions/">getOpenSubsonicExtensions</a></li>
+</ul>
+<h3 id="partially-implemented">Partially implemented</h3>
+<ul>
+<li><a href="https://opensubsonic.netlify.app/docs/endpoints/stream/">stream</a>
+<ul>
+<li>Support <code>timeOffset</code> (Parameter is supported but untested)</li>
+<li>Enable <code>subsonic_always_download</code> preference (<code>preferences.php?tab=options</code>) to stop scrobbling plays</li>
+</ul>
+</li>
+</ul>
+<h3 id="not-implemented">NOT implemented</h3>
+<ul>
+<li><a href="https://opensubsonic.netlify.app/docs/endpoints/getlyricsbysongid/">getLyricsBySongId</a>
+<ul>
+<li>Currently Ampache lyrics do not track individual lines or timestamps</li>
+</ul>
+</li>
 </ul>
 <h2 id="subsonic-examples">Subsonic Examples</h2>
 <p>You can get examples from an official Subsonic release as well as examples from Ampache.</p>
 <p>These servers are using a Subsonic 1.16.1 compatible API version.</p>
 <ul>
-<li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/subsonic-6.1.6">Subsonic 6.1.6 (1.16.1)</a></li>
+<li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/ampache-opensubsonic">Ampache 7.0.0 (1.16.1+opensubsonic)</a></li>
 <li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/ampache-subsonic">Ampache 6.0.0 (1.16.1)</a></li>
-</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/api/advanced-search/video-advanced-search"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Video Search</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api/api-5/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">API5</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#subsonic-api-support">Subsonic API support</a></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#subsonic-examples">Subsonic Examples</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2024 Ampache.org</div></div></div></footer></div>
+<li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/subsonic-6.1.6">Subsonic 6.1.6 (1.16.1)</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/api/advanced-search/video-advanced-search"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Video Search</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api/api-5/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">API5</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#subsonic-api-support">Subsonic API support</a></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#opensubsonic-api-extension">OpenSubsonic API extension</a><ul><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#extensions">Extensions</a></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#endpoint-extenstion">Endpoint extenstion</a></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#partially-implemented">Partially implemented</a></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#not-implemented">NOT implemented</a></li></ul></li><li><a class="table-of-contents__link toc-highlight" href="/api/subsonic#subsonic-examples">Subsonic Examples</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2024 Ampache.org</div></div></div></footer></div>
 </body>
 </html>
