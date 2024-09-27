@@ -456,7 +456,7 @@ section.single-page h1 {
 	font-size: 30px;
 	margin-bottom: 0;
 	line-height: 1.35;
-	color: #fff;
+	color: inherit;
 }
 
 /* Preview */
