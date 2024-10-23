@@ -1,107 +1,28 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Ampache - Music Streaming Server</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
-    <link href="css/fontello.css" type="text/css" rel="stylesheet">
-    <!--[if lt IE 7]>
-        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
-    <![endif]-->
-    <link href="css/roboto.css" type="text/css" rel="stylesheet">
-    <!-- Google Web fonts -->
-    <link href='//fonts.googleapis.com/css?family=Quattrocento:400,700' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <style>
-    body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <!-- Load ScrollTo -->
-    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
-    <!-- Load LocalScroll -->
-    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
-    <!-- prettyPhoto Initialization -->
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-            $("a[rel^='prettyPhoto']").prettyPhoto();
-        });
-    </script>
-  </head>
-  <body>
-    <!--******************** NAVBAR ********************-->
-    <div class="navbar-wrapper">
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-            <h1 class="brand"><a href="#top">Ampache <img src="img/logo/ampache-logo.png" style="border: 0; height: 50px; width: auto;" alt="Ampache"/></a></h1>
-            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-            <nav class="pull-right nav-collapse collapse">
-              <ul id="menu-main" class="nav">
-                <li><a title="home" href="index.html" class="tlink">Home</a></li>
-                <li><a title="demo" href="demo.html" class="tlink">Demo</a></li>
-                <li><a title="donate" href="donate.html" class="tlink">Donate</a></li>
-                <li><a title="download" href="https://github.com/ampache/ampache/releases" class="tlink">Download</a></li>
-                <li><a title="documentation" href="https://github.com/ampache/ampache/wiki" class="tlink">Wiki</a></li>
-                <li><a title="api" href="/api/" class="tlink">API</a></li>
-                <li><a title="github" href="https://github.com/ampache/ampache"><img src="img/GitHub-Mark-32px.png" style="border: 0;" alt="github"/></a></li>
-                <li><a title="twitter" href="https://twitter.com/ampache"><img src="img/Twitter_Social_Icon_Rounded_Square_Color.png" style="border: 0;max-width: 32px;" alt="twitter"/></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="top"></div>
-    <!-- ******************** HeaderWrap ********************-->
-    <div id="headerwrap">
-      <header class="clearfix">
-        <h1><span><img src="img/logo/ampache-logo.png" style="height: 210px; width: auto; border: 0;" alt="Ampache"/><br /> Error 404<br /> That, we don't love.</span></h1>
-        <div class="container">
-          <div class="row"> </div>
-        </div>
-      </header>
-    </div>
-    <!--******************** Feature ********************-->
-    <div class="scrollblock">
-      <section id="feature">
-        <div class="container">
-          <div class="row">
-            <div class="span12">
-              <article>
-                <p>This page doesn't exist.<br />
-                  Please use the top menu for navigation.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <hr>
-    <div class="footer-wrapper">
-      <div class="container">
-        <footer>
-          <small><a href="https://ampache.org">Ampache.org</a> - Theme by Dzyngiri</small>
-        </footer>
-      </div>
-    </div>
-    <!-- Loading the javaScript at the end of the page -->
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="js/site.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <!-- Propelled by Ampache | ampache.org -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ampache -- Debug Page</title>
+  <link rel="icon" href="./public/favicon.ico">
+  <link rel="stylesheet" href="./public/lib/components/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./public/lib/components/bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="./public/templates/install.css" type="text/css" media="screen">
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <a class="navbar-brand" href="#"><img src="./public/images/ampache-dark.png" title="Ampache" alt="Ampache">Ampache :: For the Love of Music</a>
+</div>
+<div id="guts" class="container" role="main">
+  <div class="jumbotron" style="margin-top: 70px">
+    <h1>Warning</h1>
+    <p>The root Ampache folder has changed to <a href="./public" target="_blank">./public</a></p>
+  </div>
+  <div class="alert alert-danger">
+    <p>You must update your DocumentRoot to the new path</p>
+    <p><a href="https://github.com/ampache/ampache/wiki/Ampache-Next-Changes" target="_blank">Please check the Ampache wiki for more information</a></p>
+  </div>
+</div>
+</body>
 </html>
