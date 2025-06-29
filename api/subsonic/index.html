@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.8.1">
 <title data-rh="true">Subsonic API | Ampache API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/subsonic"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Subsonic API | Ampache API"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/api/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/subsonic"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Subsonic API","item":"https://ampache.org/api/subsonic"}]}</script><link rel="stylesheet" href="/api/assets/css/styles.3efa1411.css">
-<script src="/api/assets/js/runtime~main.c7f5c89c.js" defer="defer"></script>
+<script src="/api/assets/js/runtime~main.bf96040b.js" defer="defer"></script>
 <script src="/api/assets/js/main.3d6a0176.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -34,6 +34,7 @@
 <li>Expanded <a href="https://opensubsonic.netlify.app/docs/responses/error/" target="_blank" rel="noopener noreferrer">subsonic-response error</a></li>
 <li>Support <a href="https://opensubsonic.netlify.app/docs/extensions/formpost/" target="_blank" rel="noopener noreferrer">HTTP form POST</a></li>
 <li>Add <a href="https://opensubsonic.netlify.app/docs/extensions/songlyrics/" target="_blank" rel="noopener noreferrer">songLyrics</a> support</li>
+<li>Add <a href="https://opensubsonic.netlify.app/docs/extensions/indexbasedqueue/" target="_blank" rel="noopener noreferrer">Index based Queue</a></li>
 <li>Tentatively supported <a href="https://opensubsonic.netlify.app/docs/extensions/transcodeoffset/" target="_blank" rel="noopener noreferrer">Transcode Offset</a> (Parameter is supported but untested)</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="api-key-authentication">Api Key authentication<a href="#api-key-authentication" class="hash-link" aria-label="Direct link to Api Key authentication" title="Direct link to Api Key authentication">​</a></h4>
@@ -58,15 +59,6 @@
 <li><a href="https://opensubsonic.netlify.app/docs/endpoints/stream/" target="_blank" rel="noopener noreferrer">stream</a>
 <ul>
 <li>Support <code>timeOffset</code> (Parameter is supported but untested)</li>
-<li>Enable <code>subsonic_always_download</code> preference (<code>preferences.php?tab=options</code>) to stop scrobbling plays</li>
-</ul>
-</li>
-</ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="not-implemented">NOT implemented<a href="#not-implemented" class="hash-link" aria-label="Direct link to NOT implemented" title="Direct link to NOT implemented">​</a></h3>
-<ul>
-<li><a href="https://opensubsonic.netlify.app/docs/endpoints/getlyricsbysongid/" target="_blank" rel="noopener noreferrer">getLyricsBySongId</a>
-<ul>
-<li>Currently Ampache lyrics do not track individual lines or timestamps</li>
 </ul>
 </li>
 </ul>
@@ -77,6 +69,6 @@
 <li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/ampache-opensubsonic" target="_blank" rel="noopener noreferrer">Ampache 7.0.0 (1.16.1+opensubsonic)</a></li>
 <li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/ampache-subsonic" target="_blank" rel="noopener noreferrer">Ampache 6.0.0 (1.16.1)</a></li>
 <li><a href="https://github.com/ampache/python3-ampache/tree/api6/docs/subsonic-6.1.6" target="_blank" rel="noopener noreferrer">Subsonic 6.1.6 (1.16.1)</a></li>
-</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/api/advanced-search/video-advanced-search"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Video Search</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api/api-5/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">API5</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#subsonic-api-support" class="table-of-contents__link toc-highlight">Subsonic API support</a></li><li><a href="#opensubsonic-api-extension" class="table-of-contents__link toc-highlight">OpenSubsonic API extension</a><ul><li><a href="#extensions" class="table-of-contents__link toc-highlight">Extensions</a></li><li><a href="#endpoint-extension" class="table-of-contents__link toc-highlight">Endpoint extension</a></li><li><a href="#partially-implemented" class="table-of-contents__link toc-highlight">Partially implemented</a></li><li><a href="#not-implemented" class="table-of-contents__link toc-highlight">NOT implemented</a></li></ul></li><li><a href="#subsonic-examples" class="table-of-contents__link toc-highlight">Subsonic Examples</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2025 Ampache.org</div></div></div></footer></div>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/api/advanced-search/video-advanced-search"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Video Search</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api/api-5/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">API5</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#subsonic-api-support" class="table-of-contents__link toc-highlight">Subsonic API support</a></li><li><a href="#opensubsonic-api-extension" class="table-of-contents__link toc-highlight">OpenSubsonic API extension</a><ul><li><a href="#extensions" class="table-of-contents__link toc-highlight">Extensions</a></li><li><a href="#endpoint-extension" class="table-of-contents__link toc-highlight">Endpoint extension</a></li><li><a href="#partially-implemented" class="table-of-contents__link toc-highlight">Partially implemented</a></li></ul></li><li><a href="#subsonic-examples" class="table-of-contents__link toc-highlight">Subsonic Examples</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2025 Ampache.org</div></div></div></footer></div>
 </body>
 </html>
