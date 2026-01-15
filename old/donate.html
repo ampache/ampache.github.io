@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ampache - Music Streaming Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
+    <link href="css/fontello.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 7]>
+        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+    <![endif]-->
+      <link href="css/roboto.css" type="text/css" rel="stylesheet">
+    <style>
+    body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Load ScrollTo -->
+    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <!-- Load LocalScroll -->
+    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+    <!-- prettyPhoto Initialization -->
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+        });
+    </script>
+  </head>
+  <body>
+    <!--******************** NAVBAR ********************-->
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="#top">Ampache <img src="img/logo/ampache-logo.png" style="border: 0; height: 50px; width: auto;" alt="Ampache"/></a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+                <li><a title="home" href="old/index.html" class="tlink">Home</a></li>
+                <li><a title="demo" href="old/demo.html" class="tlink">Demo</a></li>
+                <li><a title="donate" href="old/donate.html" class="hllink">Donate</a></li>
+                <li><a title="download" href="https://github.com/ampache/ampache/releases" class="tlink">Download</a></li>
+                <li><a title="documentation" href="https://github.com/ampache/ampache/wiki" class="tlink">Wiki</a></li>
+                <li><a title="api" href="/api/" class="tlink">API</a></li>
+                <li><a title="github" href="https://github.com/ampache/ampache"><img src="img/GitHub-Mark-32px.png" style="border: 0;" alt="github"/></a></li>
+                <li><a title="twitter" href="https://twitter.com/ampache"><img src="img/Twitter_Social_Icon_Rounded_Square_Color.png" style="border: 0;max-width: 32px;" alt="twitter"/></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="top"></div>
+    <!-- ******************** HeaderWrap ********************-->
+
+    <!--******************** Feature ********************-->
+    <div class="scrollblock">
+      <section id="feature">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <article>
+                <p>Donate?!<br />
+                    Support us and contribute to Ampache development.<br />
+                    Here are several ways to show your love.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!--******************** Development Section ********************-->
+    <section id="preview" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"></div>
+        <h1 id="folio-headline">Developers! Developers! Developers!</h1>
+        <div class="row">
+            <div class="span12">
+                Ampache has been around for many years now and we are still here thanks to all our <a href="https://github.com/ampache/ampache/blob/develop/docs/ACKNOWLEDGEMENTS.md" target="_blank">contributors</a>. Be part of it, that's the best donation you could do.<br />
+                <br />
+                If Ampache is really where you want your money to go then consider helping out some of our downstream API devs.
+            </div>
+        </div>
+        <div class="row">
+            <div class="span4">
+                <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+                <h2>Plug-ins</h2>
+                <p>Some features (lyrics, catalogs, scrobbling ...) are highly independent. You can create your one without much effort and without the need to know much about Ampache code.</p>
+                <a href="https://github.com/ampache/ampache/blob/develop/docs/PLUGINS.md" target="_blank" class="more-link">read more</a>
+            </div>
+            <div class="span4">
+                <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+                <h2>Translation</h2>
+                <p>Ampache is translated to several languages. You can improve current translation or even add new ones!</p>
+                <a href="https://github.com/ampache/ampache/blob/develop/locale/base/TRANSLATIONS.md" target="_blank" class="more-link">read more</a>
+            </div>
+            <div class="span4">
+                <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+                <h2>General Development</h2>
+                <p>Improve Ampache with new features and bug fixes. We can create a better streaming solution together, you just need to know PHP / JavaScript / HTML5.</p>
+                <a href="https://github.com/ampache/ampache/wiki" class="more-link">read more</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!--******************** Other Section ********************-->
+    <section id="preview" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"></div>
+        <h1 id="folio-headline">Other ways</h1>
+        <div class="row">
+            <div class="span6">
+                <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+                <h2>User Support</h2>
+                <p>Answering questions, tests and bug isolation take us a lot of energy. That means less time for feature development. Being part of the community and helping users is an important role. Don't underestimate this work, it's an important part of Ampache's good health.</p>
+                <a href="https://github.com/ampache/ampache/issues" target="_blank" class="more-link">read more</a>
+            </div>
+            <div class="span6">
+                <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
+                <h2>Money</h2>
+                <p>The Ampache project has been running smoothly for a few years now and doesn't need to seek donations.</p>
+                <p>Do you use one of the many Ampache API clients and subprojects? Please consider donating to them instead!</p>
+                <a href="https://github.com/ampache/ampache?tab=readme-ov-file#credits" target="_blank" class="more-link">read more</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!--******************** Supporters Section ********************-->
+    <section id="preview" class="single-page scrollblock">
+      <div class="container">
+        <div class="align"></i></div>
+        <h1 id="folio-headline">Supporters</h1>
+        <div class="row">
+            <div class="span6">
+                <div class="align"> <img src="img/linux.aus.svg" style="border: 0; height: 117px; width: auto;" alt="linus-aus"/> </div>
+                <h2>Linux Australia</h2>
+                <p>Linux Australia, depending on available budget, will from time to time make available funds for open source, open data, open government, open education, open hardware and open culture projects, as part of the organisation’s commitment to free and open source systems and communities in the region.</p>
+                <a href="https://linux.org.au/grants-program/" target="_blank" class="more-link">read more</a>
+            </div>
+            <div class="span6">
+                <div class="align"> <img src="img/JetBrains_Logo_2016.svg" style="border: 0; height: 117px; width: auto;" alt="jetbrains"/> </div>
+                <h2>JetBrains</h2>
+                <p>JetBrains supports non-commercial open source projects by providing core project contributors with a set of best-in-class developer tools free of charge. </p>
+                <a href="https://www.jetbrains.com/?from=Ampache" target="_blank" class="more-link">read more</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-wrapper">
+      <div class="container">
+        <footer>
+          <small><a href="https://ampache.org">Ampache.org</a> - Theme by Dzyngiri</small>
+        </footer>
+      </div>
+    </div>
+    <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+  </body>
+</html>

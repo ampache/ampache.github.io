@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ampache - Music Streaming Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
+    <link href="css/fontello.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 7]>
+        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">
+    <![endif]-->
+    <link href="css/roboto.css" type="text/css" rel="stylesheet">
+    <style>
+    body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- JQuery -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!-- Load ScrollTo -->
+    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
+    <!-- Load LocalScroll -->
+    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
+    <!-- prettyPhoto Initialization -->
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("a[rel^='prettyPhoto']").prettyPhoto();
+        });
+    </script>
+  </head>
+  <body>
+    <!--******************** NAVBAR ********************-->
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="#top">Ampache <img src="img/logo/ampache-logo.png" style="border: 0; height: 50px; width: auto;" alt="Ampache"/></a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+                <li><a title="home" href="old/index.html" class="tlink">Home</a></li>
+                <li><a title="demo" href="old/demo.html" class="hllink">Demo</a></li>
+                <li><a title="donate" href="old/donate.html" class="tlink">Donate</a></li>
+                <li><a title="download" href="https://github.com/ampache/ampache/releases" class="tlink">Download</a></li>
+                <li><a title="documentation" href="https://github.com/ampache/ampache/wiki" class="tlink">Wiki</a></li>
+                <li><a title="api" href="/api/" class="tlink">API</a></li>
+                <li><a title="github" href="https://github.com/ampache/ampache"><img src="img/GitHub-Mark-32px.png" style="border: 0;" alt="github" /></a></li>
+                <li><a title="twitter" href="https://twitter.com/ampache"><img src="img/Twitter_Social_Icon_Rounded_Square_Color.png" style="border: 0;max-width: 32px;" alt="twitter" /></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="top"></div>
+    <!-- ******************** HeaderWrap ********************-->
+
+    <!--******************** Feature ********************-->
+    <div class="scrollblock">
+      <section id="feature">
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <article>
+                <p>Trust only what you see... or listen.<br />
+                Only you can know if Ampache is the right solution.<br />
+                Pick a demonstration server and take a look.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!--******************** Development Section ********************-->
+    <section id="services" class="single-page scrollblock">
+      <div class="container">
+        <div class="row">
+          <div class="span3" style="width: 100%;text-align: center;">
+            <div class="align"><a href="https://demo.ampache.dev/" title="demo.ampache.dev"><i class="sev_icon"><img src="img/logo/ampache-logo_x64.png" style="width: 64px; height: 64px;" alt="ampache"/></i></a></div>
+              <h2>Official demo</h2>
+              <p>Ampache official demo site provided with funding courtesy of <a href="https://linux.org.au/">Linux Australia</a>.<br />
+                It uses the current release version of Ampache and creative commons music from archive.org.<br />
+                Functionality is reduced to allow multiple users to access the account for testing.</p>
+              <p><a href="https://demo.ampache.dev/" class="more-link">Stable Branch</a></p>
+              <p><a href="https://develop.ampache.dev/" class="more-link">Develop Branch</a></p>
+              <h2>Accessing the demo</h2>
+              <p>The demo site can be accessed using:<br />username "demo"<br />password "demodemo".</p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="align"><i class="icon-desktop-circled"></i></div>
+        <h1 id="folio-headline">Other Servers</h1>
+        <div class="row">
+          <div class="span3">
+            <div class="align"><a href="https://ampache.kuzimoto.com/" title="ampache.kuzimoto.com"><i class="sev_icon"><img src="img/logo/ampache-logo_x64.png" style="width: 64px; height: 64px;" alt="ampache"/></i></a></div>
+              <h2>kuzimoto's demo</h2>
+              <p>Ampache demo site hosted by contributor <a href="https://github.com/kuzi-moto/">kuzi-moto</a> on his personal site. It features the most up-to-date version of Ampache, and some creative commons music. It's purpose is to showcase Ampache's features in the standard install for newcomers.</p>
+                    <p><a href="https://ampache.kuzimoto.com/" class="more-link">View</a></p>
+            </div>
+          <div class="span3">
+            <div class="align"> <a href="http://play.dogmazic.net" title="Dogmazic"><i class="sev_icon"><img src="http://play.dogmazic.net/images/dogmazic.png" style="width: 64px; height: 64px;" alt="Dogmazic"/></i></a> </div>
+            <h2>Dogmazic</h2>
+            <p>Dogmazic is one of the primary free music download managers in France. Dogmazic was created in December 2004 by the Bordeaux-based Association Musique libre!, a major proponent of the French free music movement.</p>
+            <p><a href="http://play.dogmazic.net" class="more-link">View</a></p>
+          </div>
+          <div class="span3">
+            <div class="align"> <a href="http://www.softaculous.com/softaculous/demos/Ampache" title="Softaculous"><i class="sev_icon"><img src="http://www.softaculous.com/website/images/softaculous_demohead.gif" style="width: 150px; height: 44px;" alt="Softaculous"/></i></a> </div>
+            <h2>Softaculous</h2>
+            <p>Ampache Demo (including admin area) on Softaculous.<br />Softaculous is an auto installer for cPanel and DirectAdmin. Softaculous applications typically create tables in a database, install software, adjust permissions, and modify web server configuration files.</p>
+            <p><a href="http://www.softaculous.com/softaculous/demos/Ampache" class="more-link">View</a></p>
+          </div>
+          <div class="span3">
+            <div class="align"> <a href="https://groups.google.com/d/topic/ampache/ACaW9hmffdo/discussion" title="Suggest"><i class="icon-plus-circled sev_icon"></i></a> </div>
+            <h2>Yours</h2>
+            <p>Add your public server to this list.<br />
+            We all love music.</p>
+            <p><a href="https://groups.google.com/d/topic/ampache/ACaW9hmffdo/discussion" class="more-link">Suggest</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="footer-wrapper">
+      <div class="container">
+        <footer>
+          <small><a href="https://ampache.org">Ampache.org</a> - Theme by Dzyngiri</small>
+        </footer>
+      </div>
+    </div>
+    <!-- Loading the javaScript at the end of the page -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+  </body>
+</html>

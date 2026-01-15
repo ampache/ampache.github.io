@@ -1,188 +1,25 @@
-<!DOCTYPE HTML>
-<html lang="en"
-    xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8">
-    <title>Ampache - Music Streaming Server</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A web based audio/video streaming application and file manager allowing you to access your music & videos from anywhere, using almost any internet enabled device.">
-    <meta name="author" content="Ampache">
-    <meta property="og:image" content="https://ampache.org/img/logo/ampache-logo.png"/>
-    <meta property="og:image:secure_url" content="https://ampache.org/img/logo/ampache-logo.png" />
-    <!-- Styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" type='text/css' media='all'>
-    <link href="css/fontello.css" type="text/css" rel="stylesheet">
-    <!--[if lt IE 7]>
-        <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
-    <![endif]-->
-    <link href="css/roboto.css" type="text/css" rel="stylesheet">
-    <style>
-    body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-    }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <!-- JQuery -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <!-- Load ScrollTo -->
-    <script type="text/javascript" src="js/jquery.scrollTo-1.4.2-min.js"></script>
-    <!-- Load LocalScroll -->
-    <script type="text/javascript" src="js/jquery.localscroll-1.2.7-min.js"></script>
-    <!-- prettyPhoto Initialization -->
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-            $("a[rel^='prettyPhoto']").prettyPhoto();
-        });
-    </script>
-  </head>
-  <body>
-    <!--******************** NAVBAR ********************-->
-    <div class="navbar-wrapper">
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
-            <h1 class="brand"><a href="#top">Ampache <img src="img/logo/ampache-logo.png" style="border: 0; height: 50px; width: auto;" alt="ampache"/></a></h1>
-            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-            <nav class="pull-right nav-collapse collapse">
-              <ul id="menu-main" class="nav">
-                <li><a title="home" href="index.html" class="hllink">Home</a></li>
-                <li><a title="demo" href="demo.html" class="tlink">Demo</a></li>
-                <li><a title="donate" href="donate.html" class="tlink">Donate</a></li>
-                <li><a title="download" href="https://github.com/ampache/ampache/releases" class="tlink">Download</a></li>
-                <li><a title="documentation" href="https://github.com/ampache/ampache/wiki" class="tlink">Wiki</a></li>
-                <li><a title="api" href="/api/" class="tlink">API</a></li>
-                <li><a title="github" href="https://github.com/ampache/ampache"><img src="img/GitHub-Mark-32px.png" style="border: 0;" alt="github"/></a></li>
-                <li><a title="twitter" href="https://twitter.com/ampache"><img src="img/Twitter_Social_Icon_Rounded_Square_Color.png" style="border: 0;max-width: 32px;" alt="twitter"/></a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="top"></div>
-    <!-- ******************** HeaderWrap ********************-->
-
-    <!--******************** Feature ********************-->
-    <div class="scrollblock">
-      <section id="feature">
-        <div class="container">
-          <div class="row">
-            <div class="span12">
-              <article>
-                <p>A web based audio/video streaming application and file manager.<br />
-                  Allowing you to access your music & videos from anywhere, using almost any internet enabled device.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <!--******************** Services Section ********************-->
-    <section id="services" class="single-page scrollblock">
-      <div class="container">
-        <div class="align"><i class="icon-cog-circled"></i></div>
-        <h1>Features</h1>
-        <div class="row">
-          <div class="span3">
-            <div class="align"> <i class="icon-desktop sev_icon"></i> </div>
-            <h2>Music collection</h2>
-            <p>Browse and manage your music collection through a simple web interface. Synchronize local and remote catalogs to an unique consistent collection.</p>
-            <a href="https://github.com/ampache/ampache/wiki/installation/Catalog" class="more-link">read more</a>
-          </div>
-          <div class="span3">
-            <div class="align"> <i class="icon-vector sev_icon"></i> </div>
-            <h2>Music streaming</h2>
-            <p>Stream your music to your preferred player, control it with Localplay or directly listen on the web page with HTML5 player.<br /><br /></p>
-            <a href="https://github.com/ampache/ampache/wiki#configuration" class="more-link">read more</a>
-          </div>
-          <div class="span3">
-            <div class="align"> <i class="icon-basket sev_icon"></i> </div>
-            <h2>Open source</h2>
-            <p>Completely Free and Open Source since 2001, AGPLv3 license.<br /><br />
-            Get involved and take control.<br /><br /></p>
-            <a href="https://github.com/ampache/ampache" class="more-link">read more</a>
-          </div>
-          <div class="span3">
-            <div class="align"> <i class="icon-mobile-1 sev_icon"></i> </div>
-            <h2>Ampache everywhere</h2>
-            <p>Listen to your music from your phone, tablet or television. At home, at work or in vacation: get Ampache everywhere using a compatible client!<br /><br /></p>
-            <a href="https://github.com/ampache/ampache/wiki/Clients" class="more-link">read more</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--******************** Preview Section ********************-->
-    <section id="preview" class="single-page scrollblock">
-      <div class="container">
-        <div class="align"><i class="icon-desktop-circled"></i></div>
-        <h1 id="folio-headline">Preview...</h1>
-        <div class="row">
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/login-dark.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/login-dark.png" alt="login-dark"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/login-light.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/login-light.png" alt="login-light"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/login-custom.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/login-custom.png" alt="login-custom"></a></div>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/index2.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/index2.png" alt="index2"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/index1.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/index1.png" alt="index1"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/smartlist.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/smartlist.png" alt="smartlist"></a></div>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/dashboard-album.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/dashboard-album.png" alt="dashboard-album"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/browse-album.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/browse-album.png" alt="browse-album"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/browse-playlists.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/browse-playlists.png" alt="browse-playlists"></a></div>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/api-foam.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/api-foam.png" alt="api-foam"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/now_playing.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/now_playing.png" alt="subsonic"></a></div>
-          </div>
-          <div class="span4">
-            <div class="mask2"><a href="img/previews/api-ample.png" rel="prettyPhoto[pp_gal]"><img src="img/previews/api-ample.png" alt="api-ample"></a></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="footer-wrapper">
-      <div class="container">
-        <footer>
-          <small><a href="https://ampache.org">Ampache.org</a> - Theme by Dzyngiri</small>
-        </footer>
-      </div>
-    </div>
-    <!-- Loading the javaScript at the end of the page -->
-    <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery.prettyPhoto.js"></script>
-    <script type="text/javascript" src="js/site.js"></script>
-  </body>
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-index" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ampache"><meta data-rh="true" name="description" content="Ampache.org"><meta data-rh="true" property="og:description" content="Ampache.org"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/"><link data-rh="true" rel="alternate" href="https://ampache.org/" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/" hreflang="x-default"><script data-rh="true">function insertBanner(){var n=document.createElement("div");n.id="__docusaurus-base-url-issue-banner-container";n.innerHTML='\n<div id="__docusaurus-base-url-issue-banner" style="border: thick solid red; background-color: rgb(255, 230, 179); margin: 20px; padding: 20px; font-size: 20px;">\n   <p style="font-weight: bold; font-size: 30px;">Your Docusaurus site did not load properly.</p>\n   <p>A very common reason is a wrong site <a href="https://docusaurus.io/docs/docusaurus.config.js/#baseUrl" style="font-weight: bold;">baseUrl configuration</a>.</p>\n   <p>Current configured baseUrl = <span style="font-weight: bold; color: red;">/</span>  (default value)</p>\n   <p>We suggest trying baseUrl = <span id="__docusaurus-base-url-issue-banner-suggestion-container" style="font-weight: bold; color: green;"></span></p>\n</div>\n',document.body.prepend(n);var e=document.getElementById("__docusaurus-base-url-issue-banner-suggestion-container"),s=window.location.pathname,o="/"===s.substr(-1)?s:s+"/";e.innerHTML=o}document.addEventListener("DOMContentLoaded",function(){void 0===window.docusaurus&&insertBanner()})</script><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ampache","item":"https://ampache.org/"}]}</script><link rel="stylesheet" href="/assets/css/styles.a3bc6f37.css">
+<script src="/assets/js/runtime~main.832e2711.js" defer="defer"></script>
+<script src="/assets/js/main.8dea3793.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo/ampache-logo.png" alt="Ampache Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo/ampache-logo.png" alt="Ampache Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Ampache</b></a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/demo">Demo</a><a class="navbar__item navbar__link" href="/donate">Donate</a><a class="navbar__item navbar__link" href="/docker">Docker</a><a class="navbar__item navbar__link" href="/download">Download</a><a class="navbar__item navbar__link" href="/docs">Wiki</a><a class="navbar__item navbar__link" href="/api">API</a><a class="navbar__item navbar__link navbar-links" href="/links">Links</a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/"><span title="Ampache" class="linkLabel_WmDU">Ampache</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/demo"><span title="Demo" class="linkLabel_WmDU">Demo</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/donate"><span title="Donate" class="linkLabel_WmDU">Donate</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docker"><span title="Docker" class="linkLabel_WmDU">Docker</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/download"><span title="Download" class="linkLabel_WmDU">Download</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/"><span title="Wiki" class="categoryLinkLabel_W154">Wiki</span></a><button aria-label="Expand sidebar category &#x27;Wiki&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/api/"><span title="API" class="categoryLinkLabel_W154">API</span></a><button aria-label="Expand sidebar category &#x27;API&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/links"><span title="Links" class="linkLabel_WmDU">Links</span></a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Ampache</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Ampache</h1></header><div class="article"><p class="article-p text--center"></p><p>A web based audio/video streaming application and file manager.<br>
+Allowing you to access your music &amp; videos from anywhere, using almost any internet enabled device.</p><p></p></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="features">Features<a href="#features" class="hash-link" aria-label="Direct link to Features" title="Direct link to Features" translate="no">​</a></h2>
+<div class="display--flex"><div class="article--box"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="music-collection">Music collection<a href="#music-collection" class="hash-link" aria-label="Direct link to Music collection" title="Direct link to Music collection" translate="no">​</a></h3><p class="article-p"></p><p>Browse and manage your music collection through a simple web interface. Synchronize local and remote catalogs to an unique consistent collection.</p><p></p><p class="article-p"><a class="box--link" href="/docs/installation/catalog" title="read more">read more</a></p></div><div class="article--box"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="music-streaming">Music streaming<a href="#music-streaming" class="hash-link" aria-label="Direct link to Music streaming" title="Direct link to Music streaming" translate="no">​</a></h3><p class="article-p"></p><p>Stream your music to your preferred player, control it with Localplay or directly listen on the web page with HTML5 player.<br></p><p></p><p class="article-p"><a class="box--link" href="/docs/configuration" title="read more">read more</a></p></div></div>
+<div class="display--flex"><div class="article--box"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="open-source">Open source<a href="#open-source" class="hash-link" aria-label="Direct link to Open source" title="Direct link to Open source" translate="no">​</a></h3><p class="article-p"></p><p>Completely Free and Open Source since 2001, AGPLv3 license. Get involved and take control.</p><p></p><p class="article-p"><a class="box--link" href="https://github.com/ampache/ampache" title="GitHub project page">GitHub project page</a></p></div><div class="article--box"><h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="music-everywhere">Music Everywhere<a href="#music-everywhere" class="hash-link" aria-label="Direct link to Music Everywhere" title="Direct link to Music Everywhere" translate="no">​</a></h3><p class="article-p"></p><p>Listen to your music from your phone, tablet or television. At home, at work or in vacation: get Ampache everywhere using a compatible client!</p><p></p><p class="article-p"><a class="box--link" href="/docs/clients" title="read more">read more</a></p></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="preview">Preview<a href="#preview" class="hash-link" aria-label="Direct link to Preview" title="Direct link to Preview" translate="no">​</a></h2>
+<div class="display--flex"><a href="/img/previews/login-dark.png" target="_blank" rel="noopener noreferrer" title="login-dark.png"><img src="/img/previews/login-dark.png" alt="login-dark.png"></a><a href="/img/previews/login-light.png" target="_blank" rel="noopener noreferrer" title="login-light.png"><img src="/img/previews/login-light.png" alt="login-light.png"></a><a href="/img/previews/login-custom.png" target="_blank" rel="noopener noreferrer" title="login-custom.png"><img src="/img/previews/login-custom.png" alt="login-custom.png"></a></div>
+<div class="display--flex"><a href="/img/previews/index2.png" target="_blank" rel="noopener noreferrer" title="index2.png"><img src="/img/previews/index2.png" alt="index2.png"></a><a href="/img/previews/index1.png" target="_blank" rel="noopener noreferrer" title="index1.png"><img src="/img/previews/index1.png" alt="index1.png"></a><a href="/img/previews/smartlist.png" target="_blank" rel="noopener noreferrer" title="smartlist.png"><img src="/img/previews/smartlist.png" alt="smartlist.png"></a></div>
+<div class="display--flex"><a href="/img/previews/dashboard-album.png" target="_blank" rel="noopener noreferrer" title="dashboard-album.png"><img src="/img/previews/dashboard-album.png" alt="dashboard-album.png"></a><a href="/img/previews/browse-album.png" target="_blank" rel="noopener noreferrer" title="browse-album.png"><img src="/img/previews/browse-album.png" alt="browse-album.png"></a><a href="/img/previews/browse-playlists.png" target="_blank" rel="noopener noreferrer" title="browse-playlists.png"><img src="/img/previews/browse-playlists.png" alt="browse-playlists.png"></a></div>
+<div class="display--flex"><a href="/img/previews/api-foam.png" target="_blank" rel="noopener noreferrer" title="api-foam.png"><img src="/img/previews/api-foam-md.png" alt="api-foam.png"></a><a href="/img/previews/now_playing.png" target="_blank" rel="noopener noreferrer" title="now_playing.png"><img src="/img/previews/now_playing-md.png" alt="now_playing.png"></a><a href="/img/previews/api-ample.png" target="_blank" rel="noopener noreferrer" title="api-ample.png"><img src="/img/previews/api-ample-md.png" alt="api-ample.png"></a></div></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/demo"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Demo</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#features" class="table-of-contents__link toc-highlight">Features</a><ul><li><a href="#music-collection" class="table-of-contents__link toc-highlight">Music collection</a></li><li><a href="#music-streaming" class="table-of-contents__link toc-highlight">Music streaming</a></li><li><a href="#open-source" class="table-of-contents__link toc-highlight">Open source</a></li><li><a href="#music-everywhere" class="table-of-contents__link toc-highlight">Music Everywhere</a></li></ul></li><li><a href="#preview" class="table-of-contents__link toc-highlight">Preview</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2001 - 2026 Ampache.org</div></div></div></footer></div>
+</body>
 </html>

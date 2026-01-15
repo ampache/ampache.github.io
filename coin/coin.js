@@ -8,7 +8,7 @@ Donations welcome:
 
 MIT License (MIT)
 
-Copyright (c) 2013 http://coinwidget.com/ 
+Copyright (c) 2013 http://coinwidget.com/
 Copyright (c) 2013 http://scotty.cc/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -60,7 +60,7 @@ var CoinWidgetCom = {
 			config.auto_show = false;
 		if (!config.wallet_address)
 			config.wallet_address = 'My '+ config.currency +' wallet_address is missing!';
-		if (!config.lbl_button) 
+		if (!config.lbl_button)
 			config.lbl_button = 'Donate';
 		if (!config.lbl_address)
 			config.lbl_address = 'My Bitcoin Address:';
@@ -83,7 +83,7 @@ var CoinWidgetCom = {
 			CoinWidgetCom.window_resize();
 		});
 		setTimeout(function(){
-			/* this delayed start gives the page enough time to 
+			/* this delayed start gives the page enough time to
 			   render multiple widgets before pinging for counts.
 			*/
 			CoinWidgetCom.build();
@@ -120,15 +120,15 @@ var CoinWidgetCom = {
 		coin_window = "#COINWIDGETCOM_WINDOW_"+$instance;
 
 			obj = "span[data-coinwidget-instance='"+$instance+"'] > a";
-			/* 	to make alignment relative to the full width of the container instead 
-			of just the button change this occurence of $(obj) to $(obj).parent(), 
+			/* 	to make alignment relative to the full width of the container instead
+			of just the button change this occurence of $(obj) to $(obj).parent(),
 			do the same for the occurences within the switch statement. */
-			$pos = $(obj).offset(); 
+			$pos = $(obj).offset();
 			switch ($config.alignment) {
 				default:
 				case 'al': /* above left */
 					$top = $pos.top - $(coin_window).outerHeight() - 10;
-					$left = $pos.left; 
+					$left = $pos.left;
 					break;
 				case 'ac': /* above center */
 					$top = $pos.top - $(coin_window).outerHeight() - 10;
@@ -140,7 +140,7 @@ var CoinWidgetCom = {
 					break;
 				case 'bl': /* bottom left */
 					$top = $pos.top + $(obj).outerHeight() + 10;
-					$left = $pos.left; 
+					$left = $pos.left;
 					break;
 				case 'bc': /* bottom center */
 					$top = $pos.top + $(obj).outerHeight() + 10;
@@ -247,7 +247,7 @@ var CoinWidgetCom = {
 			$(coin_window).find('.COINWIDGETCOM_COUNT').html($counters.count+ '<small>'+$config.lbl_count+'</small>');
 			$(coin_window).find('.COINWIDGETCOM_AMOUNT').html($counters.amount.toFixed($config.decimals)+ '<small>'+$config.lbl_amount+'</small>');
 		}
-		if (typeof $config.onShow == 'function') 
+		if (typeof $config.onShow == 'function')
 			$config.onShow();
 	}
 	, hide: function($instance) {
@@ -260,7 +260,7 @@ var CoinWidgetCom = {
 	}
 	, in_array: function(needle,haystack) {
 		for (i=0;i<haystack.length;i++) {
-			if (haystack[i] == needle) { 
+			if (haystack[i] == needle) {
 				return true;
 			}
 		}
