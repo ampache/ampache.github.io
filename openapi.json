@@ -34,6 +34,121 @@
       }
     }
   ],
+  
+"tags": [
+  {
+    "name": "Authentication",
+    "description": "Authentication, session management, registration and health endpoints"
+  },
+  {
+    "name": "Albums",
+    "description": "Album browsing, lookup and album-related metadata"
+  },
+  {
+    "name": "Artists",
+    "description": "Artist browsing, artist details and related albums or songs"
+  },
+  {
+    "name": "Songs",
+    "description": "Song browsing, song metadata, lyrics, scrobbling and play history"
+  },
+  {
+    "name": "Playlists",
+    "description": "Playlist creation, editing, deletion and playlist item management"
+  },
+  {
+    "name": "Bookmarks",
+    "description": "Bookmark creation, editing and lookup for media items"
+  },
+  {
+    "name": "Search",
+    "description": "Search endpoints and search rule discovery"
+  },
+  {
+    "name": "Catalogs",
+    "description": "Catalog management, scanning and catalog maintenance tasks"
+  },
+  {
+    "name": "Genres",
+    "description": "Genre browsing and genre-related albums, artists and songs"
+  },
+  {
+    "name": "Labels",
+    "description": "Label browsing and label-related artists"
+  },
+  {
+    "name": "Licences",
+    "description": "Licence browsing and licence-related songs"
+  },
+  {
+    "name": "Browse",
+    "description": "Folder-style browsing endpoints"
+  },
+  {
+    "name": "Indexes and Lists",
+    "description": "Index and list-style lookup endpoints"
+  },
+  {
+    "name": "Streaming and Downloads",
+    "description": "Media streaming and download endpoints"
+  },
+  {
+    "name": "Artwork",
+    "description": "Artwork retrieval and artwork update endpoints"
+  },
+  {
+    "name": "Videos",
+    "description": "Video browsing and video metadata"
+  },
+  {
+    "name": "Podcasts",
+    "description": "Podcast management and podcast episode endpoints"
+  },
+  {
+    "name": "Live Streams",
+    "description": "Live stream (radio) creation, editing and browsing"
+  },
+  {
+    "name": "Shares",
+    "description": "Public share creation, editing and deletion"
+  },
+  {
+    "name": "Social",
+    "description": "Followers, following, timelines and social interactions"
+  },
+  {
+    "name": "Stats",
+    "description": "Statistical and usage summary endpoints"
+  },
+  {
+    "name": "Now Playing",
+    "description": "Playback state, now playing and player updates"
+  },
+  {
+    "name": "Users (Admin)",
+    "description": "Administrative user management and user-scoped listings"
+  },
+  {
+    "name": "Preferences (Admin)",
+    "description": "Server and user preference management"
+  },
+  {
+    "name": "Maintenance",
+    "description": "Deleted content and system maintenance endpoints"
+  },
+  {
+    "name": "Ratings and Flags",
+    "description": "Rating, favouriting and flagging of media items"
+  },
+  {
+    "name": "Playback Control",
+    "description": "Localplay and democratic playback control endpoints"
+  },
+  {
+    "name": "Utilities",
+    "description": "Helper and utility endpoints such as metadata lookup and URL conversion"
+  }
+],
   "components": {
     "securitySchemes": {
       "ApiKeyAuthQuery": {
@@ -120,6 +235,7 @@
       "post": {
         "summary": "Authenticate and start a session (deprecated)",
         "description": "Deprecated in this spec as per implementation guidance. Requires credentials to validate and create a session. Provide either Bearer authentication, or auth token parameters.",
+        "tags": ["Authentication"],
         "deprecated": true,
         "security": [
           {}
@@ -185,6 +301,7 @@
       "post": {
         "summary": "Destroy a session",
         "description": "Deprecated in this spec as per implementation guidance.",
+        "tags": ["Authentication"],
         "deprecated": true,
         "security": [
           {},
@@ -226,6 +343,7 @@
       "post": {
         "summary": "Register as a new user (if allowed)",
         "description": "Does not use authentication. Requires username, password and email.",
+        "tags": ["Authentication"],
         "security": [
           {}
         ],
@@ -287,6 +405,7 @@
       "get": {
         "summary": "Ping server and get status/version",
         "description": "Does not require authentication. If you provide authentication (auth query/header or Bearer), the server may return additional session and library metadata.",
+        "tags": ["Authentication"],
         "security": [
           {},
           {
@@ -341,6 +460,7 @@
     "/albums": {
       "get": {
         "summary": "List albums",
+        "tags": ["Albums"],
         "parameters": [
           {
             "name": "filter",
@@ -434,6 +554,7 @@
     "/album/{album_id}": {
       "get": {
         "summary": "Get album by ID",
+        "tags": ["Albums"],
         "parameters": [
           {
             "name": "album_id",
@@ -469,6 +590,7 @@
     "/songs": {
       "get": {
         "summary": "List songs",
+        "tags": ["Songs"],
         "parameters": [
           {
             "name": "filter",
@@ -554,6 +676,7 @@
     "/song/{song_id}": {
       "get": {
         "summary": "Get song by ID",
+        "tags": ["Songs"],
         "parameters": [
           {
             "name": "song_id",
@@ -581,6 +704,7 @@
     "/rate/{id}": {
       "post": {
         "summary": "Rate a library item",
+        "tags": ["Ratings and Flags"],
         "parameters": [
           {
             "name": "id",
@@ -624,6 +748,7 @@
     "/playlists": {
       "get": {
         "summary": "List playlists",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "filter",
@@ -725,6 +850,7 @@
     "/playlist/{playlist_id}": {
       "get": {
         "summary": "Get a single playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -752,6 +878,7 @@
     "/playlist_add/{playlist_id}": {
       "post": {
         "summary": "Add an item to a playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -802,6 +929,7 @@
     "/playlist_add_song/{playlist_id}": {
       "post": {
         "summary": "Add a song to a playlist (deprecated in API7)",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -850,6 +978,7 @@
     "/playlist_create": {
       "post": {
         "summary": "Create a new playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "name",
@@ -889,6 +1018,7 @@
     "/playlist_delete/{playlist_id}": {
       "post": {
         "summary": "Delete a playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -916,6 +1046,7 @@
     "/playlist_edit/{playlist_id}": {
       "post": {
         "summary": "Edit playlist metadata and items",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -990,6 +1121,7 @@
     "/playlist_generate": {
       "get": {
         "summary": "Generate a playlist result set (song, index, or id)",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "mode",
@@ -1089,6 +1221,7 @@
     "/playlist_hash/{playlist_id}": {
       "get": {
         "summary": "Get MD5 hash for playlist songs",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -1121,6 +1254,7 @@
     "/playlist_remove_song/{playlist_id}": {
       "post": {
         "summary": "Remove a song (or track) from a playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -1164,6 +1298,7 @@
     "/playlist_songs/{playlist_id}": {
       "get": {
         "summary": "Get songs for a playlist",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "playlist_id",
