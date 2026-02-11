@@ -7,8 +7,12 @@
   },
   "servers": [
     {
-      "url": "https://your-ampache-server/rest/{apiVersion}/{format}",
+      "url": "{ampacheUrl}/rest/{apiVersion}/{format}",
       "variables": {
+        "ampacheUrl": {
+          "default": "https://develop.ampache.dev",
+          "description": "Response format. JSON and XML calls are the same, only the response differs."
+        }
         "apiVersion": {
           "enum": [
             "3",
