@@ -693,13 +693,13 @@
         }
       }
     },
-    "/rate/{id}": {
+    "/rate/{object_id}": {
       "post": {
         "summary": "Rate a library item",
         "tags": ["Ratings and Flags"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -922,6 +922,7 @@
       "post": {
         "summary": "Add a song to a playlist (deprecated in API7)",
         "tags": ["Playlists"],
+        "deprecated": true,
         "parameters": [
           {
             "name": "playlist_id",
@@ -1793,14 +1794,14 @@
         }
       }
     },
-    "/bookmark_delete": {
+    "/bookmark_delete/{object_id}": {
       "post": {
         "summary": "Delete a bookmark",
         "tags": ["Bookmarks"],
         "parameters": [
           {
-            "name": "filter",
-            "in": "query",
+            "name": "object_id",
+            "in": "path",
             "schema": {
               "type": "string"
             },
@@ -1843,14 +1844,14 @@
         }
       }
     },
-    "/bookmark_edit": {
+    "/bookmark_edit/{object_id}": {
       "post": {
         "summary": "Edit a bookmark",
         "tags": ["Bookmarks"],
         "parameters": [
           {
-            "name": "filter",
-            "in": "query",
+            "name": "object_id",
+            "in": "path",
             "schema": {
               "type": "string"
             },
@@ -2172,11 +2173,19 @@
         }
       }
     },
-    "/catalog_action": {
+    "/catalog_action/{catalog_id}": {
       "post": {
         "summary": "Run a catalog task",
         "tags": ["Catalogs"],
         "parameters": [
+          {
+            "name": "catalog_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
           {
             "name": "task",
             "in": "query",
@@ -2188,23 +2197,6 @@
               ]
             },
             "required": true
-          },
-          {
-            "name": "catalog",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of catalog (7.9.0+)"
           }
         ],
         "responses": {
@@ -2341,11 +2333,19 @@
         }
       }
     },
-    "/catalog_file": {
+    "/catalog_file/{catalog_id}": {
       "post": {
         "summary": "Perform actions on a catalog file",
         "tags": ["Catalogs"],
         "parameters": [
+          {
+            "name": "catalog_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
           {
             "name": "file",
             "in": "query",
@@ -2362,23 +2362,6 @@
             },
             "required": true,
             "description": "add,clean,verify,remove (comma-separated allowed)"
-          },
-          {
-            "name": "catalog",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of catalog (7.9.0+)"
           }
         ],
         "responses": {
@@ -2395,11 +2378,19 @@
         }
       }
     },
-    "/catalog_folder": {
+    "/catalog_folder/{catalog_id}": {
       "post": {
         "summary": "Perform actions on a catalog folder",
         "tags": ["Catalogs"],
         "parameters": [
+          {
+            "name": "catalog_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
           {
             "name": "folder",
             "in": "query",
@@ -2416,23 +2407,6 @@
             },
             "required": true,
             "description": "add,clean,verify,remove (comma-separated allowed)"
-          },
-          {
-            "name": "catalog",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of catalog (7.9.0+)"
           }
         ],
         "responses": {
@@ -2733,6 +2707,7 @@
       "get": {
         "summary": "Get indexes (deprecated in API7)",
         "tags": ["Browsing, Indexes and Lists"],
+        "deprecated": true,
         "parameters": [
           {
             "name": "type",
@@ -4635,28 +4610,19 @@
         }
       }
     },
-    "/update_podcast": {
+    "/update_podcast/{podcast_id}": {
       "post": {
         "summary": "Sync and download new podcast episodes",
         "tags": ["Podcasts"],
         "parameters": [
           {
-            "name": "filter",
-            "in": "query",
+            "name": "podcast_id",
+            "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true,
             "description": "Podcast id"
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of filter (Ampache 7.9.0+)"
           }
         ],
         "responses": {
@@ -4676,7 +4642,7 @@
     "/deleted_podcast_episodes": {
       "get": {
         "summary": "List deleted podcast episodes",
-        "tags": ["Utilities"],
+        "tags": ["Maintenance"],
         "parameters": [
           {
             "name": "offset",
@@ -4712,7 +4678,7 @@
     "/deleted_songs": {
       "get": {
         "summary": "List deleted songs",
-        "tags": ["Utilities"],
+        "tags": ["Maintenance"],
         "parameters": [
           {
             "name": "offset",
@@ -4748,7 +4714,7 @@
     "/deleted_videos": {
       "get": {
         "summary": "List deleted videos",
-        "tags": ["Utilities"],
+        "tags": ["Maintenance"],
         "parameters": [
           {
             "name": "offset",
@@ -4983,7 +4949,21 @@
             "name": "search_type",
             "in": "path",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "song",
+                "album",
+                "song_artist",
+                "album_artist",
+                "artist",
+                "label",
+                "playlist",
+                "podcast",
+                "podcast_episode",
+                "genre",
+                "user",
+                "video"
+              ]
             },
             "required": true,
             "description": "song, album, song_artist, album_artist, artist, label, playlist, podcast, podcast_episode, genre, user, video"
@@ -5006,7 +4986,7 @@
     "/search_songs": {
       "get": {
         "summary": "Search songs by text",
-        "tags": ["Search", "songs"],
+        "tags": ["Search", "Songs"],
         "parameters": [
           {
             "name": "filter",
@@ -5047,28 +5027,47 @@
         }
       }
     },
-    "/stats": {
+    "/stats/{filter}": {
       "get": {
         "summary": "Get stats (song/album/artist etc) by type and filter",
         "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "song, album, artist, video, playlist, podcast, podcast_episode"
-          },
-          {
             "name": "filter",
-            "in": "query",
+            "in": "path",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "default": "random"
             },
             "required": false,
             "description": "newest, highest, frequent, recent, forgotten, flagged, random"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "song",
+                "album",
+                "artist",
+                "video",
+                "playlist",
+                "podcast",
+                "podcast_episode"
+              ]
+            },
+            "required": true,
+            "description": "song, album, artist, video, playlist, podcast, podcast_episode"
           },
           {
             "name": "user_id",
@@ -5844,13 +5843,13 @@
         }
       }
     },
-    "/flag/{id}": {
+    "/flag/{filter}": {
       "post": {
         "summary": "Flag or unflag an item as favourite",
         "tags": ["Ratings and Flags"],
         "parameters": [
           {
-            "name": "id",
+            "name": "filter",
             "in": "path",
             "schema": {
               "type": "string"
@@ -5861,7 +5860,18 @@
             "name": "type",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "song",
+                "album",
+                "artist",
+                "playlist",
+                "podcast",
+                "podcast_episode",
+                "video",
+                "tvshow",
+                "tvshow_season"
+              ]
             },
             "required": true,
             "description": "song, album, artist, playlist, podcast, podcast_episode, video, tvshow, tvshow_season"
@@ -5877,15 +5887,6 @@
               ]
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           }
         ],
         "responses": {
@@ -5902,27 +5903,18 @@
         }
       }
     },
-    "/record_play/{id}": {
+    "/record_play/{song_id}": {
       "post": {
         "summary": "Record a play for a song",
         "tags": ["Now Playing"],
         "parameters": [
           {
-            "name": "id",
+            "name": "song_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           },
           {
             "name": "user",
@@ -6047,27 +6039,18 @@
         }
       }
     },
-    "/update_art/{id}": {
+    "/update_art/{object_id}": {
       "post": {
         "summary": "Update art for an object (Catalog Manager)",
         "tags": ["Utilities"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           },
           {
             "name": "type",
@@ -6108,27 +6091,18 @@
         }
       }
     },
-    "/update_artist_info/{id}": {
+    "/update_artist_info/{artist_id}": {
       "post": {
         "summary": "Update artist info and fetch similar artists",
         "tags": ["Utilities"],
         "parameters": [
           {
-            "name": "id",
+            "name": "artist_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           }
         ],
         "responses": {
@@ -6145,13 +6119,13 @@
         }
       }
     },
-    "/update_from_tags/{id}": {
+    "/update_from_tags/{object_id}": {
       "post": {
         "summary": "Update object metadata from tags",
         "tags": ["Utilities"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6170,15 +6144,6 @@
               ]
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           }
         ],
         "responses": {
@@ -6201,21 +6166,12 @@
         "tags": ["Utilities"],
         "parameters": [
           {
-            "name": "url",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
             "name": "filter",
             "in": "query",
             "schema": {
               "type": "string"
             },
-            "required": false,
-            "description": "Alias of url (Ampache 7.9.0+)"
+            "required": true
           }
         ],
         "responses": {
@@ -6315,13 +6271,13 @@
         }
       }
     },
-    "/get_similar/{id}": {
+    "/get_similar/{object_id}": {
       "get": {
         "summary": "Get similar songs or artists",
-        "tags": ["Songs"],
+        "tags": ["Artists", "Songs"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6427,27 +6383,18 @@
         }
       }
     },
-    "/download/{id}": {
+    "/download/{object_id}": {
       "get": {
         "summary": "Download a media file (binary)",
         "tags": ["Streaming and Downloads"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           },
           {
             "name": "type",
@@ -6508,27 +6455,18 @@
         }
       }
     },
-    "/stream/{id}": {
+    "/stream/{object_id}": {
       "get": {
         "summary": "Stream a media file (binary)",
         "tags": ["Streaming and Downloads"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
           },
           {
             "name": "type",
@@ -6609,13 +6547,13 @@
         }
       }
     },
-    "/get_art/{id}": {
+    "/get_art/{object_id}": {
       "get": {
         "summary": "Get art image (binary)",
-        "tags": ["Art"],
+        "tags": ["Artwork"],
         "parameters": [
           {
-            "name": "id",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6623,19 +6561,18 @@
             "required": true
           },
           {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of id (Ampache 7.9.0+)"
-          },
-          {
             "name": "type",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "song",
+                "artist",
+                "album",
+                "playlist",
+                "search",
+                "podcast"
+              ]
             },
             "required": true,
             "description": "song, artist, album, playlist, search, podcast"
@@ -6663,13 +6600,13 @@
         }
       }
     },
-    "/democratic/{oid}": {
+    "/democratic/{object_id}": {
       "post": {
         "summary": "Control democratic play",
         "tags": ["Playback Control"],
         "parameters": [
           {
-            "name": "oid",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6706,11 +6643,20 @@
         }
       }
     },
-    "/localplay": {
+    "/localplay/{object_id}": {
       "post": {
         "summary": "Control localplay",
         "tags": ["Playback Control"],
         "parameters": [
+          {
+            "name": "object_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Media object id"
+          },
           {
             "name": "command",
             "in": "query",
@@ -6732,23 +6678,6 @@
               ]
             },
             "required": true
-          },
-          {
-            "name": "oid",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Alias of oid (Ampache 7.9.0+)"
           },
           {
             "name": "type",
