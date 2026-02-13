@@ -5543,7 +5543,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Podcast episode list",
+            "description": "User list",
             "content": {
               "application/json": {
                 "schema": {
