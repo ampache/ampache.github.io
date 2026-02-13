@@ -839,6 +839,92 @@
         }
       }
     },
+    "/smartlists": {
+      "get": {
+        "summary": "List smartplaylists",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "exact",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "name": "add",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "update",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "cond",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Playlists list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/playlist/{playlist_id}": {
       "get": {
         "summary": "Get a single playlist",
@@ -1291,7 +1377,7 @@
     "/playlist_songs/{playlist_id}": {
       "get": {
         "summary": "Get songs for a playlist",
-        "tags": ["Playlists"],
+        "tags": ["Playlists", "Songs"],
         "parameters": [
           {
             "name": "playlist_id",
@@ -1495,7 +1581,7 @@
     "/artist_albums/{artist_id}": {
       "get": {
         "summary": "Get albums for an artist",
-        "tags": ["Albums"],
+        "tags": ["Albums", "Artists"],
         "parameters": [
           {
             "name": "artist_id",
@@ -1553,6 +1639,78 @@
         "responses": {
           "200": {
             "description": "Album list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/album_songs/{album_id}": {
+      "get": {
+        "summary": "Get songs for an album",
+        "tags": ["Albums", "Songs"],
+        "parameters": [
+          {
+            "name": "album_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "top50",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "cond",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song list",
             "content": {
               "application/json": {
                 "schema": {
@@ -3333,7 +3491,7 @@
     "/license_songs/{license_id}": {
       "get": {
         "summary": "Get songs for a license",
-        "tags": ["Licenses"],
+        "tags": ["Licenses", "Songs"],
         "parameters": [
           {
             "name": "license_id",
@@ -4787,6 +4945,22 @@
               "type": "integer"
             },
             "required": false
+          },
+          {
+            "name": "cond",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
           }
         ],
         "responses": {
@@ -5100,6 +5274,22 @@
               "type": "integer"
             },
             "required": false
+          },
+          {
+            "name": "cond",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
           }
         ],
         "responses": {
@@ -5312,13 +5502,48 @@
         }
       }
     },
-    "/user": {
+    
+    "/users": {
       "get": {
-        "summary": "Get current API user's public information",
+        "summary": "List user ID's and Usernames for your site",
         "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "cond",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
         "responses": {
           "200": {
-            "description": "User array",
+            "description": "Podcast episode list",
             "content": {
               "application/json": {
                 "schema": {
@@ -5341,7 +5566,7 @@
             "schema": {
               "type": "string"
             },
-            "required": true
+            "required": false
           }
         ],
         "responses": {
