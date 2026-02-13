@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Ampache API6",
+    "title": "Ampache REST API",
     "version": "6.9.1",
-    "description": "OpenAPI 3.0 specification for Ampache API6, based on the official documentation and RESTful path conventions."
+    "description": "OpenAPI 3.0 specification for Ampache REST API, based on the official documentation and RESTful path conventions."
   },
   "servers": [
     {
@@ -11,7 +11,7 @@
       "variables": {
         "ampacheUrl": {
           "default": "https://develop.ampache.dev",
-          "description": "Response format. JSON and XML calls are the same, only the response differs."
+          "description": "Base URL to your Ampache Server."
         },
         "apiVersion": {
           "enum": [
@@ -81,12 +81,8 @@
     "description": "Licence browsing and licence-related songs"
   },
   {
-    "name": "Browse",
-    "description": "Folder-style browsing endpoints"
-  },
-  {
-    "name": "Indexes and Lists",
-    "description": "Index and list-style lookup endpoints"
+    "name": "Browsing, Indexes and Lists",
+    "description": "Folder-style browsing index and list-style lookup endpoints"
   },
   {
     "name": "Streaming and Downloads",
@@ -115,10 +111,6 @@
   {
     "name": "Social",
     "description": "Followers, following, timelines and social interactions"
-  },
-  {
-    "name": "Stats",
-    "description": "Statistical and usage summary endpoints"
   },
   {
     "name": "Now Playing",
@@ -1354,6 +1346,7 @@
     "/artists": {
       "get": {
         "summary": "List artists",
+        "tags": ["Artists"],
         "parameters": [
           {
             "name": "filter",
@@ -1464,6 +1457,7 @@
     "/artist/{artist_id}": {
       "get": {
         "summary": "Get artist by ID",
+        "tags": ["Artists"],
         "parameters": [
           {
             "name": "artist_id",
@@ -1500,6 +1494,7 @@
     "/artist_albums/{artist_id}": {
       "get": {
         "summary": "Get albums for an artist",
+        "tags": ["Albums"],
         "parameters": [
           {
             "name": "artist_id",
@@ -1571,6 +1566,7 @@
     "/artist_songs/{artist_id}": {
       "get": {
         "summary": "Get songs for an artist",
+        "tags": ["Artists", "Songs"],
         "parameters": [
           {
             "name": "artist_id",
@@ -1642,6 +1638,7 @@
     "/bookmarks": {
       "get": {
         "summary": "List bookmarks",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "client",
@@ -1681,6 +1678,7 @@
     "/bookmark/{bookmark_id}": {
       "get": {
         "summary": "Get bookmark by ID",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "bookmark_id",
@@ -1720,6 +1718,7 @@
     "/bookmark_create": {
       "post": {
         "summary": "Create a bookmark",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "filter",
@@ -1797,6 +1796,7 @@
     "/bookmark_delete": {
       "post": {
         "summary": "Delete a bookmark",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "filter",
@@ -1846,6 +1846,7 @@
     "/bookmark_edit": {
       "post": {
         "summary": "Edit a bookmark",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "filter",
@@ -1919,6 +1920,7 @@
     "/get_bookmark/{object_id}": {
       "get": {
         "summary": "Get bookmark(s) by object id and type",
+        "tags": ["Bookmarks"],
         "parameters": [
           {
             "name": "object_id",
@@ -1983,6 +1985,7 @@
     "/browse": {
       "get": {
         "summary": "Browse folder-style children",
+        "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
             "name": "filter",
@@ -2083,6 +2086,7 @@
     "/catalogs": {
       "get": {
         "summary": "List catalogs",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "filter",
@@ -2143,6 +2147,7 @@
     "/catalog/{catalog_id}": {
       "get": {
         "summary": "Get catalog by ID",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "catalog_id",
@@ -2170,6 +2175,7 @@
     "/catalog_action": {
       "post": {
         "summary": "Run a catalog task",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "task",
@@ -2218,6 +2224,7 @@
     "/catalog_add": {
       "post": {
         "summary": "Create a catalog",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "name",
@@ -2309,6 +2316,7 @@
     "/catalog_delete/{catalog_id}": {
       "post": {
         "summary": "Delete a catalog",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "catalog_id",
@@ -2336,6 +2344,7 @@
     "/catalog_file": {
       "post": {
         "summary": "Perform actions on a catalog file",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "file",
@@ -2389,6 +2398,7 @@
     "/catalog_folder": {
       "post": {
         "summary": "Perform actions on a catalog folder",
+        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "folder",
@@ -2442,6 +2452,7 @@
     "/genres": {
       "get": {
         "summary": "List genres",
+        "tags": ["Genres"],
         "parameters": [
           {
             "name": "filter",
@@ -2513,6 +2524,7 @@
     "/genre/{genre_id}": {
       "get": {
         "summary": "Get genre by ID",
+        "tags": ["Genres"],
         "parameters": [
           {
             "name": "genre_id",
@@ -2540,6 +2552,7 @@
     "/genre_albums/{genre_id}": {
       "get": {
         "summary": "Get albums for a genre",
+        "tags": ["Genres", "Albums"],
         "parameters": [
           {
             "name": "genre_id",
@@ -2599,6 +2612,7 @@
     "/genre_artists/{genre_id}": {
       "get": {
         "summary": "Get artists for a genre",
+        "tags": ["Genres", "Artists"],
         "parameters": [
           {
             "name": "genre_id",
@@ -2658,6 +2672,7 @@
     "/genre_songs/{genre_id}": {
       "get": {
         "summary": "Get songs for a genre",
+        "tags": ["Genres", "Songs"],
         "parameters": [
           {
             "name": "genre_id",
@@ -2717,6 +2732,7 @@
     "/get_indexes": {
       "get": {
         "summary": "Get indexes (deprecated in API7)",
+        "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
             "name": "type",
@@ -2826,6 +2842,7 @@
     "/index": {
       "get": {
         "summary": "Index IDs for an object type",
+        "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
             "name": "type",
@@ -2947,6 +2964,7 @@
     "/list": {
       "get": {
         "summary": "List id/name/prefix/basename (replacement for get_indexes)",
+        "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
             "name": "type",
@@ -3044,6 +3062,7 @@
     "/labels": {
       "get": {
         "summary": "List labels",
+        "tags": ["Labels"],
         "parameters": [
           {
             "name": "filter",
@@ -3133,6 +3152,7 @@
     "/label/{label_id}": {
       "get": {
         "summary": "Get label by ID",
+        "tags": ["Labels"],
         "parameters": [
           {
             "name": "label_id",
@@ -3160,6 +3180,7 @@
     "/label_artists/{label_id}": {
       "get": {
         "summary": "Get artists for a label",
+        "tags": ["Labels", "Artists"],
         "parameters": [
           {
             "name": "label_id",
@@ -3219,6 +3240,7 @@
     "/licenses": {
       "get": {
         "summary": "List licenses",
+        "tags": ["Licenses"],
         "parameters": [
           {
             "name": "filter",
@@ -3308,6 +3330,7 @@
     "/license/{license_id}": {
       "get": {
         "summary": "Get license by ID",
+        "tags": ["Licences"],
         "parameters": [
           {
             "name": "license_id",
@@ -3335,6 +3358,7 @@
     "/license_songs/{license_id}": {
       "get": {
         "summary": "Get songs for a license",
+        "tags": ["Licenses"],
         "parameters": [
           {
             "name": "license_id",
@@ -3394,6 +3418,7 @@
     "/live_streams": {
       "get": {
         "summary": "List live streams",
+        "tags": ["Live Streams"],
         "parameters": [
           {
             "name": "filter",
@@ -3483,6 +3508,7 @@
     "/live_stream/{live_stream_id}": {
       "get": {
         "summary": "Get live stream by ID",
+        "tags": ["Live Streams"],
         "parameters": [
           {
             "name": "live_stream_id",
@@ -3510,6 +3536,7 @@
     "/live_stream_create": {
       "post": {
         "summary": "Create a live stream (radio station)",
+        "tags": ["Live Streams"],
         "parameters": [
           {
             "name": "name",
@@ -3569,6 +3596,7 @@
     "/live_stream_edit/{live_stream_id}": {
       "post": {
         "summary": "Edit a live stream (radio station)",
+        "tags": ["Live Streams"],
         "parameters": [
           {
             "name": "live_stream_id",
@@ -3636,6 +3664,7 @@
     "/live_stream_delete/{live_stream_id}": {
       "post": {
         "summary": "Delete a live stream (radio station)",
+        "tags": ["Live Streams"],
         "parameters": [
           {
             "name": "live_stream_id",
@@ -3663,6 +3692,7 @@
     "/now_playing": {
       "get": {
         "summary": "Get what is currently being played by all users",
+        "tags": ["Now Playing"],
         "responses": {
           "200": {
             "description": "Now playing list",
@@ -3680,6 +3710,7 @@
     "/player/{object_id}": {
       "post": {
         "summary": "Update the server with the client player state",
+        "tags": ["Now Playing"],
         "parameters": [
           {
             "name": "object_id",
@@ -3748,6 +3779,7 @@
     "/shares": {
       "get": {
         "summary": "List shares",
+        "tags": ["Shares"],
         "parameters": [
           {
             "name": "filter",
@@ -3819,6 +3851,7 @@
     "/share/{share_id}": {
       "get": {
         "summary": "Get share by ID",
+        "tags": ["Shares"],
         "parameters": [
           {
             "name": "share_id",
@@ -3846,6 +3879,7 @@
     "/share_create": {
       "post": {
         "summary": "Create a public share URL",
+        "tags": ["Shares"],
         "parameters": [
           {
             "name": "filter",
@@ -3900,6 +3934,7 @@
     "/share_edit/{share_id}": {
       "post": {
         "summary": "Edit a share",
+        "tags": ["Shares"],
         "parameters": [
           {
             "name": "share_id",
@@ -3967,6 +4002,7 @@
     "/share_delete/{share_id}": {
       "post": {
         "summary": "Delete a share",
+        "tags": ["Shares"],
         "parameters": [
           {
             "name": "share_id",
@@ -3994,6 +4030,7 @@
     "/preference_create": {
       "post": {
         "summary": "Create a server preference (Admin)",
+        "tags": ["Preferences (Admin)"],
         "parameters": [
           {
             "name": "filter",
@@ -4079,6 +4116,7 @@
     "/preference_delete/{preference_name}": {
       "post": {
         "summary": "Delete a non-system preference by name (Admin)",
+        "tags": ["Preferences (Admin)"],
         "parameters": [
           {
             "name": "preference_name",
@@ -4106,6 +4144,7 @@
     "/preference_edit/{preference_name}": {
       "post": {
         "summary": "Edit a preference value",
+        "tags": ["Preferences"],
         "parameters": [
           {
             "name": "preference_name",
@@ -4167,6 +4206,7 @@
     "/system_preference/{preference_name}": {
       "get": {
         "summary": "Get a server preference by name (Admin)",
+        "tags": ["Preferences (Admin)"],
         "parameters": [
           {
             "name": "preference_name",
@@ -4194,6 +4234,7 @@
     "/last_shouts": {
       "get": {
         "summary": "Get latest shouts",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "username",
@@ -4229,6 +4270,7 @@
     "/podcasts": {
       "get": {
         "summary": "List podcasts",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "filter",
@@ -4299,6 +4341,7 @@
     "/podcast/{podcast_id}": {
       "get": {
         "summary": "Get podcast by ID",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "podcast_id",
@@ -4337,6 +4380,7 @@
     "/podcast_create": {
       "post": {
         "summary": "Create a podcast",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "url",
@@ -4374,6 +4418,7 @@
     "/podcast_delete/{podcast_id}": {
       "post": {
         "summary": "Delete a podcast",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "podcast_id",
@@ -4401,6 +4446,7 @@
     "/podcast_edit/{podcast_id}": {
       "post": {
         "summary": "Edit an existing podcast",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "podcast_id",
@@ -4476,6 +4522,7 @@
     "/podcast_episodes/{podcast_id}": {
       "get": {
         "summary": "List episodes for a podcast",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "podcast_id",
@@ -4535,6 +4582,7 @@
     "/podcast_episode/{episode_id}": {
       "get": {
         "summary": "Get podcast episode by ID",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "episode_id",
@@ -4562,6 +4610,7 @@
     "/podcast_episode_delete/{episode_id}": {
       "post": {
         "summary": "Delete a podcast episode",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "episode_id",
@@ -4589,6 +4638,7 @@
     "/update_podcast": {
       "post": {
         "summary": "Sync and download new podcast episodes",
+        "tags": ["Podcasts"],
         "parameters": [
           {
             "name": "filter",
@@ -4626,6 +4676,7 @@
     "/deleted_podcast_episodes": {
       "get": {
         "summary": "List deleted podcast episodes",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "offset",
@@ -4661,6 +4712,7 @@
     "/deleted_songs": {
       "get": {
         "summary": "List deleted songs",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "offset",
@@ -4696,6 +4748,7 @@
     "/deleted_videos": {
       "get": {
         "summary": "List deleted videos",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "offset",
@@ -4731,6 +4784,7 @@
     "/videos": {
       "get": {
         "summary": "List videos",
+        "tags": ["Videos"],
         "parameters": [
           {
             "name": "filter",
@@ -4786,6 +4840,7 @@
     "/video/{video_id}": {
       "get": {
         "summary": "Get video by ID",
+        "tags": ["Videos"],
         "parameters": [
           {
             "name": "video_id",
@@ -4813,6 +4868,7 @@
     "/search_group": {
       "get": {
         "summary": "Group search across multiple object types",
+        "tags": ["Search"],
         "parameters": [
           {
             "name": "operator",
@@ -4921,6 +4977,7 @@
     "/search_rules/{search_type}": {
       "get": {
         "summary": "List valid search rules for a search type",
+        "tags": ["Search", "Utilities"],
         "parameters": [
           {
             "name": "search_type",
@@ -4949,6 +5006,7 @@
     "/search_songs": {
       "get": {
         "summary": "Search songs by text",
+        "tags": ["Search", "songs"],
         "parameters": [
           {
             "name": "filter",
@@ -4992,6 +5050,7 @@
     "/stats": {
       "get": {
         "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": ["Browsing, Indexes and Lists"],
         "parameters": [
           {
             "name": "type",
@@ -5061,6 +5120,7 @@
     "/timeline/{username}": {
       "get": {
         "summary": "Get a user's timeline",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "username",
@@ -5104,6 +5164,7 @@
     "/followers/{username}": {
       "get": {
         "summary": "Get followers for a username",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "username",
@@ -5163,6 +5224,7 @@
     "/following/{username}": {
       "get": {
         "summary": "Get who a user is following",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "username",
@@ -5190,6 +5252,7 @@
     "/friends_timeline": {
       "get": {
         "summary": "Get current user's friends timeline",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "limit",
@@ -5225,6 +5288,7 @@
     "/toggle_follow/{username}": {
       "post": {
         "summary": "Follow or unfollow a user",
+        "tags": ["Social"],
         "parameters": [
           {
             "name": "username",
@@ -5252,6 +5316,7 @@
     "/user": {
       "get": {
         "summary": "Get current API user's public information",
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "User array",
@@ -5269,6 +5334,7 @@
     "/user/{username}": {
       "get": {
         "summary": "Get a user's public information by username",
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "username",
@@ -5296,6 +5362,7 @@
     "/user_create": {
       "post": {
         "summary": "Create a new user (Admin)",
+        "tags": ["Users (Admin)"],
         "parameters": [
           {
             "name": "username",
@@ -5368,6 +5435,7 @@
     "/user_delete/{username}": {
       "post": {
         "summary": "Delete a user (Admin)",
+        "tags": ["Users (Admin)"],
         "parameters": [
           {
             "name": "username",
@@ -5395,6 +5463,7 @@
     "/user_edit/{username}": {
       "post": {
         "summary": "Edit a user (Admin)",
+        "tags": ["Users (Admin)"],
         "parameters": [
           {
             "name": "username",
@@ -5546,6 +5615,7 @@
     "/user_playlists": {
       "get": {
         "summary": "List playlists for the current user context",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "filter",
@@ -5647,6 +5717,7 @@
     "/user_smartlists": {
       "get": {
         "summary": "List smartlists for the current user context",
+        "tags": ["Playlists"],
         "parameters": [
           {
             "name": "filter",
@@ -5748,6 +5819,7 @@
     "/user_preference/{preference_name}": {
       "get": {
         "summary": "Get a user preference by name",
+        "tags": ["Preferences"],
         "parameters": [
           {
             "name": "preference_name",
@@ -5775,6 +5847,7 @@
     "/flag/{id}": {
       "post": {
         "summary": "Flag or unflag an item as favourite",
+        "tags": ["Ratings and Flags"],
         "parameters": [
           {
             "name": "id",
@@ -5832,6 +5905,7 @@
     "/record_play/{id}": {
       "post": {
         "summary": "Record a play for a song",
+        "tags": ["Now Playing"],
         "parameters": [
           {
             "name": "id",
@@ -5892,6 +5966,7 @@
     "/scrobble": {
       "post": {
         "summary": "Find a song by metadata and record a play if found",
+        "tags": ["Now Playing"],
         "parameters": [
           {
             "name": "song",
@@ -5975,6 +6050,7 @@
     "/update_art/{id}": {
       "post": {
         "summary": "Update art for an object (Catalog Manager)",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "id",
@@ -6035,6 +6111,7 @@
     "/update_artist_info/{id}": {
       "post": {
         "summary": "Update artist info and fetch similar artists",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "id",
@@ -6071,6 +6148,7 @@
     "/update_from_tags/{id}": {
       "post": {
         "summary": "Update object metadata from tags",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "id",
@@ -6120,6 +6198,7 @@
     "/url_to_song": {
       "get": {
         "summary": "Convert an Ampache URL back to a song object",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "url",
@@ -6156,6 +6235,7 @@
     "/get_external_metadata/{object_id}": {
       "get": {
         "summary": "Get external metadata for an object",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "object_id",
@@ -6197,6 +6277,7 @@
     "/get_lyrics/{song_id}": {
       "get": {
         "summary": "Get lyrics from DB or plugins by song id",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "song_id",
@@ -6237,6 +6318,7 @@
     "/get_similar/{id}": {
       "get": {
         "summary": "Get similar songs or artists",
+        "tags": ["Songs"],
         "parameters": [
           {
             "name": "id",
@@ -6292,6 +6374,7 @@
     "/song_delete/{song_id}": {
       "post": {
         "summary": "Delete a song",
+        "tags": ["Songs"],
         "parameters": [
           {
             "name": "song_id",
@@ -6319,6 +6402,7 @@
     "/song_tags/{song_id}": {
       "get": {
         "summary": "Get full file tags for a song",
+        "tags": ["Utilities"],
         "parameters": [
           {
             "name": "song_id",
@@ -6346,6 +6430,7 @@
     "/download/{id}": {
       "get": {
         "summary": "Download a media file (binary)",
+        "tags": ["Streaming and Downloads"],
         "parameters": [
           {
             "name": "id",
@@ -6426,6 +6511,7 @@
     "/stream/{id}": {
       "get": {
         "summary": "Stream a media file (binary)",
+        "tags": ["Streaming and Downloads"],
         "parameters": [
           {
             "name": "id",
@@ -6526,6 +6612,7 @@
     "/get_art/{id}": {
       "get": {
         "summary": "Get art image (binary)",
+        "tags": ["Art"],
         "parameters": [
           {
             "name": "id",
@@ -6579,6 +6666,7 @@
     "/democratic/{oid}": {
       "post": {
         "summary": "Control democratic play",
+        "tags": ["Playback Control"],
         "parameters": [
           {
             "name": "oid",
@@ -6621,6 +6709,7 @@
     "/localplay": {
       "post": {
         "summary": "Control localplay",
+        "tags": ["Playback Control"],
         "parameters": [
           {
             "name": "command",
