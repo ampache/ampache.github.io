@@ -77,8 +77,8 @@
     "description": "Label browsing and label-related artists"
   },
   {
-    "name": "Licences",
-    "description": "Licence browsing and licence-related songs"
+    "name": "Licenses",
+    "description": "License browsing and license-related songs"
   },
   {
     "name": "Browsing, Indexes and Lists",
@@ -918,6 +918,118 @@
               "application/json": {
                 "schema": {
                   "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smartlist/{smartlist_id}": {
+      "get": {
+        "summary": "Get a single smartplaylist",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Playlist response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smartlist_songs/{smartlist_id}": {
+      "get": {
+        "summary": "Get songs for a smartlist",
+        "tags": ["Playlists", "Songs"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smartlist_delete/{smartlist_id}": {
+      "post": {
+        "summary": "Delete a smartlist",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
                 }
               }
             }
@@ -3463,7 +3575,7 @@
     "/license/{license_id}": {
       "get": {
         "summary": "Get license by ID",
-        "tags": ["Licences"],
+        "tags": ["Licenses"],
         "parameters": [
           {
             "name": "license_id",
