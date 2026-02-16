@@ -6180,13 +6180,13 @@
         }
       }
     },
-    "/flag/{filter}": {
+    "/flag/{object_id}": {
       "post": {
         "summary": "Flag or unflag an item as favourite",
         "tags": ["Ratings and Flags"],
         "parameters": [
           {
-            "name": "filter",
+            "name": "object_id",
             "in": "path",
             "schema": {
               "type": "string"
