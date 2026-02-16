@@ -925,13 +925,13 @@
         }
       }
     },
-    "/smartlist/{smartlist_id}": {
+    "/playlist/{playlist_id}": {
       "get": {
-        "summary": "Get a single smartplaylist",
+        "summary": "Get a single playlist",
         "tags": ["Playlists"],
         "parameters": [
           {
-            "name": "smartlist_id",
+            "name": "playlist_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -953,97 +953,13 @@
         }
       }
     },
-    "/smartlist_songs/{smartlist_id}": {
+    "/smartlist/{smartlist_id}": {
       "get": {
-        "summary": "Get songs for a smartlist",
-        "tags": ["Playlists", "Songs"],
-        "parameters": [
-          {
-            "name": "smartlist_id",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "random",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "enum": [
-                0,
-                1
-              ]
-            },
-            "required": false
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Song list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/smartlist_delete/{smartlist_id}": {
-      "post": {
-        "summary": "Delete a smartlist",
+        "summary": "Get a single smartplaylist",
         "tags": ["Playlists"],
         "parameters": [
           {
             "name": "smartlist_id",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/playlist/{playlist_id}": {
-      "get": {
-        "summary": "Get a single playlist",
-        "tags": ["Playlists"],
-        "parameters": [
-          {
-            "name": "playlist_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -1213,6 +1129,34 @@
         "parameters": [
           {
             "name": "playlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smartlist_delete/{smartlist_id}": {
+      "post": {
+        "summary": "Delete a smartlist",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -1493,6 +1437,62 @@
         "parameters": [
           {
             "name": "playlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "random",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Song list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smartlist_songs/{smartlist_id}": {
+      "get": {
+        "summary": "Get songs for a smartlist",
+        "tags": ["Playlists", "Songs"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
             "in": "path",
             "schema": {
               "type": "string"
