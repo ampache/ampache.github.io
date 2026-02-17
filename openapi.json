@@ -117,11 +117,11 @@
     "description": "Playback state, now playing and player updates"
   },
   {
-    "name": "Users (Admin)",
+    "name": "Users",
     "description": "Administrative user management and user-scoped listings"
   },
   {
-    "name": "Preferences (Admin)",
+    "name": "Preferences",
     "description": "Server and user preference management"
   },
   {
@@ -4275,7 +4275,7 @@
     "/preference_create": {
       "post": {
         "summary": "Create a server preference (Admin)",
-        "tags": ["Preferences (Admin)"],
+        "tags": ["Preferences"],
         "parameters": [
           {
             "name": "filter",
@@ -4361,7 +4361,7 @@
     "/preference_delete/{preference_name}": {
       "post": {
         "summary": "Delete a non-system preference by name (Admin)",
-        "tags": ["Preferences (Admin)"],
+        "tags": ["Preferences"],
         "parameters": [
           {
             "name": "preference_name",
@@ -4451,7 +4451,7 @@
     "/system_preference/{preference_name}": {
       "get": {
         "summary": "Get a server preference by name (Admin)",
-        "tags": ["Preferences (Admin)"],
+        "tags": ["Preferences"],
         "parameters": [
           {
             "name": "preference_name",
@@ -5698,7 +5698,7 @@
     "/user_create": {
       "post": {
         "summary": "Create a new user (Admin)",
-        "tags": ["Users (Admin)"],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "username",
@@ -5771,7 +5771,7 @@
     "/user_delete/{username}": {
       "post": {
         "summary": "Delete a user (Admin)",
-        "tags": ["Users (Admin)"],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "username",
@@ -5799,7 +5799,7 @@
     "/user_edit/{username}": {
       "post": {
         "summary": "Edit a user (Admin)",
-        "tags": ["Users (Admin)"],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "username",
