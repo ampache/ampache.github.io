@@ -5334,7 +5334,7 @@
               ],
               "default": "random"
             },
-            "required": false,
+            "required": true,
             "description": "newest, highest, frequent, recent, forgotten, flagged, random"
           },
           {
@@ -5667,6 +5667,26 @@
         }
       }
     },
+    "/user/": {
+      "get": {
+        "summary": "Get information about your own user account",
+        "tags": ["Users"],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "User array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user/{username}": {
       "get": {
         "summary": "Get a user's public information by username",
@@ -5678,7 +5698,7 @@
             "schema": {
               "type": "string"
             },
-            "required": false
+            "required": true
           }
         ],
         "responses": {
@@ -6980,20 +7000,11 @@
         }
       }
     },
-    "/localplay/{object_id}": {
+    "/localplay": {
       "post": {
         "summary": "Control localplay",
         "tags": ["Playback Control"],
         "parameters": [
-          {
-            "name": "object_id",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "Media object id"
-          },
           {
             "name": "command",
             "in": "query",
@@ -7005,13 +7016,52 @@
                 "stop",
                 "play",
                 "pause",
-                "add",
                 "volume_up",
                 "volume_down",
                 "volume_mute",
                 "delete_all",
                 "skip",
                 "status"
+              ]
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Localplay response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localplay/{object_id}": {
+      "post": {
+        "summary": "Add media to the localplay server",
+        "tags": ["Playback Control"],
+        "parameters": [
+          {
+            "name": "object_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Media object id"
+          },
+          {
+            "name": "command",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "add"
               ]
             },
             "required": true
