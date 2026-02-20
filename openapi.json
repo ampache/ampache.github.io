@@ -5667,7 +5667,7 @@
         }
       }
     },
-    "/user/": {
+    "/user": {
       "get": {
         "summary": "Get information about your own user account",
         "tags": ["Users"],
