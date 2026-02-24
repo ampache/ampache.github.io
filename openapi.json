@@ -1142,9 +1142,35 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Delete a smartlist",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "smartlist_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/playlist_add/{playlist_id}": {
+    "/playlists/{playlist_id}/add": {
       "post": {
         "summary": "Add an item to a playlist",
         "tags": ["Playlists"],
@@ -1193,35 +1219,9 @@
             }
           }
         }
-      },
-      "delete": {
-        "summary": "Delete a smartlist",
-        "tags": ["Playlists"],
-        "parameters": [
-          {
-            "name": "smartlist_id",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/playlist_add_song/{playlist_id}": {
+    "/playlists/{playlist_id}/add_song": {
       "post": {
         "summary": "Add a song to a playlist (deprecated in API7)",
         "tags": ["Playlists"],
@@ -1404,7 +1404,7 @@
         }
       }
     },
-    "/playlist_remove_song/{playlist_id}": {
+    "/playlists/{playlist_id}/remove_song": {
       "post": {
         "summary": "Remove a song (or track) from a playlist",
         "tags": ["Playlists"],
@@ -2084,13 +2084,13 @@
         "tags": ["Bookmarks"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "bookmark_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true,
-            "description": "object_id"
+            "description": "bookmark_id"
           },
           {
             "name": "type",
@@ -2132,13 +2132,13 @@
         "tags": ["Bookmarks"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "bookmark_id",
             "in": "path",
             "schema": {
               "type": "string"
             },
             "required": true,
-            "description": "object_id"
+            "description": "bookmark_id"
           },
           {
             "name": "type",
@@ -2571,7 +2571,7 @@
         }
       }
     },
-    "/catalog_action/{catalog_id}": {
+    "/catalogs/{catalog_id}/action": {
       "post": {
         "summary": "Run a catalog task",
         "tags": ["Catalogs"],
@@ -2704,7 +2704,7 @@
         }
       }
     },
-    "/catalog_file/{catalog_id}": {
+    "/catalogs/{catalog_id}/file": {
       "post": {
         "summary": "Perform actions on a catalog file",
         "tags": ["Catalogs"],
@@ -2749,7 +2749,7 @@
         }
       }
     },
-    "/catalog_folder/{catalog_id}": {
+    "/catalogs/{catalog_id}/folder": {
       "post": {
         "summary": "Perform actions on a catalog folder",
         "tags": ["Catalogs"],
@@ -4876,7 +4876,7 @@
         }
       }
     },
-    "/podcast-episodes/{podcast_id}": {
+    "/podcasts/{podcast_id}/podcast-episodes": {
       "get": {
         "summary": "List episodes for a podcast",
         "tags": ["Podcasts"],
@@ -5697,7 +5697,7 @@
         }
       }
     },
-    "/toggle_follow/{username}": {
+    "/users/{username}/toggle_follow": {
       "post": {
         "summary": "Follow or unfollow a user",
         "tags": ["Social"],
@@ -6365,7 +6365,7 @@
         }
       }
     },
-    "/record_play/{song_id}": {
+    "/songs/{song_id}/record_play": {
       "post": {
         "summary": "Record a play for a song",
         "tags": ["Now Playing"],
@@ -6553,7 +6553,7 @@
         }
       }
     },
-    "/update_artist_info/{artist_id}": {
+    "/artists/{artist_id}/update_artist_info": {
       "post": {
         "summary": "Update artist info and fetch similar artists",
         "tags": ["Utilities"],
