@@ -863,6 +863,44 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Create a new playlist",
+        "tags": ["Playlists"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "public",
+                "private"
+              ]
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Playlist created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/smartlists": {
@@ -1226,46 +1264,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/playlist_create": {
-      "post": {
-        "summary": "Create a new playlist",
-        "tags": ["Playlists"],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "public",
-                "private"
-              ]
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Playlist created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
                 }
               }
             }
@@ -1964,6 +1962,82 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Create a bookmark",
+        "tags": ["Bookmarks"],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "object_id"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "song",
+                "video",
+                "podcast_episode"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "position",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "name": "client",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bookmark object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/bookmarks/{bookmark_id}": {
@@ -2115,84 +2189,6 @@
         "responses": {
           "200": {
             "description": "Bookmark array",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/bookmark_create": {
-      "post": {
-        "summary": "Create a bookmark",
-        "tags": ["Bookmarks"],
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "object_id"
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "song",
-                "video",
-                "podcast_episode"
-              ]
-            },
-            "required": true
-          },
-          {
-            "name": "position",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true
-          },
-          {
-            "name": "client",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "date",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false
-          },
-          {
-            "name": "include",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "enum": [
-                0,
-                1
-              ]
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Bookmark object",
             "content": {
               "application/json": {
                 "schema": {
@@ -2429,6 +2425,96 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Create a catalog",
+        "tags": ["Catalogs"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "path",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "local",
+                "beets",
+                "remote",
+                "subsonic",
+                "seafile",
+                "beetsremote"
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "media_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "file_pattern",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "folder_pattern",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Catalog object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/catalogs/{catalog_id}": {
@@ -2530,98 +2616,6 @@
         "summary": "Create a catalog",
         "tags": ["Catalogs"],
         "deprecated": true,
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "path",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "local",
-                "beets",
-                "remote",
-                "subsonic",
-                "seafile",
-                "beetsremote"
-              ]
-            },
-            "required": false
-          },
-          {
-            "name": "media_type",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "file_pattern",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "folder_pattern",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "username",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Catalog object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/catalog_create": {
-      "post": {
-        "summary": "Create a catalog",
-        "tags": ["Catalogs"],
         "parameters": [
           {
             "name": "name",
@@ -3767,7 +3761,7 @@
         }
       }
     },
-    "/live_streams": {
+    "/live-streams": {
       "get": {
         "summary": "List live streams",
         "tags": ["Live Streams"],
@@ -3846,6 +3840,64 @@
         "responses": {
           "200": {
             "description": "Live stream list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Create a live stream (radio station)",
+        "tags": ["Live Streams"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "site_url",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "codec",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "catalog",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Live stream created",
             "content": {
               "application/json": {
                 "schema": {
@@ -3970,66 +4022,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/live_stream_create": {
-      "post": {
-        "summary": "Create a live stream (radio station)",
-        "tags": ["Live Streams"],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "url",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "site_url",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "codec",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "catalog",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Live stream created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
                 }
               }
             }
@@ -4371,8 +4363,8 @@
         }
       }
     },
-    "/preference_create": {
-      "post": {
+    "/preferences": {
+      "put": {
         "summary": "Create a server preference (Admin)",
         "tags": ["Preferences"],
         "parameters": [
@@ -4678,6 +4670,42 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Create a podcast",
+        "tags": ["Podcasts"],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "RSS URL for podcast"
+          },
+          {
+            "name": "catalog",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Podcast catalog ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Podcast created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/podcasts/{podcast_id}": {
@@ -4841,44 +4869,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/podcast_create": {
-      "post": {
-        "summary": "Create a podcast",
-        "tags": ["Podcasts"],
-        "parameters": [
-          {
-            "name": "url",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "RSS URL for podcast"
-          },
-          {
-            "name": "catalog",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Podcast catalog ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Podcast created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
                 }
               }
             }
@@ -5786,58 +5776,8 @@
             }
           }
         }
-      }
-    },
-    "/user": {
-      "get": {
-        "summary": "Get information about your own user account",
-        "tags": ["Users"],
-        "parameters": [
-        ],
-        "responses": {
-          "200": {
-            "description": "User array",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user/{username}": {
-      "get": {
-        "summary": "Get a user's public information by username",
-        "tags": ["Users"],
-        "parameters": [
-          {
-            "name": "username",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User array",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user_create": {
-      "post": {
+      },
+      "put": {
         "summary": "Create a new user (Admin)",
         "tags": ["Users"],
         "parameters": [
@@ -5909,7 +5849,53 @@
         }
       }
     },
+    "/user": {
+      "get": {
+        "summary": "Get information about your own user account",
+        "tags": ["Users"],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "User array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/users/{username}": {
+      "get": {
+        "summary": "Get a user's public information by username",
+        "tags": ["Users"],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User array",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "summary": "Delete a user (Admin)",
         "tags": ["Users"],
@@ -6291,7 +6277,7 @@
         }
       }
     },
-    "/user_preferences/{preference_name}": {
+    "/user-preferences/{preference_name}": {
       "get": {
         "summary": "Get a user preference by name",
         "tags": ["Preferences"],
@@ -6667,7 +6653,7 @@
     "/albums/{object_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for an album",
-        "tags": ["Utilities"],
+        "tags": ["Albums", "Utilities"],
         "parameters": [
           {
             "name": "object_id",
@@ -6695,7 +6681,7 @@
     "/artists/{object_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for an artist",
-        "tags": ["Utilities"],
+        "tags": ["Artists", "Utilities"],
         "parameters": [
           {
             "name": "object_id",
@@ -6723,7 +6709,7 @@
     "/labels/{label_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for a label",
-        "tags": ["Utilities"],
+        "tags": ["Labels", "Utilities"],
         "parameters": [
           {
             "name": "label_id",
@@ -6751,7 +6737,7 @@
     "/songs/{object_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for a song",
-        "tags": ["Utilities"],
+        "tags": ["Songs", "Utilities"],
         "parameters": [
           {
             "name": "object_id",
@@ -6779,7 +6765,7 @@
     "/songs/{song_id}/lyrics": {
       "get": {
         "summary": "Get lyrics from DB or plugins by song id",
-        "tags": ["Utilities"],
+        "tags": ["Songs", "Utilities"],
         "parameters": [
           {
             "name": "song_id",
@@ -6908,7 +6894,7 @@
     "/songs/{song_id}/tags": {
       "get": {
         "summary": "Get full file tags for a song",
-        "tags": ["Utilities"],
+        "tags": ["Songs", "Utilities"],
         "parameters": [
           {
             "name": "song_id",
