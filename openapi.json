@@ -4424,15 +4424,6 @@
               "type": "string"
             },
             "required": false
-          },
-          {
-            "name": "level",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "required": false,
-            "description": "Access level required (default 100)"
           }
         ],
         "responses": {
@@ -5529,7 +5520,7 @@
         }
       }
     },
-    "/timeline/{username}": {
+    "/users/{username}/timeline": {
       "get": {
         "summary": "Get a user's timeline",
         "tags": ["Social"],
@@ -5573,7 +5564,7 @@
         }
       }
     },
-    "/followers/{username}": {
+    "/users/{username}/followers": {
       "get": {
         "summary": "Get followers for a username",
         "tags": ["Social"],
@@ -5633,7 +5624,7 @@
         }
       }
     },
-    "/following/{username}": {
+    "/users/{username}/following": {
       "get": {
         "summary": "Get who a user is following",
         "tags": ["Social"],
@@ -6650,13 +6641,13 @@
         }
       }
     },
-    "/albums/{object_id}/get_external_metadata": {
+    "/albums/{album_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for an album",
         "tags": ["Albums", "Utilities"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "album_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6678,13 +6669,13 @@
         }
       }
     },
-    "/artists/{object_id}/get_external_metadata": {
+    "/artists/{artist_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for an artist",
         "tags": ["Artists", "Utilities"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "artist_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6734,13 +6725,13 @@
         }
       }
     },
-    "/songs/{object_id}/get_external_metadata": {
+    "/songs/{song_id}/get_external_metadata": {
       "get": {
         "summary": "Get external metadata for a song",
         "tags": ["Songs", "Utilities"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "song_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6803,13 +6794,13 @@
         }
       }
     },
-    "/artists/{object_id}/get_similar": {
+    "/artists/{artist_id}/get_similar": {
       "get": {
         "summary": "Get similar artists",
         "tags": ["Artists"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "artist_id",
             "in": "path",
             "schema": {
               "type": "string"
@@ -6847,13 +6838,13 @@
         }
       }
     },
-    "/songs/{object_id}/get_similar": {
+    "/songs/{song_id}/get_similar": {
       "get": {
         "summary": "Get similar songs",
         "tags": ["Songs"],
         "parameters": [
           {
-            "name": "object_id",
+            "name": "song_id",
             "in": "path",
             "schema": {
               "type": "string"
