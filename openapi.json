@@ -142,6 +142,12 @@
   ],
   "components": {
     "securitySchemes": {
+      "ApiKeyAuthQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "auth",
+        "description": "Ampache session token or encrypted API key passed as the auth query parameter."
+      },
       "ApiKeyAuthHeader": {
         "type": "apiKey",
         "in": "header",
@@ -210,6 +216,9 @@
     },
     {
       "ApiKeyAuthHeader": []
+    },
+    {
+      "ApiKeyAuthQuery": []
     }
   ],
   "paths": {
@@ -385,6 +394,37 @@
         ]
       }
     },
+    "/albums/{album_id}/fetch-metadata": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "album_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "External metadata array"
+          }
+        },
+        "summary": "Get external metadata for an album",
+        "tags": [
+          "Albums",
+          "Utilities"
+        ]
+      }
+    },
     "/albums/{album_id}/flag": {
       "post": {
         "parameters": [
@@ -424,37 +464,6 @@
         "summary": "Flag or unflag an item as favourite",
         "tags": [
           "Ratings and Flags"
-        ]
-      }
-    },
-    "/albums/{album_id}/get_external_metadata": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "album_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "External metadata array"
-          }
-        },
-        "summary": "Get external metadata for an album",
-        "tags": [
-          "Albums",
-          "Utilities"
         ]
       }
     },
@@ -616,6 +625,311 @@
         "tags": [
           "Albums",
           "Songs"
+        ]
+      }
+    },
+    "/albums/{album_id}/update-art": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "album_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "overwrite",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Update art for an object (Catalog Manager)",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/albums/{album_id}/update-tags": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "album_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Update object metadata from tags",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/albums/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "album-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/albums/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
         ]
       }
     },
@@ -884,6 +1198,67 @@
         ]
       }
     },
+    "/artists/{artist_id}/fetch-info": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "artist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Update artist info and fetch similar artists",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/artists/{artist_id}/fetch-metadata": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "artist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "External metadata array"
+          }
+        },
+        "summary": "Get external metadata for an artist",
+        "tags": [
+          "Artists",
+          "Utilities"
+        ]
+      }
+    },
     "/artists/{artist_id}/flag": {
       "post": {
         "parameters": [
@@ -923,83 +1298,6 @@
         "summary": "Flag or unflag an item as favourite",
         "tags": [
           "Ratings and Flags"
-        ]
-      }
-    },
-    "/artists/{artist_id}/get_external_metadata": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "artist_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "External metadata array"
-          }
-        },
-        "summary": "Get external metadata for an artist",
-        "tags": [
-          "Artists",
-          "Utilities"
-        ]
-      }
-    },
-    "/artists/{artist_id}/get_similar": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "artist_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Similar list"
-          }
-        },
-        "summary": "Get similar artists",
-        "tags": [
-          "Artists"
         ]
       }
     },
@@ -1089,6 +1387,52 @@
         ]
       }
     },
+    "/artists/{artist_id}/similar": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "artist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Similar list"
+          }
+        },
+        "summary": "Get similar artists",
+        "tags": [
+          "Artists"
+        ]
+      }
+    },
     "/artists/{artist_id}/songs": {
       "get": {
         "parameters": [
@@ -1164,7 +1508,49 @@
         ]
       }
     },
-    "/artists/{artist_id}/update_artist_info": {
+    "/artists/{artist_id}/update-art": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "artist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "overwrite",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Update art for an object (Catalog Manager)",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/artists/{artist_id}/update-tags": {
       "post": {
         "parameters": [
           {
@@ -1188,9 +1574,255 @@
             "description": "Updated"
           }
         },
-        "summary": "Update artist info and fetch similar artists",
+        "summary": "Update object metadata from tags",
         "tags": [
           "Utilities"
+        ]
+      }
+    },
+    "/artists/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "artist-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Specify the subtype of artist to search for",
+            "in": "query",
+            "name": "subtype",
+            "required": false,
+            "schema": {
+              "enum": [
+                "album_artists",
+                "song_artists"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/artists/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
         ]
       }
     },
@@ -1234,84 +1866,6 @@
         "tags": [
           "Bookmarks"
         ]
-      },
-      "put": {
-        "parameters": [
-          {
-            "description": "object_id",
-            "in": "query",
-            "name": "filter",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "video",
-                "podcast_episode"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "position",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "client",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Bookmark object"
-          }
-        },
-        "summary": "Create a bookmark",
-        "tags": [
-          "Bookmarks"
-        ]
       }
     },
     "/bookmarks/{bookmark_id}": {
@@ -1323,19 +1877,6 @@
             "name": "bookmark_id",
             "required": true,
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "video",
-                "podcast_episode"
-              ],
               "type": "string"
             }
           },
@@ -1411,15 +1952,6 @@
             "description": "bookmark_id",
             "in": "path",
             "name": "bookmark_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "bookmark,song,video,podcast_episode",
-            "in": "query",
-            "name": "type",
             "required": true,
             "schema": {
               "type": "string"
@@ -1932,120 +2464,6 @@
         ]
       }
     },
-    "/deleted_podcast_episodes": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Deleted podcast episodes list"
-          }
-        },
-        "summary": "List deleted podcast episodes",
-        "tags": [
-          "Maintenance"
-        ]
-      }
-    },
-    "/deleted_songs": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Deleted songs list"
-          }
-        },
-        "summary": "List deleted songs",
-        "tags": [
-          "Maintenance"
-        ]
-      }
-    },
-    "/deleted_videos": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Deleted videos list"
-          }
-        },
-        "summary": "List deleted videos",
-        "tags": [
-          "Maintenance"
-        ]
-      }
-    },
     "/democratic/{object_id}": {
       "post": {
         "parameters": [
@@ -2088,118 +2506,6 @@
         "summary": "Control democratic play",
         "tags": [
           "Playback Control"
-        ]
-      }
-    },
-    "/download/{object_id}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "object_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "podcast_episode",
-                "search",
-                "playlist"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "bitrate",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "stats",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Binary file response"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "416": {
-            "description": "Range not satisfiable"
-          }
-        },
-        "summary": "Download a media file (binary)",
-        "tags": [
-          "Streaming and Downloads"
-        ]
-      }
-    },
-    "/friends_timeline": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "since",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Activity list"
-          }
-        },
-        "summary": "Get current user's friends timeline",
-        "tags": [
-          "Social"
         ]
       }
     },
@@ -2496,52 +2802,229 @@
         ]
       }
     },
-    "/get_bookmark/{object_id}": {
+    "/genres/search": {
       "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "genre-search",
         "parameters": [
           {
-            "in": "path",
-            "name": "object_id",
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
+            "description": "Operator for rule 1",
             "in": "query",
-            "name": "type",
+            "name": "rule_1_operator",
             "required": true,
             "schema": {
-              "enum": [
-                "song",
-                "video",
-                "podcast_episode"
-              ],
               "type": "string"
             }
           },
           {
+            "description": "Input value for rule 1",
             "in": "query",
-            "name": "include",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
             "required": false,
             "schema": {
-              "enum": [
-                0,
-                1
-              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/goodbye": {
+      "post": {
+        "deprecated": true,
+        "description": "Destroy auth session.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "auth",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuthHeader": []
+          },
+          {
+            "ApiKeyAuthQuery": []
+          }
+        ],
+        "summary": "Destroy a session",
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/handshake": {
+      "post": {
+        "deprecated": true,
+        "description": "Deprecated in this spec as per implementation guidance. You should provide either Bearer authentication, or auth token parameters.",
+        "parameters": [
+          {
+            "description": "Passphrase (timestamp + password hash) or API key. Required unless using BearerAuth.",
+            "in": "query",
+            "name": "auth",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Username (required for login/password authentication).",
+            "in": "query",
+            "name": "user",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "UNIX time used in seed of password hash (required for login/password authentication).",
+            "in": "query",
+            "name": "timestamp",
+            "required": false,
+            "schema": {
               "type": "integer"
             }
           },
           {
+            "description": "API version the client understands.",
             "in": "query",
-            "name": "all",
+            "name": "version",
             "required": false,
             "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
@@ -2552,14 +3035,27 @@
                 "schema": {
                   "type": "object"
                 }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
               }
             },
-            "description": "Bookmark object/array"
+            "description": "Session info or error"
           }
         },
-        "summary": "Get bookmark(s) by object id and type",
+        "security": [
+          {
+            "ApiKeyAuthHeader": []
+          },
+          {
+            "ApiKeyAuthQuery": []
+          }
+        ],
+        "summary": "Authenticate and start a session (deprecated)",
         "tags": [
-          "Bookmarks"
+          "Authentication"
         ]
       }
     },
@@ -2872,7 +3368,7 @@
         ]
       }
     },
-    "/labels/{label_id}/get_external_metadata": {
+    "/labels/{label_id}/fetch-metadata": {
       "get": {
         "parameters": [
           {
@@ -2903,42 +3399,148 @@
         ]
       }
     },
-    "/last_shouts": {
+    "/labels/search": {
       "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "label-search",
         "parameters": [
           {
+            "description": "and, or (whether to match one rule or all)",
             "in": "query",
-            "name": "username",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
             "required": false,
             "schema": {
               "type": "string"
             }
           },
           {
+            "description": "Operator for rule 2",
             "in": "query",
-            "name": "limit",
+            "name": "rule_2_operator",
             "required": false,
             "schema": {
-              "type": "integer"
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Shout list"
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
           }
         },
-        "summary": "Get latest shouts",
-        "tags": [
-          "Social"
-        ]
+        "summary": "Search for media entities using rule triplets"
       }
     },
     "/licenses": {
@@ -3618,8 +4220,9 @@
         ]
       }
     },
-    "/now_playing": {
+    "/me": {
       "get": {
+        "parameters": [],
         "responses": {
           "200": {
             "content": {
@@ -3629,12 +4232,220 @@
                 }
               }
             },
-            "description": "Now playing list"
+            "description": "User array"
           }
         },
-        "summary": "Get what is currently being played by all users",
+        "summary": "Get information about your own user account",
         "tags": [
-          "Now Playing"
+          "Users"
+        ]
+      }
+    },
+    "/me/playlists": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "exact",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "add",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "update",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Playlist list"
+          }
+        },
+        "summary": "List playlists for the current user context",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/me/smartlists": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "exact",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "add",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "update",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Smartlist list"
+          }
+        },
+        "summary": "List smartlists for the current user context",
+        "tags": [
+          "Playlists"
         ]
       }
     },
@@ -3685,6 +4496,9 @@
           },
           {
             "ApiKeyAuthHeader": []
+          },
+          {
+            "ApiKeyAuthQuery": []
           }
         ],
         "summary": "Ping server and get status/version",
@@ -4234,6 +5048,66 @@
         ]
       }
     },
+    "/playlists/{playlist_id}/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "playlist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bitrate",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stats",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Binary file response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "416": {
+            "description": "Range not satisfiable"
+          }
+        },
+        "summary": "Download a media file (binary)",
+        "tags": [
+          "Streaming and Downloads"
+        ]
+      }
+    },
     "/playlists/{playlist_id}/flag": {
       "post": {
         "parameters": [
@@ -4317,14 +5191,6 @@
           {
             "in": "path",
             "name": "playlist_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
             "required": true,
             "schema": {
               "type": "string"
@@ -4590,6 +5456,366 @@
         ]
       }
     },
+    "/playlists/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "playlist-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/playlists/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
+        ]
+      }
+    },
+    "/podcast_episodes/deleted": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Deleted podcast episodes list"
+          }
+        },
+        "summary": "List deleted podcast episodes",
+        "tags": [
+          "Maintenance"
+        ]
+      }
+    },
+    "/podcast_episodes/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
+        ]
+      }
+    },
     "/podcast-episodes/{episode_id}": {
       "delete": {
         "parameters": [
@@ -4645,6 +5871,66 @@
         "summary": "Get podcast episode by ID",
         "tags": [
           "Podcasts"
+        ]
+      }
+    },
+    "/podcast-episodes/{episode_id}/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bitrate",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stats",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Binary file response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "416": {
+            "description": "Range not satisfiable"
+          }
+        },
+        "summary": "Download a media file (binary)",
+        "tags": [
+          "Streaming and Downloads"
         ]
       }
     },
@@ -4725,6 +6011,215 @@
         "summary": "Stream a media file (binary)",
         "tags": [
           "Streaming and Downloads"
+        ]
+      }
+    },
+    "/podcast-episodes/{podcast_episode_id}/bookmark": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "podcast_episode_id",
+            "in": "path",
+            "name": "podcast_episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "summary": "Delete a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "podcast_episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Get bookmark by ID",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "description": "podcast_episode_id",
+            "in": "path",
+            "name": "podcast_episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark array"
+          }
+        },
+        "summary": "Edit a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "description": "podcast_episode_id",
+            "in": "path",
+            "name": "podcast_episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Create a bookmark",
+        "tags": [
+          "Bookmarks"
         ]
       }
     },
@@ -4854,6 +6349,150 @@
         "tags": [
           "Shares"
         ]
+      }
+    },
+    "/podcast-episodes/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "podcast-episode-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
       }
     },
     "/podcasts": {
@@ -5371,6 +7010,239 @@
         ]
       }
     },
+    "/podcasts/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "podcast-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/podcasts/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
+        ]
+      }
+    },
     "/preferences": {
       "put": {
         "parameters": [
@@ -5537,6 +7409,66 @@
           }
         },
         "summary": "Edit a preference value",
+        "tags": [
+          "Preferences"
+        ]
+      }
+    },
+    "/preferences/{preference_name}/system": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "preference_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Preference array"
+          }
+        },
+        "summary": "Get a server preference by name (Admin)",
+        "tags": [
+          "Preferences"
+        ]
+      }
+    },
+    "/preferences/{preference_name}/user": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "preference_name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Preference array"
+          }
+        },
+        "summary": "Get a user preference by name",
         "tags": [
           "Preferences"
         ]
@@ -5893,86 +7825,6 @@
         "tags": [
           "Search",
           "Songs"
-        ]
-      }
-    },
-    "/search/{search_id}/stream": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "search_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "bitrate",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "format",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "length",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "stats",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Binary stream response"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "416": {
-            "description": "Range not satisfiable"
-          }
-        },
-        "summary": "Stream a media file (binary)",
-        "tags": [
-          "Streaming and Downloads"
         ]
       }
     },
@@ -6360,6 +8212,66 @@
         ]
       }
     },
+    "/smartlists/{smartlist_id}/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "smartlist_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bitrate",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stats",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Binary file response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "416": {
+            "description": "Range not satisfiable"
+          }
+        },
+        "summary": "Download a media file (binary)",
+        "tags": [
+          "Streaming and Downloads"
+        ]
+      }
+    },
     "/smartlists/{smartlist_id}/flag": {
       "post": {
         "parameters": [
@@ -6408,14 +8320,6 @@
           {
             "in": "path",
             "name": "smartlist_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
             "required": true,
             "schema": {
               "type": "string"
@@ -6635,6 +8539,150 @@
         ]
       }
     },
+    "/smartlists/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "smartlist-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
     "/songs": {
       "get": {
         "parameters": [
@@ -6819,6 +8867,306 @@
         ]
       }
     },
+    "/songs/{song_id}/bookmark": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "song_id",
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "summary": "Delete a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Get bookmark by ID",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "description": "song_id",
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark array"
+          }
+        },
+        "summary": "Edit a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "description": "song_id",
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Create a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      }
+    },
+    "/songs/{song_id}/download": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bitrate",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stats",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Binary file response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "416": {
+            "description": "Range not satisfiable"
+          }
+        },
+        "summary": "Download a media file (binary)",
+        "tags": [
+          "Streaming and Downloads"
+        ]
+      }
+    },
+    "/songs/{song_id}/fetch-metadata": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "External metadata array"
+          }
+        },
+        "summary": "Get external metadata for a song",
+        "tags": [
+          "Songs",
+          "Utilities"
+        ]
+      }
+    },
     "/songs/{song_id}/flag": {
       "post": {
         "parameters": [
@@ -6858,83 +9206,6 @@
         "summary": "Flag or unflag an item as favourite",
         "tags": [
           "Ratings and Flags"
-        ]
-      }
-    },
-    "/songs/{song_id}/get_external_metadata": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "song_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "External metadata array"
-          }
-        },
-        "summary": "Get external metadata for a song",
-        "tags": [
-          "Songs",
-          "Utilities"
-        ]
-      }
-    },
-    "/songs/{song_id}/get_similar": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "song_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Similar list"
-          }
-        },
-        "summary": "Get similar songs",
-        "tags": [
-          "Songs"
         ]
       }
     },
@@ -7020,7 +9291,7 @@
         ]
       }
     },
-    "/songs/{song_id}/record_play": {
+    "/songs/{song_id}/record-play": {
       "post": {
         "parameters": [
           {
@@ -7119,6 +9390,52 @@
         "summary": "Create a public share URL",
         "tags": [
           "Shares"
+        ]
+      }
+    },
+    "/songs/{song_id}/similar": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Similar list"
+          }
+        },
+        "summary": "Get similar songs",
+        "tags": [
+          "Songs"
         ]
       }
     },
@@ -7233,12 +9550,254 @@
         ]
       }
     },
-    "/stats/{filter}": {
+    "/songs/{song_id}/update-tags": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "song_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Update object metadata from tags",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/songs/deleted": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Deleted songs list"
+          }
+        },
+        "summary": "List deleted songs",
+        "tags": [
+          "Maintenance"
+        ]
+      }
+    },
+    "/songs/lookup/url-to-song": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Song object"
+          }
+        },
+        "summary": "Convert an Ampache URL back to a song object",
+        "tags": [
+          "Utilities"
+        ]
+      }
+    },
+    "/songs/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "song-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/songs/stats": {
       "get": {
         "parameters": [
           {
             "description": "newest, highest, frequent, recent, forgotten, flagged, random",
-            "in": "path",
+            "in": "query",
             "name": "filter",
             "required": true,
             "schema": {
@@ -7251,24 +9810,6 @@
                 "forgotten",
                 "flagged",
                 "random"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "description": "song, album, artist, video, playlist, podcast, podcast_episode",
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "album",
-                "artist",
-                "video",
-                "playlist",
-                "podcast",
-                "podcast_episode"
               ],
               "type": "string"
             }
@@ -7337,422 +9878,6 @@
         "summary": "Get stats (song/album/artist etc) by type and filter",
         "tags": [
           "Browsing, Indexes and Lists"
-        ]
-      }
-    },
-    "/system-preferences/{preference_name}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "preference_name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Preference array"
-          }
-        },
-        "summary": "Get a server preference by name (Admin)",
-        "tags": [
-          "Preferences"
-        ]
-      }
-    },
-    "/update_art/{object_id}": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "object_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "podcast"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "overwrite",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            },
-            "description": "Updated"
-          }
-        },
-        "summary": "Update art for an object (Catalog Manager)",
-        "tags": [
-          "Utilities"
-        ]
-      }
-    },
-    "/update_from_tags/{object_id}": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "object_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": true,
-            "schema": {
-              "enum": [
-                "song",
-                "artist",
-                "album"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            },
-            "description": "Updated"
-          }
-        },
-        "summary": "Update object metadata from tags",
-        "tags": [
-          "Utilities"
-        ]
-      }
-    },
-    "/url_to_song": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "filter",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Song object"
-          }
-        },
-        "summary": "Convert an Ampache URL back to a song object",
-        "tags": [
-          "Utilities"
-        ]
-      }
-    },
-    "/user": {
-      "get": {
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "User array"
-          }
-        },
-        "summary": "Get information about your own user account",
-        "tags": [
-          "Users"
-        ]
-      }
-    },
-    "/user_playlists": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "filter",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "exact",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "add",
-            "required": false,
-            "schema": {
-              "format": "date",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "update",
-            "required": false,
-            "schema": {
-              "format": "date",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cond",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Playlist list"
-          }
-        },
-        "summary": "List playlists for the current user context",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/user_smartlists": {
-      "get": {
-        "parameters": [
-          {
-            "in": "query",
-            "name": "filter",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "exact",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "add",
-            "required": false,
-            "schema": {
-              "format": "date",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "update",
-            "required": false,
-            "schema": {
-              "format": "date",
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "cond",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Smartlist list"
-          }
-        },
-        "summary": "List smartlists for the current user context",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/user-preferences/{preference_name}": {
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "preference_name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Preference array"
-          }
-        },
-        "summary": "Get a user preference by name",
-        "tags": [
-          "Preferences"
         ]
       }
     },
@@ -8261,6 +10386,246 @@
         ]
       }
     },
+    "/users/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "user-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/users/social/friends-timeline": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "since",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Activity list"
+          }
+        },
+        "summary": "Get current user's friends timeline",
+        "tags": [
+          "Social"
+        ]
+      }
+    },
+    "/users/social/last-shouts": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Shout list"
+          }
+        },
+        "summary": "Get latest shouts",
+        "tags": [
+          "Social"
+        ]
+      }
+    },
+    "/users/social/now-playing": {
+      "get": {
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Now playing list"
+          }
+        },
+        "summary": "Get what is currently being played by all users",
+        "tags": [
+          "Now Playing"
+        ]
+      }
+    },
     "/videos": {
       "get": {
         "parameters": [
@@ -8362,6 +10727,215 @@
         "summary": "Get video by ID",
         "tags": [
           "Videos"
+        ]
+      }
+    },
+    "/videos/{video_id}/bookmark": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "video_id",
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "summary": "Delete a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Get bookmark by ID",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "description": "video_id",
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark array"
+          }
+        },
+        "summary": "Edit a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "description": "video_id",
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Create a bookmark",
+        "tags": [
+          "Bookmarks"
         ]
       }
     },
@@ -8490,6 +11064,277 @@
         "summary": "Create a public share URL",
         "tags": [
           "Shares"
+        ]
+      }
+    },
+    "/videos/deleted": {
+      "get": {
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Deleted videos list"
+          }
+        },
+        "summary": "List deleted videos",
+        "tags": [
+          "Maintenance"
+        ]
+      }
+    },
+    "/videos/search": {
+      "get": {
+        "description": "Provide operator plus one or more rule triplets. At minimum, rule_1, rule_1_operator, rule_1_input are required. Additional rules may be supplied as rule_2, rule_2_operator, rule_2_input, etc.",
+        "operationId": "video-search",
+        "parameters": [
+          {
+            "description": "and, or (whether to match one rule or all)",
+            "in": "query",
+            "name": "operator",
+            "required": true,
+            "schema": {
+              "enum": [
+                "and",
+                "or"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "0, 1 (random order of results; default to 0)",
+            "in": "query",
+            "name": "random",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return results starting from this index position",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 1",
+            "in": "query",
+            "name": "rule_1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 1",
+            "in": "query",
+            "name": "rule_1_operator",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 1",
+            "in": "query",
+            "name": "rule_1_input",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 2",
+            "in": "query",
+            "name": "rule_2",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 2",
+            "in": "query",
+            "name": "rule_2_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 2",
+            "in": "query",
+            "name": "rule_2_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rule field/key for rule 3",
+            "in": "query",
+            "name": "rule_3",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Operator for rule 3",
+            "in": "query",
+            "name": "rule_3_operator",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Input value for rule 3",
+            "in": "query",
+            "name": "rule_3_input",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "summary": "Search for media entities using rule triplets"
+      }
+    },
+    "/videos/stats": {
+      "get": {
+        "parameters": [
+          {
+            "description": "newest, highest, frequent, recent, forgotten, flagged, random",
+            "in": "query",
+            "name": "filter",
+            "required": true,
+            "schema": {
+              "default": "random",
+              "enum": [
+                "newest",
+                "highest",
+                "frequent",
+                "recent",
+                "forgotten",
+                "flagged",
+                "random"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cond",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Stats result"
+          }
+        },
+        "summary": "Get stats (song/album/artist etc) by type and filter",
+        "tags": [
+          "Browsing, Indexes and Lists"
         ]
       }
     }
