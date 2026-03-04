@@ -10410,10 +10410,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "username",
+            "name": "user_id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -10438,10 +10438,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "username",
+            "name": "user_id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -10620,10 +10620,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "username",
+            "name": "user_id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -10648,10 +10648,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "username",
+            "name": "user_id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
