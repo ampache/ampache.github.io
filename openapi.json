@@ -5761,6 +5761,215 @@
         ]
       }
     },
+    "/podcast-episodes/{episode_id}/bookmark": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "episode_id",
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "summary": "Delete a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Get bookmark by ID",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "description": "episode_id",
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark array"
+          }
+        },
+        "summary": "Edit a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      },
+      "put": {
+        "parameters": [
+          {
+            "description": "episode_id",
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bookmark object"
+          }
+        },
+        "summary": "Create a bookmark",
+        "tags": [
+          "Bookmarks"
+        ]
+      }
+    },
     "/podcast-episodes/{episode_id}/download": {
       "get": {
         "parameters": [
@@ -5818,6 +6027,48 @@
         "summary": "Download a media file (binary)",
         "tags": [
           "Streaming and Downloads"
+        ]
+      }
+    },
+    "/podcast-episodes/{episode_id}/flag": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "flag",
+            "required": true,
+            "schema": {
+              "enum": [
+                0,
+                1
+              ],
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Updated"
+          }
+        },
+        "summary": "Flag or unflag an item as favourite",
+        "tags": [
+          "Ratings and Flags"
         ]
       }
     },
@@ -5963,6 +6214,92 @@
         ]
       }
     },
+    "/podcast-episodes/{episode_id}/rate": {
+      "post": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rating",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            },
+            "description": "Success"
+          }
+        },
+        "summary": "Rate a library item",
+        "tags": [
+          "Ratings and Flags"
+        ]
+      }
+    },
+    "/podcast-episodes/{episode_id}/share": {
+      "post": {
+        "parameters": [
+          {
+            "description": "UID of object you are sharing",
+            "in": "path",
+            "name": "episode_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "description",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "days to keep active",
+            "in": "query",
+            "name": "expires",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Share created"
+          }
+        },
+        "summary": "Create a public share URL",
+        "tags": [
+          "Shares"
+        ]
+      }
+    },
     "/podcast-episodes/{episode_id}/stream": {
       "get": {
         "parameters": [
@@ -6040,343 +6377,6 @@
         "summary": "Stream a media file (binary)",
         "tags": [
           "Streaming and Downloads"
-        ]
-      }
-    },
-    "/podcast-episodes/{podcast_episode_id}/bookmark": {
-      "delete": {
-        "parameters": [
-          {
-            "description": "podcast_episode_id",
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "client",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            },
-            "description": "Success"
-          }
-        },
-        "summary": "Delete a bookmark",
-        "tags": [
-          "Bookmarks"
-        ]
-      },
-      "get": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Bookmark object"
-          }
-        },
-        "summary": "Get bookmark by ID",
-        "tags": [
-          "Bookmarks"
-        ]
-      },
-      "patch": {
-        "parameters": [
-          {
-            "description": "podcast_episode_id",
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "position",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "client",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Bookmark array"
-          }
-        },
-        "summary": "Edit a bookmark",
-        "tags": [
-          "Bookmarks"
-        ]
-      },
-      "put": {
-        "parameters": [
-          {
-            "description": "podcast_episode_id",
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "position",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "client",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "include",
-            "required": false,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Bookmark object"
-          }
-        },
-        "summary": "Create a bookmark",
-        "tags": [
-          "Bookmarks"
-        ]
-      }
-    },
-    "/podcast-episodes/{podcast_episode_id}/flag": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "flag",
-            "required": true,
-            "schema": {
-              "enum": [
-                0,
-                1
-              ],
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            },
-            "description": "Updated"
-          }
-        },
-        "summary": "Flag or unflag an item as favourite",
-        "tags": [
-          "Ratings and Flags"
-        ]
-      }
-    },
-    "/podcast-episodes/{podcast_episode_id}/rate": {
-      "post": {
-        "parameters": [
-          {
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "rating",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SuccessResponse"
-                }
-              }
-            },
-            "description": "Success"
-          }
-        },
-        "summary": "Rate a library item",
-        "tags": [
-          "Ratings and Flags"
-        ]
-      }
-    },
-    "/podcast-episodes/{podcast_episode_id}/share": {
-      "post": {
-        "parameters": [
-          {
-            "description": "UID of object you are sharing",
-            "in": "path",
-            "name": "podcast_episode_id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "description",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "days to keep active",
-            "in": "query",
-            "name": "expires",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Share created"
-          }
-        },
-        "summary": "Create a public share URL",
-        "tags": [
-          "Shares"
         ]
       }
     },
