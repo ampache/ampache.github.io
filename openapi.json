@@ -7800,7 +7800,6 @@
     },
     "/goodbye": {
       "post": {
-        "deprecated": true,
         "description": "Destroy auth session.",
         "parameters": [
           {
