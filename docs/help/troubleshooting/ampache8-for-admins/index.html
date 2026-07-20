@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Ampache8 for Admins | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/docs/help/troubleshooting/ampache8-for-admins"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ampache8 for Admins | Ampache"><meta data-rh="true" name="description" content="Ampache8 for Admins"><meta data-rh="true" property="og:description" content="Ampache8 for Admins"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-admins"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-admins" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-admins" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Wiki","item":"https://ampache.org/docs/"},{"@type":"ListItem","position":2,"name":"Help","item":"https://ampache.org/docs/help/"},{"@type":"ListItem","position":3,"name":"Ampache8 for Admins","item":"https://ampache.org/docs/help/troubleshooting/ampache8-for-admins"}]}</script><link rel="stylesheet" href="/assets/css/styles.5c28501c.css">
-<script src="/assets/js/runtime~main.dae78163.js" defer="defer"></script>
-<script src="/assets/js/main.16ee63b2.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.4d805745.js" defer="defer"></script>
+<script src="/assets/js/main.f01ff9c1.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -42,7 +42,7 @@
 <p>Ampache 7.10.0 added the downgrade path from Ampache8 so make sure you are on the latest Ampache7 release before trying it out.</p>
 <p>To go back, check out your Ampache7 branch and run the update command; the database will be downgraded to match your version.</p>
 <p><code>php bin/cli admin:updateDatabase -e</code></p>
-<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/db7bcbdb-de94-4db2-86a3-2151646ae877" alt="image" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="image" src="/assets/images/db7bcbdb-de94-4db2-86a3-2151646ae877-1b30e561f71e5b3fda4ee410ce728c25.png" width="609" height="170" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="php-version-support">PHP Version support<a href="#php-version-support" class="hash-link" aria-label="Direct link to PHP Version support" title="Direct link to PHP Version support" translate="no">​</a></h2>
 <p>The first major change is that Ampache8 supports PHP8.5+ <strong>ONLY</strong>!</p>
 <p>Builds will no longer support other versions. Stay on Ampache7 until you can move your server.</p>
@@ -85,7 +85,7 @@
 <p>Enable <code>oidc_auto_redirect</code> to skip the local login form entirely; the local form stays reachable at <code>login.php?force_display=1</code>.</p>
 <p>Point <code>logout_redirect</code> at your provider&#x27;s <code>end_session_endpoint</code> to sign out of the provider as well.</p>
 <p><strong>NOTE</strong> OIDC users can not authenticate with a username and password, so give them an API key for API clients. (<code>user_create_apikey</code> will do this automatically for new users)</p>
-<p><strong>TODO</strong> login page showing the &quot;Sign in with OpenID Connect&quot; button below the regular login form.</p>
+<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/721d22f5-ebbe-411a-9f0b-fadb71eed66d" alt="image" class="img_ev3q"></p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="updated-captcha-with-ocr-testing">Updated captcha with OCR testing<a href="#updated-captcha-with-ocr-testing" class="hash-link" aria-label="Direct link to Updated captcha with OCR testing" title="Direct link to Updated captcha with OCR testing" translate="no">​</a></h2>
 <p>The old easycaptcha code has finally been replaced with <a href="https://github.com/Gregwar/Captcha/" target="_blank" rel="noopener noreferrer" class="">Gregwar/Captcha</a>.</p>
 <p>The library will generate a picture and then test it by using <code>convert</code> and <code>ocrad</code> to read the file.</p>
@@ -104,7 +104,8 @@
 <li class="">Each catalog&#x27;s action dropdown gains a <strong>Scan Folders</strong> action</li>
 <li class="">The Manage Catalogs page gains a <strong>Scan All Folders</strong> action</li>
 </ul>
-<p><strong>TODO</strong> admin catalog page showing the catalog action dropdown with the new Scan Folders action selected.</p>
+<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/a19506c4-c246-43d4-9616-f9f07aef2ae2" alt="image" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://github.com/user-attachments/assets/1c50a3e9-7b2d-4262-a7b5-87ad2c1b53a3" alt="image" class="img_ev3q"></p>
 <p>The sidebar <strong>Folders</strong> link only appears once the folder table has data and the <code>show_folder</code> preference is enabled.</p>
 <p>WebDAV browsing has been rewritten on top of the folder tree, so WebDAV clients now see your real folder hierarchy.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-play2-stream-action-has-been-removed">The play2 stream action has been removed<a href="#the-play2-stream-action-has-been-removed" class="hash-link" aria-label="Direct link to The play2 stream action has been removed" title="Direct link to The play2 stream action has been removed" translate="no">​</a></h2>
