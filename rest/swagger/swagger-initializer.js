@@ -3,7 +3,17 @@ window.onload = function() {
 
   // the following lines will be replaced by docker/configurator, when it runs in a docker-container
   window.ui = SwaggerUIBundle({
-    url: "https://ampache.org/openapi.json",
+    urls: [
+      {
+        url: "https://ampache.org/openapi.json",
+        name: "Ampache API 8 (current)"
+      },
+      {
+        url: "https://ampache.org/openapi-6.json",
+        name: "Ampache API 6"
+      }
+    ],
+    "urls.primaryName": "Ampache API 8 (current)",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
