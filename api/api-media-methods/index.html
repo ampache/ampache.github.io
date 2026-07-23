@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Media Methods | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-media-methods"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Media Methods | Ampache"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-media-methods"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-media-methods" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"Media Methods","item":"https://ampache.org/api/api-media-methods"}]}</script><link rel="stylesheet" href="/assets/css/styles.5c28501c.css">
-<script src="/assets/js/runtime~main.c519b67b.js" defer="defer"></script>
-<script src="/assets/js/main.0b9bd259.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.16af65ae.js" defer="defer"></script>
+<script src="/assets/js/main.526001df.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -16,16 +16,16 @@
 <p>This page will document a few things about how playback works and what a client can expect from Ampache.</p>
 <p>There are 2 binary data methods used for basic playback function:</p>
 <ul>
-<li class="">stream (<a class="" href="/api/api-json-methods#stream">json</a> and <a class="" href="/api/api-xml-methods#stream">xml</a>)</li>
-<li class="">download (<a class="" href="/api/api-json-methods#download">json</a> and <a class="" href="/api/api-xml-methods#download">xml</a>)</li>
+<li class="">stream <a href="https://ampache.org/api/api-json-methods#stream" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#stream" target="_blank" rel="noopener noreferrer" class="">xml</a></li>
+<li class="">download <a href="https://ampache.org/api/api-json-methods#download" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#download" target="_blank" rel="noopener noreferrer" class="">xml</a></li>
 </ul>
 <p>And there are 3 helper functions which allow you to manage playback history and state but do not return media.</p>
 <ul>
-<li class="">scrobble (<a class="" href="/api/api-json-methods#scrobble">json</a> and <a class="" href="/api/api-xml-methods#scrobble">xml</a>)</li>
-<li class="">record_play (<a class="" href="/api/api-json-methods#record_play">json</a> and <a class="" href="/api/api-xml-methods#record_play">xml</a>)</li>
-<li class="">player (Ampache 6.4.0+) (<a class="" href="/api/api-json-methods#player">json</a> and <a class="" href="/api/api-xml-methods#player">xml</a>)</li>
+<li class="">scrobble <a href="https://ampache.org/api/api-json-methods#scrobble" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#scrobble" target="_blank" rel="noopener noreferrer" class="">xml</a></li>
+<li class="">record_play <a href="https://ampache.org/api/api-json-methods#record_play" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#record_play" target="_blank" rel="noopener noreferrer" class="">xml</a></li>
+<li class="">player (Ampache 6.4.0+) <a href="https://ampache.org/api/api-json-methods#player" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#player" target="_blank" rel="noopener noreferrer" class="">xml</a></li>
 </ul>
-<p>Finally, you can also call the function now_playing to get details about what your user is currently stremaing. (<a class="" href="/api/api-json-methods#now_playing">json</a> and <a class="" href="/api/api-xml-methods#now_playing">xml</a>)</p>
+<p>Finally, you can also call the function now_playing to get details about what your user is currently stremaing. (<a href="https://ampache.org/api/api-json-methods#now_playing" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#now_playing" target="_blank" rel="noopener noreferrer" class="">xml</a>)</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="explaining-stream">Explaining stream<a href="#explaining-stream" class="hash-link" aria-label="Direct link to Explaining stream" title="Direct link to Explaining stream" translate="no">​</a></h2>
 <p>Stream is used to play a song in the same way as the Webplayer.</p>
 <p>The URL generated by stream will match the URL property in all song object repsonses</p>
@@ -47,7 +47,7 @@
 <li class="">Play counts are <strong>NOT</strong> incremented.</li>
 </ul>
 <p>Download is used for caching files without the server thinking you&#x27;ve played 40 songs in 3 minutes.</p>
-<p>Use the helper functions when playing downloads so you can inform the server when you actually play the files you download.</p>
+<p>Use the helper functions when playing downloads so you can informa the server when you actually play the files you download.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-ampache-media-playback-process">The Ampache media playback process<a href="#the-ampache-media-playback-process" class="hash-link" aria-label="Direct link to The Ampache media playback process" title="Direct link to The Ampache media playback process" translate="no">​</a></h2>
 <p>Stat checks happen every time you call a <code>stream</code> or <code>download</code> <strong>URL</strong> (including part stream content-range calls)</p>
 <p>e.g. <code>https://music.com.au/play/index.php?ssid=cfj3f237d563f479f5223k23189dbb34&amp;type=song&amp;oid=54&amp;uid=4&amp;player=api&amp;name=Synthetic%20-%20Red-GreenSmoke.mp3</code></p>
@@ -57,15 +57,13 @@
 <p>If you cache your files locally with <code>download</code> or are using a different client you can use the helper functions to notify the server.</p>
 <p>The Ampache config file also allows you configure what you consider to be a skip.</p>
 <p>The <code>skip_timer</code> setting is what the server uses to decide whether the new play is going to override the last play.</p>
-<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">; Skip Timer Threshold</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; This allows custom times to decide when a track is skipped</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; Allows an integer to denote seconds, or a float to denote percentage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; POSSIBLE VALUES:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; 20 = 20 seconds.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; 0.3 = 30%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; DEFAULT: 20</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">;skip_timer = 20</span><br></div></code></pre></div></div>
+<div class="language-TXT language-txt codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-txt codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">; Skip Timer Threshold</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; This allows custom times to decide when a track is skipped</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; Allows an integer to denote seconds, or a float to denote percentage</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; POSSIBLE VALUES:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; 20 = 20 seconds.</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; 0.3 = 30%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">; DEFAULT: 20</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">;skip_timer = 20</span><br></div></code></pre></div></div>
 <p>Example, when using the default settings:</p>
 <ul>
 <li class="">You stream TRACK1</li>
-<li class="">TRACK1 is recorded as a &#x27;stream&#x27;</li>
-<li class="">You start to stream TRACK2 10 seconds after TRACK1 started</li>
-<li class="">The &#x27;stream&#x27; for TRACK1 will change to a &#x27;skip&#x27;</li>
-<li class="">TRACK2 is now recorded as a &#x27;stream&#x27;</li>
-<li class="">TRACK2 is recorded as your current <code>now_playing</code> track.</li>
+<li class="">You start to stream TRACK2 within the 20 seconds after TRACK1 started</li>
+<li class="">TRACK1 will change to a skip</li>
+<li class="">TRACK2 will be marked as your current <code>now_playing</code> track.</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="explaining-scrobble">Explaining scrobble<a href="#explaining-scrobble" class="hash-link" aria-label="Direct link to Explaining scrobble" title="Direct link to Explaining scrobble" translate="no">​</a></h2>
 <p>The <code>scrobble</code> and <code>record_play</code> methods are used for recording plays from saved information/data.</p>
@@ -86,7 +84,7 @@
 <li class="">That mp3 play is <strong>NOT</strong> a <code>stream</code> so I use record_play to set the stream in the database</li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="explaining-player">Explaining player<a href="#explaining-player" class="hash-link" aria-label="Direct link to Explaining player" title="Direct link to Explaining player" translate="no">​</a></h2>
-<p>There is a new method for Ampache 6.4.0+ called player. (<a class="" href="/api/api-json-methods#player">json</a> and <a class="" href="/api/api-xml-methods#player">xml</a>)</p>
+<p>There is a new method for Ampache 6.4.0+ called player. <a href="https://ampache.org/api/api-json-methods#player" target="_blank" rel="noopener noreferrer" class="">json</a> and <a href="https://ampache.org/api/api-xml-methods#player" target="_blank" rel="noopener noreferrer" class="">xml</a></p>
 <p>Player is all about giving the server an active status of what the client is doing.</p>
 <p>Player does a bit more than scrobble and record_play allowing me to do a few more things</p>
 <ul>
