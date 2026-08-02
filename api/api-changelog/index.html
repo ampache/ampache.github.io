@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">API Changelog | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-changelog"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Changelog | Ampache"><meta data-rh="true" name="description" content="API Changelog"><meta data-rh="true" property="og:description" content="API Changelog"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-changelog"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"API Changelog","item":"https://ampache.org/api/api-changelog"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.0f3f0676.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.2b36c758.js" defer="defer"></script>
 <script src="/assets/js/main.06d4fbe4.js" defer="defer"></script>
 </head>
 <body>
@@ -35,6 +35,14 @@
 <li class="">New <code>playlist_remove</code> action (<code>PlaylistRemove8Method</code>)</li>
 </ul>
 </li>
+<li class=""><code>upload</code> (API8 only)<!-- -->
+<ul>
+<li class="">New <code>upload</code> action adds a media file to the catalog named by the <code>upload_catalog</code> preference, so uploading is no longer web-only</li>
+<li class="">The file is sent either as a multipart form field named <code>upl</code>, or as the raw request body with <code>filename</code> naming it</li>
+<li class="">Optional <code>license</code>, <code>artist_id</code>, <code>artist_name</code>, <code>album_id</code> and <code>album_name</code> behave exactly as the web upload form does, including refusing an artist or album owned by another user</li>
+<li class="">Requires the <code>allow_upload</code> preference and the access level named by <code>upload_access_level</code>; a file that fails to be added is removed from the catalog directory again</li>
+</ul>
+</li>
 <li class=""><code>collection</code> (API8 only)<!-- -->
 <ul>
 <li class="">New actions <code>collections</code>, <code>collection</code>, <code>collection_items</code>, <code>collection_create</code>, <code>collection_edit</code>, <code>collection_delete</code>, <code>collection_add</code> and <code>collection_remove</code>. A collection is a hand-curated list of objects of any type, so it is the way to curate anything a playlist cannot hold; the members are not restricted to media</li>
@@ -56,7 +64,13 @@
 </li>
 <li class=""><code>random</code> (API8 only)<!-- -->
 <ul>
-<li class="">New action (<code>RandomMethod</code>) that picks a random <code>song</code>, <code>podcast_episode</code>, or <code>video</code> from the whole library and redirects (302) to its stream url — mirrors <code>stream</code>&#x27;s params (<code>bitrate</code>/<code>format</code>/<code>offset</code>/<code>stats</code>, song only) but takes no <code>filter</code>/<code>id</code>. API8 only: API6 is shared with Ampache7, which does not serve it</li>
+<li class="">New action (<code>Random8Method</code>) that picks a random object and redirects (302) to its stream url — mirrors <code>stream</code>&#x27;s params (<code>bitrate</code>/<code>format</code>/<code>offset</code>/<code>stats</code>, song only). API8 only: API6 is shared with Ampache7, which does not serve it</li>
+<li class=""><code>type</code> takes <code>album</code>, <code>album_artist</code>, <code>album_disk</code>, <code>artist</code>, <code>catalog</code>, <code>favorite</code>, <code>genre</code>, <code>label</code>, <code>playlist</code>, <code>podcast_episode</code>, <code>rating</code>, <code>search</code>, <code>song</code>, <code>song_artist</code> or <code>video</code>; a container type resolves to a random song from within it</li>
+<li class=""><code>genre</code> matches the song&#x27;s own tag, as a song browse does — an album or artist tag is not inherited. <code>label</code> accepts either the artist or the album association recorded in <code>label_asso</code></li>
+<li class=""><code>favorite</code> picks from the songs you have flagged, and <code>rating</code> from the songs you have rated. Both read the song&#x27;s own flag or rating; a flagged album does not make its songs favourites</li>
+<li class=""><strong>NOTE</strong> <code>favorite</code> and <code>rating</code> read <code>filter</code> as a flag or star value rather than an object id — <code>favorite</code>: <code>1</code> or omitted for flagged, <code>0</code> for not flagged; <code>rating</code>: <code>1</code>-<code>5</code> for that many stars or more, <code>0</code> for unrated, omitted for any rated song</li>
+<li class=""><code>filter</code> names that container. <code>artist</code> accepts either artist credit, where <code>song_artist</code> and <code>album_artist</code> narrow it to one</li>
+<li class=""><strong>NOTE</strong> <code>filter</code> is read against the table named by <code>type</code>, and those id spaces overlap — an album id and an album_disk id of the same number are different objects</li>
 </ul>
 </li>
 <li class=""><code>download</code> (API8 only)<!-- -->
