@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Ampache8 for Users | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/docs/help/troubleshooting/ampache8-for-users"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ampache8 for Users | Ampache"><meta data-rh="true" name="description" content="Ampache8 for Users"><meta data-rh="true" property="og:description" content="Ampache8 for Users"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-users"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-users" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/help/troubleshooting/ampache8-for-users" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Wiki","item":"https://ampache.org/docs/"},{"@type":"ListItem","position":2,"name":"Help","item":"https://ampache.org/docs/help/"},{"@type":"ListItem","position":3,"name":"Ampache8 for Users","item":"https://ampache.org/docs/help/troubleshooting/ampache8-for-users"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.e1754c75.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a16fe8a4.js" defer="defer"></script>
 <script src="/assets/js/main.cee54482.js" defer="defer"></script>
 </head>
 <body>
@@ -68,9 +68,12 @@
 <p>Albums, album disks, artists, genres, labels, live streams, playlists, podcasts, episodes, songs and videos are all allowed.</p>
 <p><img decoding="async" loading="lazy" alt="image" src="/assets/images/628337996-fd1ce4ef-b221-4b43-97a2-b1db7b71f67c-5eafc6599692860ffe70820bca425fbe.png" width="1319" height="480" class="img_ev3q"></p>
 <p>A <strong>Create Collection</strong> button on the collections browse makes one. You choose its name, whether it is public or private, and whether it is pinned to a single kind of thing or left mixed. (The playlists browse gained the same <strong>Create Playlist</strong> button, so a playlist no longer has to come into existence as a side effect of adding something to one.)</p>
+<p><strong>TODO IMAGE</strong> the Create Collection dialog, showing the name, public/private and pinned-type fields.</p>
 <p>You can leave a collection mixed or pin it to a single kind of thing, after which it refuses anything else.</p>
 <p>Opening a mixed collection shows one ordered list, each row naming its own type. A collection pinned to a single type is handed to that type&#x27;s own browse instead, so a collection of albums looks like any other album view.</p>
+<p><strong>TODO IMAGE</strong> an open mixed collection, showing rows of different types side by side with the type named on each row.</p>
 <p>The <strong>Add to playlist / collection</strong> menu now offers collections as well as playlists, under their own headings. Only the halves that can take what you are adding are shown, so a genre offers collections alone - a playlist stores the media an item expands to, and a genre expands to nothing on its own. Genres and labels gained that menu for the first time.</p>
+<p><strong>TODO IMAGE</strong> the Add to playlist / collection menu with both the &quot;Playlists&quot; and &quot;Collections&quot; headings visible.</p>
 <p>Adding a smartlist adds the songs it currently matches, since a smartlist is a rule rather than a thing that can be stored in a list.</p>
 <p>A collection is <strong>ordered</strong>. New members go on the end, and a mixed collection can be dragged into a new order and saved with <strong>Save Track Order</strong>, exactly like playlist tracks. A pinned collection is shown through its own type&#x27;s browse, which has no drag handle.</p>
 <p>Remove a member from its row, or several at once with <strong>Multi-Select</strong>. Members are addressed by their place in the list rather than by what they point at, so removing one of two identical members removes the one you picked.</p>
@@ -87,6 +90,8 @@
 <li class=""><code>Ctrl</code>/<code>Cmd</code>+click toggles a row and <code>Shift</code>+click selects a range, anywhere on the row that is not itself a button or a link</li>
 <li class="">A bar stays in view while you scroll, offering Play, Play Next, Play Last, add to the temporary playlist, add to another playlist, and remove from the list</li>
 </ul>
+<p><strong>TODO IMAGE</strong> the View menu open with the Multi-Select option in it.</p>
+<p><strong>TODO IMAGE</strong> a browse with several rows checked and the action bar pinned in view.</p>
 <p>Removing a selection is one request rather than one per row, so a long selection no longer takes a visible moment per entry.</p>
 <p>A mixed collection groups your selection by type before acting on it, so playing a selection of albums and songs together works from the one bar.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-address-bar-shows-the-page-you-are-on">The address bar shows the page you are on<a href="#the-address-bar-shows-the-page-you-are-on" class="hash-link" aria-label="Direct link to The address bar shows the page you are on" title="Direct link to The address bar shows the page you are on" translate="no">​</a></h2>
@@ -94,17 +99,24 @@
 <p>Pages now navigate to their real url (<code>/browse.php?action=album</code>), which means a link can be read, shared and bookmarked.</p>
 <p>Old <code>#</code> bookmarks still work and quietly upgrade themselves to the real url when you open them.</p>
 <p>Clicking the page you are already on no longer re-fetches it.</p>
+<p><strong>TODO IMAGE</strong> the browser address bar showing a real page url such as <code>/browse.php?action=album</code> instead of <code>/index.php</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-top-menu-carries-everything-the-sidebar-does">The top menu carries everything the sidebar does<a href="#the-top-menu-carries-everything-the-sidebar-does" class="hash-link" aria-label="Direct link to The top menu carries everything the sidebar does" title="Direct link to The top menu carries everything the sidebar does" translate="no">​</a></h2>
 <p>If your server uses the optional top menu it now holds the same entries as the light sidebar, gaining <strong>Albums</strong>, <strong>Smartlists</strong>, <strong>Radio</strong> and <strong>Log out</strong>.</p>
 <p><code>Smartlists</code> follows the <code>Hide the search menu in the sidebar</code> preference, and <code>Radio</code> only appears when live streams are enabled.</p>
+<p><strong>TODO IMAGE</strong> the top menu with the new Albums, Smartlists, Radio and Log out entries.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-mini-player-for-small-screens-and-simple-accounts">A mini player for small screens and simple accounts<a href="#a-mini-player-for-small-screens-and-simple-accounts" class="hash-link" aria-label="Direct link to A mini player for small screens and simple accounts" title="Direct link to A mini player for small screens and simple accounts" translate="no">​</a></h2>
 <p>There&#x27;s a new stripped-down <code>/m/</code> page showing just the web player and your <code>home</code> category plugins.</p>
 <p>If your admin locks your account into it you&#x27;ll only ever see that page (your normal access level still decides what data you can reach - it isn&#x27;t an access restriction on its own). Otherwise, look for the new <strong>Mini player</strong> button on the login form, next to <code>Register</code> and <code>Lost Password</code>, to jump there yourself after logging in.</p>
 <p>Logging in always sends you back to whatever page you originally asked for, so old bookmarked links keep working either way.</p>
+<p><strong>TODO IMAGE</strong> the <code>/m/</code> mini player page.</p>
+<p><strong>TODO IMAGE</strong> the login form showing the Mini player button beside Register and Lost Password.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="your-playlist-art-can-be-a-mosaic-now">Your playlist art can be a mosaic now<a href="#your-playlist-art-can-be-a-mosaic-now" class="hash-link" aria-label="Direct link to Your playlist art can be a mosaic now" title="Direct link to Your playlist art can be a mosaic now" translate="no">​</a></h2>
 <p>Automatically generated playlist covers can now be a grid of up to nine covers from the playlist, instead of a single random cover. Playlists with fewer than four distinct covers still get the old single-cover behaviour. Your admin can turn this off if they&#x27;d rather keep the single-cover look.</p>
+<p><strong>TODO IMAGE</strong> a playlists browse showing several mosaic covers.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="per-player-transcoding-preferences">Per-player transcoding preferences<a href="#per-player-transcoding-preferences" class="hash-link" aria-label="Direct link to Per-player transcoding preferences" title="Direct link to Per-player transcoding preferences" translate="no">​</a></h2>
-<p>Your default transcode output format and bitrate live in your Options under <strong>Streaming -&gt; Transcoding</strong>, and now you can override them per player: separate output-format preferences for the Web Player and the API, plus separate bitrate overrides for each (<code>0</code> keeps the site default). There are also new <code>Maximum transcode bitrate</code>/<code>Minimum transcode bitrate</code> preferences if you want to cap or floor your own dynamic downsampling.</p>
+<p>Your default transcode output format and bitrate live in your Options under <strong>Streaming -&gt; Transcoding</strong>, and now you can override them per player: separate output-format preferences for the Web Player and the API, plus separate bitrate overrides for each (<code>0</code> keeps the site default). There are also new <code>Maximum transcode bitrate for dynamic downsampling in bps</code> and <code>Minimum transcode bitrate for dynamic downsampling in bps</code> preferences if you want to cap or floor your own dynamic downsampling.</p>
+<p><strong>NOTE</strong> every bitrate on this page is now in <strong>bits per second</strong>, not kilobits. <code>576000</code> is 576kbps.</p>
+<p><strong>TODO IMAGE</strong> the Streaming -&gt; Transcoding section of the Options page with the new per-player format and bitrate rows.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ampache-on-your-phone">Ampache on your phone<a href="#ampache-on-your-phone" class="hash-link" aria-label="Direct link to Ampache on your phone" title="Direct link to Ampache on your phone" translate="no">​</a></h2>
 <p>The desktop theme now has a proper mobile layout on screens up to 768px wide.</p>
 <ul>
@@ -122,6 +134,7 @@
 <p>The Add-to-playlist and Random item submenus in the right sidebar no longer open on hover.</p>
 <p>Click to open, click an item or anywhere else to close.</p>
 <p>This makes the menus usable on touch screens and stops them vanishing when your mouse slips.</p>
+<p><strong>TODO IMAGE</strong> the right sidebar with the Add-to-playlist submenu open.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="direct-play-is-capped-for-very-large-items">Direct play is capped for very large items<a href="#direct-play-is-capped-for-very-large-items" class="hash-link" aria-label="Direct link to Direct play is capped for very large items" title="Direct link to Direct play is capped for very large items" translate="no">​</a></h2>
 <p>Play buttons on items with thousands of tracks are now hidden past a limit to protect the server.</p>
 <p>The <code>Limit direct play to...</code> preference no longer accepts unlimited; anyone set to unlimited is moved to a 500 track cap.</p>
@@ -142,8 +155,10 @@
 <p>Finding songs that sound alike is also supported, but it needs the AudioMuse plugin set up by your administrator.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-dedicated-subsonic-password">A dedicated Subsonic Password<a href="#a-dedicated-subsonic-password" class="hash-link" aria-label="Direct link to A dedicated Subsonic Password" title="Direct link to A dedicated Subsonic Password" translate="no">​</a></h2>
 <p>You no longer need to hand your API key to a Subsonic client as its &quot;password&quot;. Set a separate <strong>Subsonic Password</strong> from your account page and use that instead - it&#x27;s stored encrypted rather than hashed so token-based Subsonic auth keeps working, and your API key still works too if you&#x27;d rather keep using that.</p>
+<p><strong>TODO IMAGE</strong> the Subsonic Password field on the account page.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="statistics-graphs-are-sharper-and-load-without-an-extra-install">Statistics graphs are sharper and load without an extra install<a href="#statistics-graphs-are-sharper-and-load-without-an-extra-install" class="hash-link" aria-label="Direct link to Statistics graphs are sharper and load without an extra install" title="Direct link to Statistics graphs are sharper and load without an extra install" translate="no">​</a></h2>
 <p>The charts on catalog/statistics pages are now SVG instead of PNG, so they scale to the page and stay sharp on a high-dpi screen. They also no longer depend on your admin having installed an optional non-free library.</p>
+<p><strong>TODO IMAGE</strong> a statistics page graph, ideally beside the old PNG version for comparison.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="upload-page-folder-tree-fixed">Upload page folder tree fixed<a href="#upload-page-folder-tree-fixed" class="hash-link" aria-label="Direct link to Upload page folder tree fixed" title="Direct link to Upload page folder tree fixed" translate="no">​</a></h2>
 <p>The destination folder tree on the upload page shows its folder, checkbox and chevron icons again.</p>
 <p><img decoding="async" loading="lazy" alt="image" src="/assets/images/9f64d419-ee98-412d-961a-22eaa72f20c9-077a850156f2737e42e9866b05f03de5.png" width="761" height="391" class="img_ev3q"></p>
@@ -151,6 +166,7 @@
 <p>Tracks on an album in your wanted list can be previewed again; the old provider&#x27;s api had disappeared and took previews with it.</p>
 <p>Previews now come from iTunes and Deezer, giving you the usual 30 second sample. Your administrator only has to install one of the two plugins, and there is nothing for you to set up or sign in to.</p>
 <p>Neither service knows Ampache&#x27;s MusicBrainz ids, so a track is found by artist and title. A track nothing close is found for simply has no preview, rather than playing you a different song.</p>
+<p><strong>TODO IMAGE</strong> a wanted album track list with the preview play buttons working.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="smaller-fixes-you-might-notice">Smaller fixes you might notice<a href="#smaller-fixes-you-might-notice" class="hash-link" aria-label="Direct link to Smaller fixes you might notice" title="Direct link to Smaller fixes you might notice" translate="no">​</a></h2>
 <ul>
 <li class="">Adding songs to a playlist skips duplicates correctly again</li>
@@ -163,16 +179,21 @@
 <li class=""><code>Allow Ampache API8 responses</code> - enable or disable the new API8 per user</li>
 <li class=""><code>Show &#x27;Folders&#x27; link in the main sidebar</code> - show or hide the Folders browse link</li>
 <li class=""><code>Show &#x27;Collections&#x27; link in the main sidebar</code> - show or hide the Collections browse link</li>
+<li class=""><code>Require a session to listen to my broadcasts</code> - on by default; turn it off to let anyone with the link listen along</li>
 <li class=""><code>Transcode output format - Audio Default</code> / <code>- Video Default</code> / <code>- Web Player (overrides default)</code> / <code>- API (overrides default)</code> - per-player transcode format overrides</li>
-<li class=""><code>Maximum transcode bitrate</code> / <code>Minimum transcode bitrate</code> - caps for your own dynamic downsampling</li>
+<li class=""><code>Maximum transcode bitrate for dynamic downsampling in bps (0 = disabled)</code> / <code>Minimum transcode bitrate for dynamic downsampling in bps</code> - caps for your own dynamic downsampling</li>
 <li class=""><code>Transcode bitrate - Web Player (overrides default)</code> / <code>- API (overrides default)</code> - per-player bitrate overrides</li>
 </ul>
+<p>Your admin may also set <code>Lock this user into the mini player interface</code> on your account; it is an admin-only preference, so it will not appear in your own Options.</p>
 <p>Removed:</p>
 <ul>
-<li class=""><code>Authorize Flash Web Player</code></li>
-<li class=""><code>Authorize JavaScript decoder (Aurora.js) in Web Player</code></li>
-<li class=""><code>Use an alternative playback action for streaming</code> (play2)</li>
+<li class=""><code>Authorize Flash Web Player</code> (<code>webplayer_flash</code>)</li>
+<li class=""><code>Authorize JavaScript decoder (Aurora.js) in Web Player</code> (<code>webplayer_aurora</code>)</li>
+<li class=""><code>Use an alternative playback action for streaming</code> (<code>use_play2</code>)</li>
+<li class=""><code>Authorize HTML5 Web Player</code> (<code>webplayer_html5</code>) - the player is HTML5 unconditionally now</li>
+<li class=""><code>Ajax page load</code> (<code>ajax_load</code>)</li>
 </ul>
+<p><strong>TODO IMAGE</strong> the Options page showing the new Ampache8 preferences.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="if-you-download-ampache-yourself-the-zip-names-are-changing">If you download Ampache yourself, the zip names are changing<a href="#if-you-download-ampache-yourself-the-zip-names-are-changing" class="hash-link" aria-label="Direct link to If you download Ampache yourself, the zip names are changing" title="Direct link to If you download Ampache yourself, the zip names are changing" translate="no">​</a></h2>
 <p>This only matters if you run your own server and grab the release zips; nothing changes for you if someone else looks after it.</p>
 <p>The default download has always been the <code>public</code> build, but its filename still said so. From Ampache9 it won&#x27;t.</p>

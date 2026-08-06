@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Branch Layout | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/docs/development/branch-layout"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Branch Layout | Ampache"><meta data-rh="true" name="description" content="Ampache Branch Layouts"><meta data-rh="true" property="og:description" content="Ampache Branch Layouts"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/docs/development/branch-layout"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/development/branch-layout" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/development/branch-layout" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Wiki","item":"https://ampache.org/docs/"},{"@type":"ListItem","position":2,"name":"Development","item":"https://ampache.org/docs/development/CONTRIBUTING"},{"@type":"ListItem","position":3,"name":"Branch Layout","item":"https://ampache.org/docs/development/branch-layout"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.e1754c75.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.a16fe8a4.js" defer="defer"></script>
 <script src="/assets/js/main.cee54482.js" defer="defer"></script>
 </head>
 <body>
@@ -23,6 +23,7 @@
 <p>Ampache Development has commonly occurred inside the develop repo.</p>
 <p>Develop is still the primary repository and where all people interested in development should start when bug fixing/working on the project.</p>
 <p>The version of the develop repo is <strong>always</strong> develop.</p>
+<p><strong>NOTE</strong> <code>develop</code> currently carries <strong>Ampache8</strong>. There was a period where Ampache8 work lived on a separate <code>develop8</code> branch while <code>develop</code> was Ampache7; that branch is gone. Ampache7 is now maintained on <code>release7</code>/<code>patch7</code>.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="master">master<a href="#master" class="hash-link" aria-label="Direct link to master" title="Direct link to master" translate="no">​</a></h2>
 <p>In the new layout, master is no longer a release branch! There is now an extended process to avoid diverging the code.</p>
 <ul>
@@ -46,8 +47,9 @@
 <p>Edge <strong>must</strong> merge with develop regularly to ensure divergence is kept at a minimum.</p>
 <p>The version of the edge repo is <strong>always</strong> edge.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="release">release<a href="#release" class="hash-link" aria-label="Direct link to release" title="Direct link to release" translate="no">​</a></h2>
-<p>Release branches are created for each major version number of Ampache. (e.g. release4 for Ampache 4.4.0, release5 for Ampache 5.0.0, etc)</p>
-<p>If there is no current release branch for your version (e.g. there is no release6 branch for Ampache 6.0.0) create a new branch using the stable master branch and follow the standard release process.</p>
+<p>Release branches are created for each major version number of Ampache. (e.g. <code>release4</code> for Ampache 4.4.0, <code>release5</code> for Ampache 5.0.0, and so on through <code>release7</code>)</p>
+<p>If there is no current release branch for your version, create a new branch using the stable master branch and follow the standard release process.</p>
+<p>Alternative structure branches follow the same numbering, so a major version has <code>squashed&lt;N&gt;</code> and <code>client&lt;N&gt;</code> branches beside its <code>release&lt;N&gt;</code>. See <a class="" href="/docs/information/which-zip">Which zip?</a> for what each structure is.</p>
 <p>Make sure to only tag the release from the release branch and not master.</p>
 <ul>
 <li class="">For existing release branches complete a pull request and then follow the release process.</li>
