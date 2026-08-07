@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">API Changelog | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-changelog"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Changelog | Ampache"><meta data-rh="true" name="description" content="API Changelog"><meta data-rh="true" property="og:description" content="API Changelog"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-changelog"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"API Changelog","item":"https://ampache.org/api/api-changelog"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.5106fb33.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.1cc9c2e3.js" defer="defer"></script>
 <script src="/assets/js/main.52321f97.js" defer="defer"></script>
 </head>
 <body>
@@ -55,6 +55,21 @@
 <li class=""><code>collection_remove</code> accepts a <code>track</code> position as well as an <code>id</code>/<code>object_type</code> pair, because a position is the only unambiguous address once duplicates are possible. A position removes exactly one member; an object removes every member pointing at it. Either way the remaining positions close up, so they stay dense and 1-based. <code>collection_remove</code> still does not error on a non-member</li>
 <li class="">Both name the member&#x27;s type <code>object_type</code> rather than <code>type</code>, because the REST path already spends <code>type</code> on the resource name and the two would collide in the same query string</li>
 <li class="">REST paths <code>collections</code>, <code>collections/{collection_id}</code> and <code>collections/{collection_id}/items</code></li>
+</ul>
+</li>
+<li class=""><code>playlist_folder</code> (API8 only)<!-- -->
+<ul>
+<li class="">New actions <code>playlist_folders</code>, <code>playlist_folder</code>, <code>playlist_folder_items</code>, <code>playlist_folder_create</code>, <code>playlist_folder_edit</code>, <code>playlist_folder_delete</code>, <code>playlist_folder_add</code> and <code>playlist_folder_remove</code>. A playlist folder organises playlists, smartlists and collections into a tree of arbitrary depth</li>
+<li class="">The tree is <strong>private to each user</strong>, and where a list sits belongs to the pair of you and that list rather than to the list itself. So you may file another user&#x27;s public playlist into your own folder without changing anything for them, and two users can file the same playlist in different places</li>
+<li class="">A list is in exactly one of your folders at a time: filing one that is already filed moves it rather than copying it</li>
+<li class=""><strong>The root is implicit and holds every list you can see that has not been filed elsewhere.</strong> Nothing is stored when a playlist is created, so it appears at your root immediately, and it reappears there when it is taken out of a folder. Address the root as <code>0</code> or <code>/</code></li>
+<li class=""><code>playlist_folders</code> returns the whole tree as one flat list; rebuild the hierarchy from each folder&#x27;s <code>parent</code>, where <code>0</code> is the root. A folder belonging to another user reports <em>not found</em> rather than <em>access denied</em>, so a stranger cannot probe for one</li>
+<li class=""><code>filter</code> takes either a folder id or a name path, so REST paths <code>playlist-folders/{playlist_folder_id}</code> and <code>playlist-folders/Rock/Live</code> both reach the same folder. A folder name may not contain a <code>/</code> for that reason, and must be unique among its siblings — the comparison is case-insensitive, so <code>Rock</code> and <code>rock</code> collide</li>
+<li class=""><code>sort_order</code> is client-assigned and shared by a parent&#x27;s folders and its filed lists, so the two interleave in one ordering space; ties are broken by name. Positions are left exactly as sent rather than renumbered, so gaps are preserved</li>
+<li class=""><code>playlist_folder_edit</code> refuses a move into the folder&#x27;s own subtree, which would otherwise detach the branch</li>
+<li class=""><code>playlist_folder_delete</code> refuses a folder that still holds a child folder or a filed list; the lists themselves are never deleted with it, so a folder is emptied by moving its contents out first</li>
+<li class=""><code>playlist_folder_items</code> returns the members as one flat list under <code>contents</code>, each entry carrying its <code>sort_order</code> and its <code>object_type</code> (<code>playlist</code>, <code>smartlist</code> or <code>collection</code>) with that type&#x27;s own object nested under a property of the same name</li>
+<li class="">REST paths <code>playlist-folders</code>, <code>playlist-folders/{playlist_folder_id}</code>, <code>playlist-folders{path}</code> and <code>playlist-folders/{playlist_folder_id}/items</code></li>
 </ul>
 </li>
 <li class=""><code>sonic_match</code> (API8 only)<!-- -->
@@ -121,7 +136,7 @@
 <ul>
 <li class="">ALL<!-- -->
 <ul>
-<li class="">Passing secrets in the query string is deprecated for privacy (query values leak into server/proxy logs and browser history): the <code>password</code> on <code>register</code>/<code>user_create</code>/<code>user_edit</code>/<code>catalog_add</code> and the <code>handshake</code> <code>auth</code> key should be sent in a request body (or, for <code>auth</code>, the <code>Authorization: Bearer</code> header) — query-string support for these will be removed in <strong>API9</strong></li>
+<li class="">Passing secrets in the query string is deprecated for privacy (query values leak into server/proxy logs and browser history): the <code>password</code> on <code>register</code>/<code>user_create</code>/<code>user_edit</code>/<code>catalog_add</code> and the <code>handshake</code> <code>auth</code> key should be sent in a request body (or, for <code>auth</code>, the <code>Authorization: Bearer</code> header) — the query string keeps working for them, it is simply no longer the recommended way</li>
 <li class="">Version rollover logic reworked for the new 5-version lineup: requests pinned to a disabled API6 now roll forward to API8 (version 7 is explicitly rejected as unsupported)</li>
 <li class="">API8 JSON/XML output now sets real HTTP status codes for errors and empty results (<code>404</code> for empty, <code>Api::getHttpCode()</code>-mapped codes for errors) — API3–6 always returned HTTP 200 with the error embedded in the response body</li>
 <li class="">API8 uses updated action names for a few methods present under legacy naming in API3/4: <code>index</code>/<code>list</code> (not <code>get_indexes</code>), <code>playlist_add</code> (not <code>playlist_add_song</code>), <code>user_edit</code> (not <code>user_update</code>)</li>
@@ -1171,7 +1186,7 @@ API3</li>
 <ul>
 <li class="">API6<!-- -->
 <ul>
-<li class="">playlist_add_song: depreciated and will be removed in <strong>API7</strong> (Use playlist_add)</li>
+<li class="">playlist_add_song: depreciated (Use playlist_add); removed in <strong>API8</strong></li>
 <li class="">share_create: add more valid types (&#x27;playlist&#x27;, &#x27;podcast&#x27;, &#x27;podcast_episode&#x27;, &#x27;video&#x27;)</li>
 <li class="">user: make username optional</li>
 </ul>
@@ -1461,7 +1476,7 @@ API3</li>
 <ul>
 <li class="">Api6<!-- -->
 <ul>
-<li class="">Renamed <code>user_update</code> to <code>user_edit</code> (user_update still works and will be removed in <strong>API7</strong>)</li>
+<li class="">Renamed <code>user_update</code> to <code>user_edit</code> (user_update still works in API6 and older; removed in <strong>API8</strong>)</li>
 </ul>
 </li>
 <li class="">Api5<!-- -->
@@ -1485,7 +1500,7 @@ API3</li>
 <li class="">Return original XML output (that may be malformed) when loadxml fails.</li>
 </ul>
 </li>
-<li class="">Api6::get_indexes: This method is depreciated and will be removed in Ampache <strong>API7</strong> (Use list instead)</li>
+<li class="">Api6::get_indexes: This method is depreciated (Use list instead); removed in <strong>API8</strong></li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="removed-600000">Removed (600000)<a href="#removed-600000" class="hash-link" aria-label="Direct link to Removed (600000)" title="Direct link to Removed (600000)" translate="no">​</a></h3>
 <ul>
@@ -2168,12 +2183,12 @@ API 5.0.0-release will be the first Ampache release to match the release string.
 <li class="">All future 4.x.x API versions will follow the main Ampache version. (420000, 421000, 422000)</li>
 </ul>
 </li>
-<li class="">total_count in the XML API is depreciated and will be removed in API 5.0.0.<!-- -->
+<li class="">total_count in the XML API is depreciated, but it keeps working.<!-- -->
 <ul>
 <li class="">XML can count objects the same was as a JSON array [<a href="https://www.php.net/manual/en/simplexmlelement.count.php" target="_blank" rel="noopener noreferrer" class="">https://www.php.net/manual/en/simplexmlelement.count.php</a>]</li>
 </ul>
 </li>
-<li class="">Genre in songs is depreciated and will be removed in API 5.0.0.<!-- -->
+<li class="">Genre in songs is depreciated, but it keeps working.<!-- -->
 <ul>
 <li class="">Use tag instead of genre, tag provides a genre ID as well as the name.</li>
 </ul>
