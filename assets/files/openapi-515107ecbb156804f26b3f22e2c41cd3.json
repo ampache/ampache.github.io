@@ -509,6 +509,10 @@
             "type": "string",
             "nullable": true
           },
+          "bpm": {
+            "type": "number",
+            "nullable": true
+          },
           "track": {
             "type": "integer"
           },
@@ -668,6 +672,7 @@
           "album",
           "disk",
           "disksubtitle",
+          "bpm",
           "track",
           "filename",
           "genre",
@@ -2092,6 +2097,10 @@
             "type": "integer",
             "nullable": true
           },
+          "bpm": {
+            "type": "number",
+            "nullable": true
+          },
           "catalog": {
             "type": "integer",
             "nullable": true
@@ -2308,6 +2317,7 @@
           "audio_codec",
           "barcode",
           "bitrate",
+          "bpm",
           "catalog",
           "catalog_number",
           "channels",
@@ -81688,9 +81698,9 @@
                       "preference": [
                         {
                           "id": "123",
-                          "name": "ajax_load",
+                          "name": "show_donate",
                           "level": 25,
-                          "description": "Ajax page load",
+                          "description": "Show donate button in footer",
                           "value": "1",
                           "type": "boolean",
                           "category": "interface",
@@ -83165,9 +83175,9 @@
                       "preference": [
                         {
                           "id": 123,
-                          "name": "ajax_load",
+                          "name": "show_donate",
                           "level": 25,
-                          "description": "Ajax page load",
+                          "description": "Show donate button in footer",
                           "value": "1",
                           "type": "boolean",
                           "category": "interface",
@@ -84612,9 +84622,9 @@
                     "summary": "user preference",
                     "value": {
                       "id": "123",
-                      "name": "ajax_load",
+                      "name": "show_donate",
                       "level": 25,
-                      "description": "Ajax page load",
+                      "description": "Show donate button in footer",
                       "value": "1",
                       "type": "boolean",
                       "category": "interface",
@@ -84673,9 +84683,9 @@
                     "summary": "user preference",
                     "value": {
                       "id": "123",
-                      "name": "ajax_load",
+                      "name": "show_donate",
                       "level": 25,
-                      "description": "Ajax page load",
+                      "description": "Show donate button in footer",
                       "value": "1",
                       "type": "boolean",
                       "category": "interface",
@@ -84768,9 +84778,9 @@
                     "summary": "user preference",
                     "value": {
                       "id": "123",
-                      "name": "ajax_load",
+                      "name": "show_donate",
                       "level": 25,
-                      "description": "Ajax page load",
+                      "description": "Show donate button in footer",
                       "value": "1",
                       "type": "boolean",
                       "category": "interface",
@@ -94210,6 +94220,7 @@
                       },
                       "disk": 1,
                       "disksubtitle": null,
+                      "bpm": 128.0,
                       "track": 1,
                       "filename": "/mnt/files-music/ampache-test/music/Warfare 3.0/Creeping Lawler 2/01 - Creeping Lawler 2.mp3",
                       "genre": [],
@@ -95730,6 +95741,7 @@
                       "audio_codec": "mp3",
                       "barcode": "",
                       "bitrate": 177349,
+                      "bpm": 128.0,
                       "catalog": null,
                       "catalog_number": "",
                       "channels": 2,
@@ -95883,9 +95895,9 @@
                       "preference": [
                         {
                           "id": "123",
-                          "name": "ajax_load",
+                          "name": "show_donate",
                           "level": 25,
-                          "description": "Ajax page load",
+                          "description": "Show donate button in footer",
                           "value": "1",
                           "type": "boolean",
                           "category": "interface",
@@ -97638,9 +97650,9 @@
                     "summary": "system preference",
                     "value": {
                       "id": "123",
-                      "name": "ajax_load",
+                      "name": "show_donate",
                       "level": 25,
-                      "description": "Ajax page load",
+                      "description": "Show donate button in footer",
                       "value": "1",
                       "type": "boolean",
                       "category": "interface",
