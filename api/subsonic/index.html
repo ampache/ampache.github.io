@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Subsonic API | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/subsonic"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Subsonic API | Ampache"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/subsonic"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"Subsonic API","item":"https://ampache.org/api/subsonic"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.4ed4e248.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3cbf9adb.js" defer="defer"></script>
 <script src="/assets/js/main.52321f97.js" defer="defer"></script>
 </head>
 <body>
@@ -45,11 +45,13 @@ CI and prompts a re-audit instead of drifting silently.</p>
 then run <code>composer spec:refresh</code> to record it — that rewrites the checksum in the test and the date above together.
 The full procedure is in <code>resources/scripts/api-docs/README.md</code>.</p>
 <p>At the audit date Ampache implements all 87 documented endpoints. Known gaps, all optional response fields with no
-column in the Ampache schema: <code>moods</code>, <code>works</code>, <code>movements</code>, <code>groupings</code>, <code>bitDepth</code>, <code>explicitStatus</code>,
+column in the Ampache schema: <code>works</code>, <code>movements</code>, <code>groupings</code>, <code>bitDepth</code>, <code>explicitStatus</code>,
 <code>isCompilation</code>, <code>disambiguation</code>, <code>fallbackGain</code>, <code>subRole</code>, <code>shortcut</code>. Nothing is awaiting a schema change any
 more: <code>played</code> (<code>800029</code>), <code>positionMs</code>/<code>playbackRate</code>/<code>state</code> on <code>nowPlaying</code> (<code>800032</code>), <code>recordLabels</code>
-(<code>800034</code>) and <code>bpm</code> (<code>800046</code>) each got the column they needed, and <code>lastFmUrl</code> is threaded through the cached
-last.fm results.</p>
+(<code>800034</code>), <code>bpm</code> (<code>800046</code>) and <code>moods</code> (<code>800047</code>) each got the column they needed, and <code>lastFmUrl</code> is threaded
+through the cached last.fm results.</p>
+<p><code>moods</code> is filled from the file tags on a scan, so it is present on a <code>Child</code> and an <code>AlbumID3</code> only once a catalog
+has been scanned and only for files carrying a mood tag. An album&#x27;s moods are derived from its songs.</p>
 <p><code>played</code> is the one worth spelling out: database version <code>800029</code> added a maintained <code>last_played</code> column to every
 table carrying a play counter, written on the same statement that increments it. Songs, albums, videos and podcast
 episodes therefore report <code>played</code> as an ISO 8601 instant, in both json and xml. It is
