@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">API Changelog | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-changelog"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Changelog | Ampache"><meta data-rh="true" name="description" content="API Changelog"><meta data-rh="true" property="og:description" content="API Changelog"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-changelog"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"API Changelog","item":"https://ampache.org/api/api-changelog"}]}</script><link rel="stylesheet" href="/assets/css/styles.7fd5fc53.css">
-<script src="/assets/js/runtime~main.3cbf9adb.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.f95b95fd.js" defer="defer"></script>
 <script src="/assets/js/main.52321f97.js" defer="defer"></script>
 </head>
 <body>
@@ -137,6 +137,19 @@
 <li class="">Album and artist moods are derived from their songs, so they answer <em>which moods are on this album</em> rather than naming a tag of their own</li>
 </ul>
 </li>
+<li class=""><code>advanced_search</code> (API4 and above), <code>search_group</code> (API6 and API8)<!-- -->
+<ul>
+<li class="">A <code>user</code> search takes new <code>name</code>, <code>fullname</code> and <code>email</code> rules; <code>name</code> matches the username, full name or email at once, the same three columns the <code>user</code> browse searches</li>
+<li class="">A <code>user</code> search accepts <code>title</code> as <code>name</code>, so the generic rule <code>search_group</code> sends returns matching users instead of every account</li>
+</ul>
+</li>
+<li class=""><code>shares</code> (API4 and above)<!-- -->
+<ul>
+<li class=""><code>filter</code>/<code>exact</code> and the <code>cond</code> text filters match the title of the shared object; the share browse ignored every filter it was sent before</li>
+<li class="">New <code>name</code> sort ordering shares by the title of the object they point at, with <code>title</code> as an alias. It is the sort <code>shares</code> asks for by default, so the default order changes from insertion order to alphabetical</li>
+<li class="">New <code>object_type</code> and <code>user</code> filters, taking a share type (<code>album</code>, <code>album_disk</code>, <code>artist</code>, <code>playlist</code>, <code>podcast</code>, <code>podcast_episode</code>, <code>search</code>, <code>song</code>, <code>video</code>) and a user id</li>
+</ul>
+</li>
 <li class="">REST<!-- -->
 <ul>
 <li class="">Multi-word resources and actions may be spelled with a dash anywhere in a path (<code>album-disks/{id}/songs</code>); the dashed form is folded onto the canonical snake_case action by a single rule rather than a per-name alias list</li>
@@ -201,6 +214,23 @@
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fixed-800000">Fixed (800000)<a href="#fixed-800000" class="hash-link" aria-label="Direct link to Fixed (800000)" title="Direct link to Fixed (800000)" translate="no">​</a></h3>
 <ul>
+<li class=""><code>playlists</code>/<code>list</code>/<code>index</code>/<code>stats</code> (API4 and above)<!-- -->
+<ul>
+<li class=""><code>sort=last_count</code> answered with an error instead of a list. The combined playlist and smartlist browse never carried the column it sorts on, though both tables have it</li>
+</ul>
+</li>
+<li class=""><code>followers</code> (API4 and above)<!-- -->
+<ul>
+<li class="">The returned ids are the accounts doing the following. They were the ids of the follow records, which line up with real accounts only by coincidence, so <code>following</code> and <code>followers</code> disagreed about the same relationship</li>
+</ul>
+</li>
+<li class="">ALL<!-- -->
+<ul>
+<li class="">Sorts a browse implemented but never offered, so asking for one did nothing: <code>id</code> on broadcast, private message, share, shoutbox and wanted, <code>release_date</code> on video, <code>title</code> on genre and mood, and <code>genre</code> on genre</li>
+<li class="">The private message browse sorts on <code>from_user</code> and takes the <code>equal</code>/<code>exact_match</code> filters it already implemented, and the follower browse sorts on <code>username</code>, <code>last_seen</code> and <code>create_date</code></li>
+<li class=""><code>wanted</code> dropped its <code>username</code> sort, which named a column the table does not have</li>
+</ul>
+</li>
 <li class="">API5, API6<!-- -->
 <ul>
 <li class="">advanced_search: <code>type=album_disk</code> returned album disk ids rendered as songs, so a client read a disk id as a song id. Neither version has an album disk formatter, so both now return an empty result instead. <code>search</code> is affected too, being an alias. API8 returns the album disks. <strong>NOTE</strong> the same fix landed in Ampache7, which serves these versions as well</li>
@@ -215,6 +245,11 @@
 <li class=""><code>preference_edit</code> (API6 and API8)<!-- -->
 <ul>
 <li class="">preference_edit: <code>default=1</code> now writes the server default — the system user&#x27;s value, and the value a new account is seeded from — instead of the calling user&#x27;s own value, and reports that value back. Existing accounts are still only changed by <code>all=1</code>. <strong>NOTE</strong> the same fix landed in Ampache7, which serves API6 as well</li>
+</ul>
+</li>
+<li class=""><code>live_stream_create</code>/<code>live_stream_edit</code> (API6 and API8)<!-- -->
+<ul>
+<li class="">live_stream_create, live_stream_edit: <code>codec</code> no longer has its digits stripped, so <code>mp3</code> is stored as <code>mp3</code> instead of <code>mp</code>. A radio station created or edited through the API before this keeps the truncated codec until it is set again. <strong>NOTE</strong> the same fix landed in Ampache7, which serves API6 as well</li>
 </ul>
 </li>
 </ul>
@@ -1767,7 +1802,7 @@ API3</li>
 </li>
 </ul>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="api-540">API 5.4.0<a href="#api-540" class="hash-link" aria-label="Direct link to API 5.4.0" title="Direct link to API 5.4.0" translate="no">​</a></h2>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="added-540000">Added (540000)<a href="#added-540000" class="hash-link" aria-label="Direct link to Added (540000)" title="Direct link to Added (540000)" translate="no">  ​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="added-540000">Added (540000)<a href="#added-540000" class="hash-link" aria-label="Direct link to Added (540000)" title="Direct link to Added (540000)" translate="no">​</a></h3>
 <ul>
 <li class="">advanced_search<!-- -->
 <ul>
