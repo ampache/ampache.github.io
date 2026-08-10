@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">API Changelog | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/api-changelog"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="API Changelog | Ampache"><meta data-rh="true" name="description" content="API Changelog"><meta data-rh="true" property="og:description" content="API Changelog"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/api-changelog"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/api-changelog" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"API Changelog","item":"https://ampache.org/api/api-changelog"}]}</script><link rel="stylesheet" href="/assets/css/styles.1176bb9b.css">
-<script src="/assets/js/runtime~main.2f51a92d.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.71fc10dc.js" defer="defer"></script>
 <script src="/assets/js/main.5545fdd3.js" defer="defer"></script>
 </head>
 <body>
@@ -217,6 +217,11 @@
 <li class=""><code>playlists</code>/<code>list</code>/<code>index</code>/<code>stats</code> (API4 and above)<!-- -->
 <ul>
 <li class=""><code>sort=last_count</code> answered with an error instead of a list. The combined playlist and smartlist browse never carried the column it sorts on, though both tables have it</li>
+</ul>
+</li>
+<li class=""><code>stats</code> (API3)<!-- -->
+<ul>
+<li class="">A <code>type</code> other than <code>newest</code>, <code>highest</code>, <code>frequent</code>, <code>recent</code> or <code>flagged</code> answered with an error instead of random albums, unless a <code>limit</code> was sent</li>
 </ul>
 </li>
 <li class=""><code>followers</code> (API4 and above)<!-- -->
@@ -455,7 +460,7 @@ we will keep on 6.9.x and resume build number versioning until Ampache 8</p>
 </ul>
 </li>
 </ul>
-<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fixed-692001">Fixed (692001)<a href="#fixed-692001" class="hash-link" aria-label="Direct link to Fixed (692001)" title="Direct link to Fixed (692001)" translate="no">  ​</a></h3>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fixed-692001">Fixed (692001)<a href="#fixed-692001" class="hash-link" aria-label="Direct link to Fixed (692001)" title="Direct link to Fixed (692001)" translate="no">​</a></h3>
 <ul>
 <li class="">ALL<!-- -->
 <ul>
