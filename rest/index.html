@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">REST API | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/rest/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="REST API | Ampache"><meta data-rh="true" name="description" content="REST API documentation"><meta data-rh="true" property="og:description" content="REST API documentation"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/rest/"><link data-rh="true" rel="alternate" href="https://ampache.org/rest/" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/rest/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"REST API","item":"https://ampache.org/rest/"}]}</script><link rel="stylesheet" href="/assets/css/styles.1176bb9b.css">
-<script src="/assets/js/runtime~main.f5c3acf0.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ccf5e2f5.js" defer="defer"></script>
 <script src="/assets/js/main.59b8b279.js" defer="defer"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
 <li class="">The differences between the RPC API and the RESTful API</li>
 <li class="">Which OpenAPI specification to use for your API version</li>
 <li class="">How resource path conversion works</li>
-<li class="">Updated endpoint structure and behaviour</li>
+<li class="">Updated endpoint structure and behavior</li>
 <li class="">HTTP method alignment</li>
 <li class="">Versioning model</li>
 <li class="">Migration guidance</li>
@@ -31,7 +31,7 @@
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="which-spec-should-i-use">Which spec should I use?<a href="#which-spec-should-i-use" class="hash-link" aria-label="Direct link to Which spec should I use?" title="Direct link to Which spec should I use?" translate="no">​</a></h3>
 <ul>
 <li class="">Targeting <strong>Ampache 8</strong> and happy to require it — use <code>openapi.json</code>. It is the canonical document for the current API and the only one describing the API8-only paths.</li>
-<li class="">Targeting <strong>Ampache 7 and Ampache 8 from the same client</strong> — use <code>openapi-6.json</code>. It is pinned to API version 6 and deliberately describes only the surface both servers honour.</li>
+<li class="">Targeting <strong>Ampache 7 and Ampache 8 from the same client</strong> — use <code>openapi-6.json</code>. It is pinned to API version 6 and deliberately describes only the surface both servers honor.</li>
 </ul>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="differences-in-the-api-6-specification">Differences in the API 6 specification<a href="#differences-in-the-api-6-specification" class="hash-link" aria-label="Direct link to Differences in the API 6 specification" title="Direct link to Differences in the API 6 specification" translate="no">​</a></h3>
 <ul>
@@ -47,7 +47,7 @@
 <p>While functional, this approach:</p>
 <ul>
 <li class="">Mixes transport and action logic</li>
-<li class="">Encodes behaviour inside query parameters</li>
+<li class="">Encodes behavior inside query parameters</li>
 <li class="">Overloads GET for state-changing operations</li>
 <li class="">Limits proper HTTP semantics</li>
 <li class="">Reduces cache effectiveness</li>
@@ -59,7 +59,7 @@
 <div class="language-URL language-url codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-url codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">{ampacheURL}/server/{format}.server.php?action={action}&amp;{parameters}</span><br></div></code></pre></div></div>
 <p>Characteristics:</p>
 <ul>
-<li class="">Behaviour determined by the <code>action</code> parameter</li>
+<li class="">Behavior determined by the <code>action</code> parameter</li>
 <li class="">Primarily GET-based</li>
 <li class="">Resources inferred indirectly</li>
 <li class="">Verb-style operation naming</li>
@@ -71,7 +71,7 @@
 <ul>
 <li class="">Resource-oriented URL design</li>
 <li class="">Plural resource naming</li>
-<li class="">Hierarchical relationship modelling</li>
+<li class="">Hierarchical relationship modeling</li>
 <li class="">Proper HTTP verb usage</li>
 <li class="">OpenAPI-compliant specification</li>
 <li class="">Clear separation between transport and intent</li>
@@ -101,7 +101,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="http-method-alignment">HTTP Method Alignment<a href="#http-method-alignment" class="hash-link" aria-label="Direct link to HTTP Method Alignment" title="Direct link to HTTP Method Alignment" translate="no">​</a></h2>
 <p>The RESTful API uses standard HTTP semantics:</p>
 <table><thead><tr><th>Method</th><th>Purpose</th><th>Example</th></tr></thead><tbody><tr><td>GET</td><td>Retrieve resource or collection</td><td><code>/rest/8/json/songs/123</code></td></tr><tr><td>POST</td><td>Create resource or relationship</td><td><code>/rest/8/json/playlists</code></td></tr><tr><td>PUT</td><td>Replace full resource</td><td><code>/rest/8/json/songs/123</code></td></tr><tr><td>PATCH</td><td>Partial update</td><td><code>/rest/8/json/songs/123</code></td></tr><tr><td>DELETE</td><td>Remove resource</td><td><code>/rest/8/json/playlists/9</code></td></tr></tbody></table>
-<p>State-changing behaviour is no longer implemented via GET.</p>
+<p>State-changing behavior is no longer implemented via GET.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="resource-naming-conventions">Resource Naming Conventions<a href="#resource-naming-conventions" class="hash-link" aria-label="Direct link to Resource Naming Conventions" title="Direct link to Resource Naming Conventions" translate="no">​</a></h2>
 <p>To ensure consistency across the API:</p>
 <ul>
@@ -178,7 +178,7 @@
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversion-rules">Conversion Rules<a href="#conversion-rules" class="hash-link" aria-label="Direct link to Conversion Rules" title="Direct link to Conversion Rules" translate="no">​</a></h2>
 <ul>
 <li class="">RPC endpoints must remain accessible and fully functional</li>
-<li class="">REST documentation reflects canonical behaviour</li>
+<li class="">REST documentation reflects canonical behavior</li>
 <li class="">Separate OpenAPI documentation is maintained for REST endpoints</li>
 <li class="">New features must be implemented using RESTful resource paths only</li>
 </ul>

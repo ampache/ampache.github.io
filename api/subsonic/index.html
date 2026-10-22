@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Subsonic API | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/api/subsonic"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Subsonic API | Ampache"><meta data-rh="true" name="description" content="API documentation"><meta data-rh="true" property="og:description" content="API documentation"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/api/subsonic"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/api/subsonic" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"API","item":"https://ampache.org/api/"},{"@type":"ListItem","position":2,"name":"Subsonic API","item":"https://ampache.org/api/subsonic"}]}</script><link rel="stylesheet" href="/assets/css/styles.1176bb9b.css">
-<script src="/assets/js/runtime~main.f5c3acf0.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ccf5e2f5.js" defer="defer"></script>
 <script src="/assets/js/main.59b8b279.js" defer="defer"></script>
 </head>
 <body>
@@ -91,15 +91,15 @@ the conformance test cannot resolve a schema name for.</li>
 <li class="">Expanded <a href="https://opensubsonic.netlify.app/docs/responses/error/" target="_blank" rel="noopener noreferrer" class="">subsonic-response error</a></li>
 </ul>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="sonic-similarity">Sonic similarity<a href="#sonic-similarity" class="hash-link" aria-label="Direct link to Sonic similarity" title="Direct link to Sonic similarity" translate="no">​</a></h4>
-<p><code>getSonicSimilarTracks</code> and <code>findSonicPath</code> need similarity derived from analysing the audio, which Ampache does not
+<p><code>getSonicSimilarTracks</code> and <code>findSonicPath</code> need similarity derived from analyzing the audio, which Ampache does not
 do itself. They are served by a plugin implementing <code>PluginSonicAnalysisInterface</code>, and the <code>sonicSimilarity</code>
 extension is advertised only while such a plugin is installed and enabled for the user — with none installed both
 endpoints report the feature as unsupported rather than answering with metadata similarity, which is a different
 thing entirely.</p>
 <p><a href="https://github.com/NeptuneHub/AudioMuse-AI" target="_blank" rel="noopener noreferrer" class="">AudioMuse-AI</a> is supported out of the box: install the <strong>AudioMuse</strong>
 plugin and set its server URL. It indexes by the music server&#x27;s own item id, so Ampache song ids pass straight
-through; its distance scores are inverted into the normalised <code>[0,1]</code> similarity the spec asks for.</p>
-<p>A backend that has not analysed the requested track answers with a message of its own; it is written to the Ampache
+through; its distance scores are inverted into the normalized <code>[0,1]</code> similarity the spec asks for.</p>
+<p>A backend that has not analyzed the requested track answers with a message of its own; it is written to the Ampache
 log and both endpoints answer with an empty list.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="api-key-authentication">Api Key authentication<a href="#api-key-authentication" class="hash-link" aria-label="Direct link to Api Key authentication" title="Direct link to Api Key authentication" translate="no">​</a></h4>
 <p>The key that must be passed to Ampache is the API Key generated for a specific user (none by default, only the administrator can generate one).</p>
