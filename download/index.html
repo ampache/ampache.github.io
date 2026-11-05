@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Download | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/download"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Download | Ampache"><meta data-rh="true" name="description" content="Download and install options"><meta data-rh="true" property="og:description" content="Download and install options"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/download"><link data-rh="true" rel="alternate" href="https://ampache.org/download" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/download" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Download","item":"https://ampache.org/download"}]}</script><link rel="stylesheet" href="/assets/css/styles.1176bb9b.css">
-<script src="/assets/js/runtime~main.593781a3.js" defer="defer"></script>
-<script src="/assets/js/main.59b8b279.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.19c52ff3.js" defer="defer"></script>
+<script src="/assets/js/main.2fd57bf4.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -30,7 +30,7 @@ There is no signup and nothing to buy; pick the way of running it that suits you
 <li class=""><code>ampache:develop</code> — latest features, occasionally breaks</li>
 <li class=""><code>ampache:preview</code> — unreleased Ampache8 code, expect it to break</li>
 <li class=""><code>ampache:nosql*</code> — the same images without a built-in MySQL server, for when you supply your own</li>
-<li class=""><code>ampache:client*</code> — <a class="" href="/docs/information/ampache7-client-structure-install-type">Client Structure</a> images that install a web client such as <a href="https://github.com/mitchray/ample" target="_blank" rel="noopener noreferrer" class="">Ample</a> or <a href="https://tangled.org/devins.page/tinysub" target="_blank" rel="noopener noreferrer" class="">tinysub</a> over the top of Ampache</li>
+<li class=""><code>ampache:client*</code> — <a class="" href="/docs/information/ampache-client-structure-install-type">Client Structure</a> images that install a web client such as <a href="https://github.com/mitchray/ample" target="_blank" rel="noopener noreferrer" class="">Ample</a> or <a href="https://tangled.org/devins.page/tinysub" target="_blank" rel="noopener noreferrer" class="">tinysub</a> over the top of Ampache</li>
 </ul>
 <p>The container can install itself without touching the web installer if you set <code>DB_NAME</code>, <code>DB_HOST</code>, <code>AMPACHE_ADMIN_USER</code> and <code>AMPACHE_ADMIN_EMAIL</code>. The full list of environment variables, the ARM builds, reverse proxy settings and theme mounting are all on the <a class="" href="/docker">Docker</a> page.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="release-zips">Release zips<a href="#release-zips" class="hash-link" aria-label="Direct link to Release zips" title="Direct link to Release zips" translate="no">​</a></h2>
@@ -44,7 +44,7 @@ There is no signup and nothing to buy; pick the way of running it that suits you
 <li class=""><code>ampache-%VERSION%_%PHPVERSION%.zip</code> (e.g. <code>ampache-8.0.0_php8.5.zip</code>) — <strong>the one most people want.</strong> It has the composer and npm packages already built in, so you unzip it and run the installer</li>
 <li class=""><code>ampache-%VERSION%.zip</code> — the same <code>public</code> code structure without dependencies. You run <code>composer install</code> and <code>npm install &amp;&amp; npm run build</code> yourself</li>
 <li class=""><code>ampache-%VERSION%_squashed.zip</code> — everything in the project root, the pre-Ampache5 layout. Only use this if your hosting cannot serve from a <code>public</code> subfolder</li>
-<li class=""><code>ampache-%VERSION%_client.zip</code> — the <a class="" href="/docs/information/ampache7-client-structure-install-type">client structure</a>, which puts an API client at the base URL and Ampache underneath it</li>
+<li class=""><code>ampache-%VERSION%_client.zip</code> — the <a class="" href="/docs/information/ampache-client-structure-install-type">client structure</a>, which puts an API client at the base URL and Ampache underneath it</li>
 </ul>
 <p>Unzip it into your web root, point the web server at the right folder (<code>public/</code> for the default structure) and open <code>install.php</code> in a browser. <a class="" href="/docs/installation">Installing Ampache</a> walks through the whole thing, including working vhost samples for Apache, nginx, lighttpd and Caddy.</p>
 <p>Streaming, the Subsonic API and the REST API all need URL rewriting enabled — see <a class="" href="/docs/installation/rewrite-rules">Rewrite Rules</a>.</p>

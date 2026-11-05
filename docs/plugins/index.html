@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Ampache Plugins | Ampache</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://ampache.org/docs/plugins/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ampache Plugins | Ampache"><meta data-rh="true" name="description" content="Ampache Plugins"><meta data-rh="true" property="og:description" content="Ampache Plugins"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://ampache.org/docs/plugins/"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/plugins/" hreflang="en"><link data-rh="true" rel="alternate" href="https://ampache.org/docs/plugins/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Plugins","item":"https://ampache.org/docs/plugins/"}]}</script><link rel="stylesheet" href="/assets/css/styles.1176bb9b.css">
-<script src="/assets/js/runtime~main.593781a3.js" defer="defer"></script>
-<script src="/assets/js/main.59b8b279.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.19c52ff3.js" defer="defer"></script>
+<script src="/assets/js/main.2fd57bf4.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -26,7 +26,7 @@ The category also decides where in the interface the plugin appears.</p>
 <li class="">share — share buttons for external sites</li>
 <li class="">shortener — URL shorteners for shared links</li>
 <li class="">slideshow — external photos for slideshows</li>
-<li class="">stream_control — per-user streaming limits</li>
+<li class="">stream_control — per-user and per-IP streaming limits</li>
 <li class="">wanted — act on the wanted list</li>
 <li class="">geolocation — show a user&#x27;s location</li>
 <li class="">preview — find a short sample for a wanted track</li>
@@ -169,7 +169,7 @@ Installing a plugin makes its preferences appear; each user then enables and con
 <p>Description: Artist photos from Flickr.</p>
 <p>Version: 000001</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="stream-control-plugins">Stream Control Plugins<a href="#stream-control-plugins" class="hash-link" aria-label="Direct link to Stream Control Plugins" title="Direct link to Stream Control Plugins" translate="no">​</a></h2>
-<p>Manage limits for user streaming based on time, hits and bandwidth.</p>
+<p>Manage limits for user streaming based on time, hits and bandwidth. Each plugin can also cap a public share&#x27;s anonymous visitors by source IP — see <a class="" href="/docs/plugins/plugins-options">Plugin Options</a> for the <code>_ip_max</code> preferences.</p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="stream-bandwidth">Stream Bandwidth<a href="#stream-bandwidth" class="hash-link" aria-label="Direct link to Stream Bandwidth" title="Direct link to Stream Bandwidth" translate="no">​</a></h3>
 <p>Description: Control bandwidth per user.</p>
 <p>Version: 000001</p>
